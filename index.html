@@ -1,621 +1,683 @@
 <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Jarniel Cataluna - Tech & AI Enthusiast</title>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jarniel Cataluna - Tech & AI Enthusiast</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <style>
+        /* ==== ROOT & NEO-BRUTALIST VARIABLES ==== */
+        :root {
+            /* Using a more geometric/brutalist font for headings, Inter for body */
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            
+            /* Light Mode (Stark, high contrast) */
+            --color-bg-light: #F4F4F0;
+            --color-card-bg-light: #FFFFFF;
+            --color-text-primary-light: #000000;
+            --color-text-secondary-light: #1A1A1A;
+            
+            /* Brutalist Accents */
+            --color-accent-yellow: #FFDE59;
+            --color-accent-blue: #38B6FF;
+            --color-accent-pink: #FF91E7;
+            
+            --border-thick: 3px solid #000000;
+            --shadow-hard: 6px 6px 0px #000000;
+            --shadow-hard-hover: 2px 2px 0px #000000;
+
+            /* Dark Mode (Inverted starkness) */
+            --color-bg-dark: #121212;
+            --color-card-bg-dark: #1E1E1E;
+            --color-text-primary-dark: #FFFFFF;
+            --color-text-secondary-dark: #E0E0E0;
+            --border-thick-dark: 3px solid #FFFFFF;
+            --shadow-hard-dark: 6px 6px 0px #FFFFFF;
+            --shadow-hard-hover-dark: 2px 2px 0px #FFFFFF;
+
+            /* Current active theme (Default to Light) */
+            --color-bg: var(--color-bg-light);
+            --color-card-bg: var(--color-card-bg-light);
+            --color-text-primary: var(--color-text-primary-light);
+            --color-text-secondary: var(--color-text-secondary-light);
+            --border-current: var(--border-thick);
+            --shadow-current: var(--shadow-hard);
+            --shadow-hover-current: var(--shadow-hard-hover);
+
+            --transition-duration: 0.15s ease-out; /* Faster transitions for a "snappy" feel */
+        }
+
+        body.dark-mode {
+            --color-bg: var(--color-bg-dark);
+            --color-card-bg: var(--color-card-bg-dark);
+            --color-text-primary: var(--color-text-primary-dark);
+            --color-text-secondary: var(--color-text-secondary-dark);
+            --border-current: var(--border-thick-dark);
+            --shadow-current: var(--shadow-hard-dark);
+            --shadow-hover-current: var(--shadow-hard-hover-dark);
+            
+            /* Use vibrant neon accents for dark mode instead of dimming them */
+            --color-accent-yellow: #FFDE59; 
+            --color-accent-blue: #38B6FF;
+            --color-accent-pink: #FF91E7;
+            --color-accent-green: #00E676; /* Added for extra pop */
+            --color-accent-purple: #B28DFF; /* Added for extra pop */
+        }
+
+        /* ==== BASE & TYPOGRAPHY ==== */
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-bg);
+            color: var(--color-text-primary);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            transition: background-color 0.3s ease;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 0.75rem;
+            color: var(--color-text-primary);
+            text-transform: uppercase;
+            letter-spacing: -0.05em;
+        }
+
+        h1 { font-size: 3.5rem; line-height: 1; margin-bottom: 1rem; }
+        h2 { font-size: 2.5rem; }
+        h3 { font-size: 1.5rem; text-transform: none; letter-spacing: normal; }
+        h4 { font-size: 1rem; font-family: var(--font-body); font-weight: 600; text-transform: uppercase; }
+
+        p {
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            color: var(--color-text-secondary);
+            font-size: 1.1rem;
+        }
+
+        a {
+            color: var(--color-text-primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .section-title {
+            padding-bottom: 15px;
+            border-bottom: var(--border-current);
+            margin-bottom: 40px;
+            display: inline-block;
+        }
+
+        /* ==== DARK MODE TOGGLE (BRUTALIST) ==== */
+        .theme-switch-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            margin-bottom: 40px;
+        }
+        .theme-switch {
+            display: inline-block;
+            height: 38px;
+            position: relative;
+            width: 70px;
+            border: var(--border-current);
+            border-radius: 0;
+            background-color: var(--color-card-bg);
+            box-shadow: var(--shadow-current);
+            cursor: pointer;
+            transition: transform var(--transition-duration), box-shadow var(--transition-duration);
+        }
+        .theme-switch:active {
+            transform: translate(4px, 4px);
+            box-shadow: var(--shadow-hover-current);
+        }
+        .theme-switch input {
+            display: none;
+        }
+        .slider {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            transition: .2s;
+        }
+        .slider:before {
+            content: "";
+            position: absolute;
+            height: 24px;
+            width: 24px;
+            left: 4px;
+            bottom: 4px;
+            background-color: var(--color-text-primary);
+            transition: .2s;
+        }
+        input:checked + .slider {
+            background-color: var(--color-accent-pink);
+        }
+        input:checked + .slider:before {
+            transform: translateX(32px);
+        }
+
+        /* ==== 1. HERO SECTION ==== */
+        .hero {
+            padding: 60px 40px;
+            background-color: var(--color-accent-yellow);
+            border: var(--border-current);
+            box-shadow: var(--shadow-current);
+            margin-bottom: 60px;
+            position: relative;
+        }
         
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+        /* Dark Mode Hero Pop */
+        body.dark-mode .hero {
+            background-color: var(--color-card-bg);
+            border-color: var(--color-accent-yellow);
+            box-shadow: 8px 8px 0px var(--color-accent-yellow);
+        }
         
-        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        .hero-title {
+            font-size: 1.5rem;
+            font-family: var(--font-body);
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-transform: none;
+        }
+        .hero-links {
+            margin-bottom: 25px;
+            display: flex;
+            gap: 15px;
+        }
+        .hero-links a {
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background-color: var(--color-card-bg);
+            border: var(--border-current);
+            box-shadow: var(--shadow-current);
+            transition: transform var(--transition-duration), box-shadow var(--transition-duration);
+        }
+        .hero-links a:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 8px 8px 0px var(--color-text-primary);
+        }
+        body.dark-mode .hero-links a:hover {
+            box-shadow: 6px 6px 0px var(--color-accent-yellow);
+        }
+        .hero-links a:active {
+            transform: translate(4px, 4px);
+            box-shadow: var(--shadow-hover-current);
+        }
+        .hero-summary {
+            font-size: 1.25rem;
+            max-width: 800px;
+            font-weight: 600;
+            color: var(--color-text-primary);
+        }
 
-        <style>
-            /* ==== ROOT & NEO-BRUTALIST VARIABLES ==== */
-            :root {
-                /* Using a more geometric/brutalist font for headings, Inter for body */
-                --font-display: 'Space Grotesk', sans-serif;
-                --font-body: 'Inter', sans-serif;
-                
-                /* Light Mode (Stark, high contrast) */
-                --color-bg-light: #F4F4F0;
-                --color-card-bg-light: #FFFFFF;
-                --color-text-primary-light: #000000;
-                --color-text-secondary-light: #1A1A1A;
-                
-                /* Brutalist Accents */
-                --color-accent-yellow: #FFDE59;
-                --color-accent-blue: #38B6FF;
-                --color-accent-pink: #FF91E7;
-                
-                --border-thick: 3px solid #000000;
-                --shadow-hard: 6px 6px 0px #000000;
-                --shadow-hard-hover: 2px 2px 0px #000000;
+        /* ==== 2. EXPERIENCE SECTION ==== */
+        .experience {
+            margin-bottom: 60px;
+        }
+        .experience-item {
+            background: var(--color-accent-blue);
+            border: var(--border-current);
+            padding: 30px;
+            box-shadow: var(--shadow-current);
+            margin-bottom: 20px;
+            transition: transform var(--transition-duration), box-shadow var(--transition-duration);
+        }
+        
+        /* Dark Mode Experience Pop */
+        body.dark-mode .experience-item {
+            background-color: var(--color-card-bg);
+            border-color: var(--color-accent-blue);
+            box-shadow: 8px 8px 0px var(--color-accent-blue);
+        }
+        
+        .experience-item:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 10px 10px 0px var(--color-text-primary);
+        }
+        
+        body.dark-mode .experience-item:hover {
+            box-shadow: 12px 12px 0px var(--color-text-primary);
+        }
 
-                /* Dark Mode (Inverted starkness) */
-                --color-bg-dark: #121212;
-                --color-card-bg-dark: #1E1E1E;
-                --color-text-primary-dark: #FFFFFF;
-                --color-text-secondary-dark: #E0E0E0;
-                --border-thick-dark: 3px solid #FFFFFF;
-                --shadow-hard-dark: 6px 6px 0px #FFFFFF;
-                --shadow-hard-hover-dark: 2px 2px 0px #FFFFFF;
+        .experience-role {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+        .experience-company {
+            font-weight: 700;
+            border-bottom: 2px solid var(--color-text-primary);
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .experience-date {
+            font-family: var(--font-display);
+            font-weight: 600;
+            background: var(--color-text-primary);
+            color: var(--color-bg);
+            padding: 5px 10px;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        .experience-desc {
+            color: var(--color-text-primary);
+            font-weight: 500;
+        }
 
-                /* Current active theme (Default to Light) */
-                --color-bg: var(--color-bg-light);
-                --color-card-bg: var(--color-card-bg-light);
-                --color-text-primary: var(--color-text-primary-light);
-                --color-text-secondary: var(--color-text-secondary-light);
-                --border-current: var(--border-thick);
-                --shadow-current: var(--shadow-hard);
-                --shadow-hover-current: var(--shadow-hard-hover);
+        /* ==== 3. FEATURED PROJECTS ==== */
+        .projects {
+            margin-bottom: 60px;
+        }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        .project-card {
+            background: var(--color-card-bg);
+            border: var(--border-current);
+            box-shadow: var(--shadow-current);
+            display: flex;
+            flex-direction: column;
+            transition: transform var(--transition-duration), box-shadow var(--transition-duration);
+        }
+        
+        /* Dark Mode Projects Pop */
+        body.dark-mode .project-card {
+            border-color: var(--color-accent-pink);
+            box-shadow: 8px 8px 0px var(--color-accent-pink);
+        }
 
-                --transition-duration: 0.15s ease-out; /* Faster transitions for a "snappy" feel */
-            }
+        .project-card:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 10px 10px 0px var(--color-text-primary);
+        }
+        .project-image {
+            width: 100%;
+            height: 220px;
+            border-bottom: var(--border-current);
+            background-color: #000;
+        }
+        body.dark-mode .project-image {
+            border-bottom-color: var(--color-accent-pink);
+        }
 
-            body.dark-mode {
-                --color-bg: var(--color-bg-dark);
-                --color-card-bg: var(--color-card-bg-dark);
-                --color-text-primary: var(--color-text-primary-dark);
-                --color-text-secondary: var(--color-text-secondary-dark);
-                --border-current: var(--border-thick-dark);
-                --shadow-current: var(--shadow-hard-dark);
-                --shadow-hover-current: var(--shadow-hard-hover-dark);
-                /* Dim the accents slightly for dark mode */
-                --color-accent-yellow: #CCB247; 
-                --color-accent-blue: #2D92CC;
-                --color-accent-pink: #CC74B9;
-            }
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%) contrast(120%); /* Brutalist touch: Grayscale images */
+            transition: filter 0.3s ease;
+        }
+        .project-card:hover .project-image img {
+            filter: grayscale(0%) contrast(100%); /* Color on hover */
+        }
+        .project-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .project-title {
+            font-size: 1.5rem;
+            background-color: var(--color-accent-pink);
+            display: inline-block;
+            padding: 5px 10px;
+            margin-bottom: 15px;
+            align-self: flex-start;
+            border: 2px solid var(--color-text-primary);
+        }
+        body.dark-mode .project-title { color: #000; }
+        .project-role { margin-bottom: 15px; }
+        .project-desc { flex-grow: 1; margin-bottom: 25px; }
+        
+        .project-tags {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .project-tags li {
+            background-color: transparent;
+            color: var(--color-text-primary);
+            padding: 6px 14px;
+            border: 2px solid var(--color-text-primary);
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            box-shadow: 2px 2px 0px var(--color-text-primary);
+        }
 
-            /* ==== BASE & TYPOGRAPHY ==== */
-            body {
-                font-family: var(--font-body);
-                background-color: var(--color-bg);
-                color: var(--color-text-primary);
-                line-height: 1.6;
-                margin: 0;
-                padding: 0;
-                overflow-x: hidden;
-                transition: background-color 0.3s ease;
-            }
+        /* ==== 4. SKILLS TOOLBOX ==== */
+        .skills {
+            margin-bottom: 60px;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .skills-category {
+            background: var(--color-card-bg);
+            border: var(--border-current);
+            padding: 20px;
+            box-shadow: var(--shadow-current);
+            transition: transform var(--transition-duration), box-shadow var(--transition-duration);
+        }
+        
+        /* Dark Mode Skills Pop */
+        body.dark-mode .skills-category {
+            border-color: var(--color-accent-green);
+            box-shadow: 6px 6px 0px var(--color-accent-green);
+        }
+        body.dark-mode .skills-category:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 8px 8px 0px var(--color-text-primary);
+        }
 
-            .container {
-                max-width: 960px;
-                margin: 0 auto;
-                padding: 40px 20px;
-            }
+        .skills-category h3 {
+            border-bottom: 3px solid var(--color-accent-blue);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        body.dark-mode .skills-category h3 {
+            border-bottom-color: var(--color-accent-green);
+        }
+        
+        .skills-category p {
+            font-weight: 600;
+            margin: 0;
+            line-height: 1.8;
+        }
 
-            h1, h2, h3, h4 {
-                font-family: var(--font-display);
-                font-weight: 700;
-                margin-top: 0;
-                margin-bottom: 0.75rem;
-                color: var(--color-text-primary);
-                text-transform: uppercase;
-                letter-spacing: -0.05em;
-            }
+        /* ==== 5. FOOTER (CALL TO ACTION) ==== */
+        .footer {
+            background-color: var(--color-text-primary);
+            color: var(--color-bg);
+            padding: 60px 40px;
+            border: var(--border-current);
+            box-shadow: var(--shadow-current);
+            text-align: left;
+        }
+        
+        /* Dark Mode Footer Pop */
+        body.dark-mode .footer {
+            border-color: var(--color-accent-purple);
+            box-shadow: 8px 8px 0px var(--color-accent-purple);
+        }
 
-            h1 { font-size: 3.5rem; line-height: 1; margin-bottom: 1rem; }
-            h2 { font-size: 2.5rem; }
-            h3 { font-size: 1.5rem; text-transform: none; letter-spacing: normal; }
-            h4 { font-size: 1rem; font-family: var(--font-body); font-weight: 600; text-transform: uppercase; }
+        .footer-title {
+            color: var(--color-bg);
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        .footer p {
+            color: var(--color-bg);
+            font-size: 1.25rem;
+            max-width: 600px;
+            margin-bottom: 40px;
+        }
+        .cta-button {
+            display: inline-block;
+            background-color: var(--color-accent-pink);
+            color: #000000;
+            padding: 15px 35px;
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            border: var(--border-current);
+            box-shadow: var(--shadow-current);
+            transition: transform var(--transition-duration), box-shadow var(--transition-duration);
+        }
+        body.dark-mode .cta-button { 
+            border-color: #000; 
+            box-shadow: 6px 6px 0px #000; 
+        }
+        
+        .cta-button:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 10px 10px 0px var(--color-bg);
+        }
+        body.dark-mode .cta-button:hover {
+            box-shadow: 10px 10px 0px var(--color-accent-blue);
+        }
 
-            p {
-                margin-top: 0;
-                margin-bottom: 1.5rem;
-                color: var(--color-text-secondary);
-                font-size: 1.1rem;
-            }
+        .cta-button:active {
+            transform: translate(2px, 2px);
+            box-shadow: 4px 4px 0px var(--color-bg);
+        }
 
-            a {
-                color: var(--color-text-primary);
-                text-decoration: none;
-                font-weight: 600;
-            }
+        /* ==== RESPONSIVE ==== */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .hero { padding: 40px 20px; }
+            .footer { padding: 40px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- Dark Mode Toggle -->
+        <div class="theme-switch-wrapper">
+            <label class="theme-switch" for="checkbox">
+                <input type="checkbox" id="checkbox" />
+                <div class="slider"></div>
+            </label>
+        </div>
 
-            .section-title {
-                padding-bottom: 15px;
-                border-bottom: var(--border-current);
-                margin-bottom: 40px;
-                display: inline-block;
-            }
-
-            /* ==== DARK MODE TOGGLE (BRUTALIST) ==== */
-            .theme-switch-wrapper {
-                display: flex;
-                align-items: center;
-                justify-content: flex-end;
-                margin-bottom: 40px;
-            }
-            .theme-switch {
-                display: inline-block;
-                height: 38px;
-                position: relative;
-                width: 70px;
-                border: var(--border-current);
-                border-radius: 0;
-                background-color: var(--color-card-bg);
-                box-shadow: var(--shadow-current);
-                cursor: pointer;
-                transition: transform var(--transition-duration), box-shadow var(--transition-duration);
-            }
-            .theme-switch:active {
-                transform: translate(4px, 4px);
-                box-shadow: var(--shadow-hover-current);
-            }
-            .theme-switch input {
-                display: none;
-            }
-            .slider {
-                position: absolute;
-                top: 0; left: 0; right: 0; bottom: 0;
-                transition: .2s;
-            }
-            .slider:before {
-                content: "";
-                position: absolute;
-                height: 24px;
-                width: 24px;
-                left: 4px;
-                bottom: 4px;
-                background-color: var(--color-text-primary);
-                transition: .2s;
-            }
-            input:checked + .slider {
-                background-color: var(--color-accent-pink);
-            }
-            input:checked + .slider:before {
-                transform: translateX(32px);
-            }
-
-            /* ==== 1. HERO SECTION ==== */
-            .hero {
-                padding: 60px 40px;
-                background-color: var(--color-accent-yellow);
-                border: var(--border-current);
-                box-shadow: var(--shadow-current);
-                margin-bottom: 60px;
-                position: relative;
-            }
-            body.dark-mode .hero {
-                background-color: var(--color-card-bg); /* Mute the massive yellow block in dark mode */
-            }
-            .hero-title {
-                font-size: 1.5rem;
-                font-family: var(--font-body);
-                font-weight: 600;
-                margin-bottom: 20px;
-                text-transform: none;
-            }
-            .hero-links {
-                margin-bottom: 25px;
-                display: flex;
-                gap: 15px;
-            }
-            .hero-links a {
-                font-size: 1.5rem;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                width: 50px;
-                height: 50px;
-                background-color: var(--color-card-bg);
-                border: var(--border-current);
-                box-shadow: var(--shadow-current);
-                transition: transform var(--transition-duration), box-shadow var(--transition-duration);
-            }
-            .hero-links a:hover {
-                transform: translate(-2px, -2px);
-                box-shadow: 8px 8px 0px var(--color-text-primary);
-            }
-            .hero-links a:active {
-                transform: translate(4px, 4px);
-                box-shadow: var(--shadow-hover-current);
-            }
-            .hero-summary {
-                font-size: 1.25rem;
-                max-width: 800px;
-                font-weight: 600;
-                color: var(--color-text-primary);
-            }
-
-            /* ==== 2. EXPERIENCE SECTION ==== */
-            .experience {
-                margin-bottom: 60px;
-            }
-            .experience-item {
-                background: var(--color-accent-blue);
-                border: var(--border-current);
-                padding: 30px;
-                box-shadow: var(--shadow-current);
-                margin-bottom: 20px;
-                transition: transform var(--transition-duration);
-            }
-            body.dark-mode .experience-item {
-                background-color: var(--color-card-bg);
-            }
-            .experience-item:hover {
-                transform: translate(-4px, -4px);
-                box-shadow: 10px 10px 0px var(--color-text-primary);
-            }
-            .experience-role {
-                font-family: var(--font-display);
-                font-weight: 700;
-                font-size: 1.8rem;
-                margin-bottom: 5px;
-            }
-            .experience-company {
-                font-weight: 700;
-                border-bottom: 2px solid var(--color-text-primary);
-                display: inline-block;
-                margin-bottom: 10px;
-            }
-            .experience-date {
-                font-family: var(--font-display);
-                font-weight: 600;
-                background: var(--color-text-primary);
-                color: var(--color-bg);
-                padding: 5px 10px;
-                display: inline-block;
-                margin-bottom: 20px;
-            }
-            .experience-desc {
-                color: var(--color-text-primary);
-                font-weight: 500;
-            }
-
-            /* ==== 3. FEATURED PROJECTS ==== */
-            .projects {
-                margin-bottom: 60px;
-            }
-            .projects-grid {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 40px;
-            }
-            .project-card {
-                background: var(--color-card-bg);
-                border: var(--border-current);
-                box-shadow: var(--shadow-current);
-                display: flex;
-                flex-direction: column;
-                transition: transform var(--transition-duration), box-shadow var(--transition-duration);
-            }
-            .project-card:hover {
-                transform: translate(-4px, -4px);
-                box-shadow: 10px 10px 0px var(--color-text-primary);
-            }
-            .project-image {
-                width: 100%;
-                height: 220px;
-                border-bottom: var(--border-current);
-                background-color: #000;
-            }
-            .project-image img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                filter: grayscale(100%) contrast(120%); /* Brutalist touch: Grayscale images */
-                transition: filter 0.3s ease;
-            }
-            .project-card:hover .project-image img {
-                filter: grayscale(0%) contrast(100%); /* Color on hover */
-            }
-            .project-content {
-                padding: 25px;
-                flex-grow: 1;
-                display: flex;
-                flex-direction: column;
-            }
-            .project-title {
-                font-size: 1.5rem;
-                background-color: var(--color-accent-pink);
-                display: inline-block;
-                padding: 5px 10px;
-                margin-bottom: 15px;
-                align-self: flex-start;
-                border: 2px solid var(--color-text-primary);
-            }
-            body.dark-mode .project-title { color: #000; }
-            .project-role { margin-bottom: 15px; }
-            .project-desc { flex-grow: 1; margin-bottom: 25px; }
+        <!-- ==== 1. HERO SECTION ==== -->
+        <header class="hero">
+            <h1 class="hero-name">Jarniel Cataluna</h1>
+            <h2 class="hero-title">Technology, Coding & AI Enthusiast</h2>
             
-            .project-tags {
-                list-style: none;
-                padding-left: 0;
-                margin: 0;
-                display: flex;
-                flex-wrap: wrap;
-                gap: 10px;
-            }
-            .project-tags li {
-                background-color: transparent;
-                color: var(--color-text-primary);
-                padding: 6px 14px;
-                border: 2px solid var(--color-text-primary);
-                font-size: 0.9rem;
-                font-weight: 700;
-                text-transform: uppercase;
-                box-shadow: 2px 2px 0px var(--color-text-primary);
-            }
-
-            /* ==== 4. SKILLS TOOLBOX ==== */
-            .skills {
-                margin-bottom: 60px;
-            }
-            .skills-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                gap: 20px;
-            }
-            .skills-category {
-                background: var(--color-card-bg);
-                border: var(--border-current);
-                padding: 20px;
-                box-shadow: var(--shadow-current);
-            }
-            .skills-category h3 {
-                border-bottom: 3px solid var(--color-accent-blue);
-                padding-bottom: 10px;
-                margin-bottom: 15px;
-            }
-            .skills-category p {
-                font-weight: 600;
-                margin: 0;
-                line-height: 1.8;
-            }
-
-            /* ==== 5. FOOTER (CALL TO ACTION) ==== */
-            .footer {
-                background-color: var(--color-text-primary);
-                color: var(--color-bg);
-                padding: 60px 40px;
-                border: var(--border-current);
-                box-shadow: var(--shadow-current);
-                text-align: left;
-            }
-            .footer-title {
-                color: var(--color-bg);
-                font-size: 3rem;
-                margin-bottom: 20px;
-            }
-            .footer p {
-                color: var(--color-bg);
-                font-size: 1.25rem;
-                max-width: 600px;
-                margin-bottom: 40px;
-            }
-            .cta-button {
-                display: inline-block;
-                background-color: var(--color-accent-pink);
-                color: #000000;
-                padding: 15px 35px;
-                font-family: var(--font-display);
-                font-size: 1.25rem;
-                font-weight: 700;
-                text-transform: uppercase;
-                border: var(--border-current);
-                box-shadow: var(--shadow-current);
-                transition: transform var(--transition-duration), box-shadow var(--transition-duration);
-            }
-            body.dark-mode .cta-button { border-color: #000; box-shadow: 6px 6px 0px #000; }
-            
-            .cta-button:hover {
-                transform: translate(-4px, -4px);
-                box-shadow: 10px 10px 0px var(--color-bg);
-            }
-            .cta-button:active {
-                transform: translate(2px, 2px);
-                box-shadow: 4px 4px 0px var(--color-bg);
-            }
-
-            /* ==== RESPONSIVE ==== */
-            @media (max-width: 768px) {
-                h1 { font-size: 2.5rem; }
-                .projects-grid { grid-template-columns: 1fr; }
-                .hero { padding: 40px 20px; }
-                .footer { padding: 40px 20px; }
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            
-            <!-- Dark Mode Toggle -->
-            <div class="theme-switch-wrapper">
-                <label class="theme-switch" for="checkbox">
-                    <input type="checkbox" id="checkbox" />
-                    <div class="slider"></div>
-                </label>
+            <div class="hero-links">
+                <a href="mailto:jarnielcataluna@gmail.com" title="Email"><i class='bx bxs-envelope'></i></a>
+                <a href="https://github.com/your-username" target="_blank" rel="noopener noreferrer" title="GitHub"><i class='bx bxl-github'></i></a>
+                <a href="https://linkedin.com/in/your-username" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class='bx bxl-linkedin-square'></i></a>
             </div>
 
-            <!-- ==== 1. HERO SECTION ==== -->
-            <header class="hero">
-                <h1 class="hero-name">Jarniel Cataluna</h1>
-                <h2 class="hero-title">Technology, Coding & AI Enthusiast</h2>
-                
-                <div class="hero-links">
-                    <a href="mailto:jarnielcataluna@gmail.com" title="Email"><i class='bx bxs-envelope'></i></a>
-                    <a href="https://github.com/your-username" target="_blank" rel="noopener noreferrer" title="GitHub"><i class='bx bxl-github'></i></a>
-                    <a href="https://linkedin.com/in/your-username" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class='bx bxl-linkedin-square'></i></a>
+            <p class="hero-summary">
+                A formal, technically-driven developer focused on establishing clear technical requirements. I specialize in spec-driven development—architecting and creating robust projects with AI via precise specifications, alongside traditional full-stack engineering.
+            </p>
+        </header>
+
+        <main>
+            <!-- ==== 2. EXPERIENCE SECTION ==== -->
+            <section class="experience">
+                <h2 class="section-title">Professional Experience</h2>
+                <div class="experience-item">
+                    <h3 class="experience-role">Senior Software Engineer</h3>
+                    <div class="experience-company">Manila-based Digital Agency</div><br>
+                    <div class="experience-date">2015 – Present</div>
+                    <p class="experience-desc">
+                        Key technical leader at a top digital agency, architecting and building robust web applications, mobile apps, and scalable APIs. Directed projects from technical specification to deployment for major brands in finance, real estate, and e-commerce, specializing in custom CMS development, API-driven architecture, and system automation.
+                    </p>
                 </div>
+            </section>
 
-                <p class="hero-summary">
-                    A formal, technically-driven developer focused on establishing clear technical requirements. I specialize in spec-driven development—architecting and creating robust projects with AI via precise specifications, alongside traditional full-stack engineering.
-                </p>
-            </header>
+            <!-- ==== 3. FEATURED PROJECTS ==== -->
+            <section class="projects">
+                <h2 class="section-title">Featured Projects</h2>
+                <div class="projects-grid">
 
-            <main>
-                <!-- ==== 2. EXPERIENCE SECTION ==== -->
-                <section class="experience">
-                    <h2 class="section-title">Professional Experience</h2>
-                    <div class="experience-item">
-                        <h3 class="experience-role">Senior Software Engineer</h3>
-                        <div class="experience-company">Manila-based Digital Agency</div><br>
-                        <div class="experience-date">2015 – Present</div>
-                        <p class="experience-desc">
-                            Key technical leader at a top digital agency, architecting and building robust web applications, mobile apps, and scalable APIs. Directed projects from technical specification to deployment for major brands in finance, real estate, and e-commerce, specializing in custom CMS development, API-driven architecture, and system automation.
-                        </p>
+                    <article class="project-card">
+                        <div class="project-image">
+                            <img src="https://placehold.co/600x400/000000/FFFFFF?text=PROJECT+01&font=Space+Grotesk" alt="Palawan Pawnshop CMS Placeholder">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Palawan Pawnshop</h3>
+                            <h4 class="project-role">Role: Lead Backend Developer</h4>
+                            <p class="project-desc">
+                                Architected and built the core of a custom Content Management System. Focused on creating a secure, scalable, and high-performance backend using Symfony, enabling dynamic content delivery.
+                            </p>
+                            <ul class="project-tags">
+                                <li>PHP</li><li>Symfony</li><li>MySQL</li><li>Git</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-image">
+                            <img src="https://placehold.co/600x400/000000/FFFFFF?text=PROJECT+02&font=Space+Grotesk" alt="DMCI Homes Website Placeholder">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">DMCI Homes</h3>
+                            <h4 class="project-role">Role: Lead Backend Developer</h4>
+                            <p class="project-desc">
+                                Engineered the backend for a new corporate CMS on Symfony. Designed and implemented a containerized environment (Docker/Nginx) to standardize the development-to-production pipeline.
+                            </p>
+                            <ul class="project-tags">
+                                <li>Symfony</li><li>Docker</li><li>Nginx</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-image">
+                            <img src="https://placehold.co/600x400/000000/FFFFFF?text=PROJECT+03&font=Space+Grotesk" alt="RCBC Website Placeholder">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">RCBC CMS</h3>
+                            <h4 class="project-role">Role: Lead Backend Developer</h4>
+                            <p class="project-desc">
+                                Developed a secure and compliant CMS foundation for a major financial institution. Engineered primary modules for data handling meeting strict security and performance standards.
+                            </p>
+                            <ul class="project-tags">
+                                <li>PHP</li><li>Symfony</li><li>MySQL</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-image">
+                            <img src="https://placehold.co/600x400/000000/FFFFFF?text=PROJECT+04&font=Space+Grotesk" alt="DMCI Communities App Placeholder">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">DMCI Communities</h3>
+                            <h4 class="project-role">Role: Senior API Developer</h4>
+                            <p class="project-desc">
+                                Architected a secure, high-throughput REST API for a resident mobile app. Built endpoints via SpringBoot to handle payments, maintenance, and backend system integrations.
+                            </p>
+                            <ul class="project-tags">
+                                <li>Java</li><li>SpringBoot</li><li>MySQL</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                </div>
+            </section>
+
+            <!-- ==== 4. SKILLS TOOLBOX ==== -->
+            <section class="skills">
+                <h2 class="section-title">Technical Specs & Stack</h2>
+                
+                <div class="skills-grid">
+                    <div class="skills-category">
+                        <h3>Backend</h3>
+                        <p>PHP (Symfony, Laravel) <br> Python (Flask, FastAPI) <br> Java (SpringBoot) <br> Golang</p>
                     </div>
-                </section>
-
-                <!-- ==== 3. FEATURED PROJECTS ==== -->
-                <section class="projects">
-                    <h2 class="section-title">Featured Projects</h2>
-                    <div class="projects-grid">
-
-                        <article class="project-card">
-                            <div class="project-image">
-                                <img src="https://placehold.co/600x400/000000/FFFFFF?text=PROJECT+01&font=Space+Grotesk" alt="Palawan Pawnshop CMS Placeholder">
-                            </div>
-                            <div class="project-content">
-                                <h3 class="project-title">Palawan Pawnshop</h3>
-                                <h4 class="project-role">Role: Lead Backend Developer</h4>
-                                <p class="project-desc">
-                                    Architected and built the core of a custom Content Management System. Focused on creating a secure, scalable, and high-performance backend using Symfony, enabling dynamic content delivery.
-                                </p>
-                                <ul class="project-tags">
-                                    <li>PHP</li><li>Symfony</li><li>MySQL</li><li>Git</li>
-                                </ul>
-                            </div>
-                        </article>
-
-                        <article class="project-card">
-                            <div class="project-image">
-                                <img src="https://placehold.co/600x400/000000/FFFFFF?text=PROJECT+02&font=Space+Grotesk" alt="DMCI Homes Website Placeholder">
-                            </div>
-                            <div class="project-content">
-                                <h3 class="project-title">DMCI Homes</h3>
-                                <h4 class="project-role">Role: Lead Backend Developer</h4>
-                                <p class="project-desc">
-                                    Engineered the backend for a new corporate CMS on Symfony. Designed and implemented a containerized environment (Docker/Nginx) to standardize the development-to-production pipeline.
-                                </p>
-                                <ul class="project-tags">
-                                    <li>Symfony</li><li>Docker</li><li>Nginx</li>
-                                </ul>
-                            </div>
-                        </article>
-
-                        <article class="project-card">
-                            <div class="project-image">
-                                <img src="https://placehold.co/600x400/000000/FFFFFF?text=PROJECT+03&font=Space+Grotesk" alt="RCBC Website Placeholder">
-                            </div>
-                            <div class="project-content">
-                                <h3 class="project-title">RCBC CMS</h3>
-                                <h4 class="project-role">Role: Lead Backend Developer</h4>
-                                <p class="project-desc">
-                                    Developed a secure and compliant CMS foundation for a major financial institution. Engineered primary modules for data handling meeting strict security and performance standards.
-                                </p>
-                                <ul class="project-tags">
-                                    <li>PHP</li><li>Symfony</li><li>MySQL</li>
-                                </ul>
-                            </div>
-                        </article>
-
-                        <article class="project-card">
-                            <div class="project-image">
-                                <img src="https://placehold.co/600x400/000000/FFFFFF?text=PROJECT+04&font=Space+Grotesk" alt="DMCI Communities App Placeholder">
-                            </div>
-                            <div class="project-content">
-                                <h3 class="project-title">DMCI Communities</h3>
-                                <h4 class="project-role">Role: Senior API Developer</h4>
-                                <p class="project-desc">
-                                    Architected a secure, high-throughput REST API for a resident mobile app. Built endpoints via SpringBoot to handle payments, maintenance, and backend system integrations.
-                                </p>
-                                <ul class="project-tags">
-                                    <li>Java</li><li>SpringBoot</li><li>MySQL</li>
-                                </ul>
-                            </div>
-                        </article>
-
-                    </div>
-                </section>
-
-                <!-- ==== 4. SKILLS TOOLBOX ==== -->
-                <section class="skills">
-                    <h2 class="section-title">Technical Specs & Stack</h2>
                     
-                    <div class="skills-grid">
-                        <div class="skills-category">
-                            <h3>Backend</h3>
-                            <p>PHP (Symfony, Laravel) <br> Python (Flask, FastAPI) <br> Java (SpringBoot) <br> Golang</p>
-                        </div>
-                        
-                        <div class="skills-category">
-                            <h3>Frontend</h3>
-                            <p>JavaScript / TypeScript <br> React / Angular <br> Node.js / Vite</p>
-                        </div>
-                        
-                        <div class="skills-category">
-                            <h3>Mobile</h3>
-                            <p>Kotlin (Android) <br> Swift & Objective-C (iOS) <br> Flutter</p>
-                        </div>
-
-                        <div class="skills-category">
-                            <h3>AI & Orchestration</h3>
-                            <p>Agentic Orchestration <br> Antigravity <br> GSD (Get S*** Done)</p>
-                        </div>
-
-                        <div class="skills-category">
-                            <h3>Integrations & APIs</h3>
-                            <p>3rd Party API Integration <br> Meta API / Graph API <br> Google Ads Reporting API</p>
-                        </div>
-
-                        <div class="skills-category">
-                            <h3>Analytics & Tracking</h3>
-                            <p>Google Tag Manager (GTM) <br> Event Trackers & Custom Metrics <br> GA4 / Server-Side Tracking</p>
-                        </div>
-
-                        <div class="skills-category">
-                            <h3>CMS & E-commerce</h3>
-                            <p>WordPress <br> Shopify <br> Magento</p>
-                        </div>
-                        
-                        <div class="skills-category">
-                            <h3>Databases</h3>
-                            <p>MySQL / PostgreSQL <br> SQLite</p>
-                        </div>
-
-                        <div class="skills-category">
-                            <h3>DevOps & Cloud</h3>
-                            <p>Docker / Git <br> AWS / Digital Ocean <br> Github Actions</p>
-                        </div>
+                    <div class="skills-category">
+                        <h3>Frontend</h3>
+                        <p>JavaScript / TypeScript <br> React / Angular <br> Node.js / Vite</p>
                     </div>
-                </section>
-            </main>
+                    
+                    <div class="skills-category">
+                        <h3>Mobile</h3>
+                        <p>Kotlin (Android) <br> Swift & Objective-C (iOS) <br> Flutter</p>
+                    </div>
 
-            <!-- ==== 5. FOOTER (CALL TO ACTION) ==== -->
-            <footer class="footer">
-                <h2 class="footer-title">INITIATE_PROJECT</h2>
-                <p>Ready to deploy clear technical requirements into robust solutions. Reach out to discuss spec-driven development and architecture.</p>
-                <a href="mailto:jarnielcataluna@gmail.com" class="cta-button">
-                    Compile & Send Message
-                </a>
-            </footer>
+                    <div class="skills-category">
+                        <h3>AI & Orchestration</h3>
+                        <p>Agentic Orchestration <br> Antigravity <br> GSD (Get S*** Done)</p>
+                    </div>
 
-        </div> 
+                    <div class="skills-category">
+                        <h3>Integrations & APIs</h3>
+                        <p>3rd Party API Integration <br> Meta API / Graph API <br> Google Ads Reporting API</p>
+                    </div>
 
-        <script>
-            // Dark Mode Toggle (Simplified for Brutalism)
-            const checkbox = document.getElementById('checkbox');
-            const body = document.body;
+                    <div class="skills-category">
+                        <h3>Analytics & Tracking</h3>
+                        <p>Google Tag Manager (GTM) <br> Event Trackers & Custom Metrics <br> GA4 / Server-Side Tracking</p>
+                    </div>
 
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    <div class="skills-category">
+                        <h3>CMS & E-commerce</h3>
+                        <p>WordPress <br> Shopify <br> Magento</p>
+                    </div>
+                    
+                    <div class="skills-category">
+                        <h3>Databases</h3>
+                        <p>MySQL / PostgreSQL <br> SQLite</p>
+                    </div>
+
+                    <div class="skills-category">
+                        <h3>DevOps & Cloud</h3>
+                        <p>Docker / Git <br> AWS / Digital Ocean <br> Github Actions</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- ==== 5. FOOTER (CALL TO ACTION) ==== -->
+        <footer class="footer">
+            <h2 class="footer-title">INITIATE_PROJECT</h2>
+            <p>Ready to deploy clear technical requirements into robust solutions. Reach out to discuss spec-driven development and architecture.</p>
+            <a href="mailto:jarnielcataluna@gmail.com" class="cta-button">
+                Compile & Send Message
+            </a>
+        </footer>
+
+    </div> 
+
+    <script>
+        // Dark Mode Toggle (Simplified for Brutalism)
+        const checkbox = document.getElementById('checkbox');
+        const body = document.body;
+
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            body.classList.add('dark-mode');
+            checkbox.checked = true;
+        }
+
+        checkbox.addEventListener('change', () => {
+            if (checkbox.checked) {
                 body.classList.add('dark-mode');
-                checkbox.checked = true;
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
             }
-
-            checkbox.addEventListener('change', () => {
-                if (checkbox.checked) {
-                    body.classList.add('dark-mode');
-                    localStorage.setItem('theme', 'dark');
-                } else {
-                    body.classList.remove('dark-mode');
-                    localStorage.setItem('theme', 'light');
-                }
-            });
-        </script>
-    </body>
-    </html>
+        });
+    </script>
+</body>
+</html>
