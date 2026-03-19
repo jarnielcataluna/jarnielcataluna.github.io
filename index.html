@@ -4,30 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- ==== SEO & META TAGS ==== -->
     <title>Jarniel Cataluna | Senior Software Engineer & AI Enthusiast</title>
     <meta name="description" content="Portfolio of Jarniel Cataluna, a Senior Software Engineer and AI Enthusiast specializing in full-stack development, spec-driven development, and scalable APIs.">
     <meta name="keywords" content="Jarniel Cataluna, Senior Software Engineer, Full-Stack Developer, AI Enthusiast, PHP, Python, Java, Golang, React, Tech Lead, Spec-Driven Development">
     <meta name="author" content="Jarniel Cataluna">
     <link rel="canonical" href="https://jarnielcataluna.github.io/"> 
 
-    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://jarnielcataluna.github.io/">
     <meta property="og:title" content="Jarniel Cataluna | Senior Software Engineer & AI Enthusiast">
     <meta property="og:description" content="Portfolio of Jarniel Cataluna, a Senior Software Engineer specializing in full-stack development, spec-driven development, and scalable APIs.">
-    <meta property="og:image" content="https://placehold.co/1200x630/FFDE59/000000.png?text=Jarniel+Cataluna+-+Tech+%26+AI&font=Space+Grotesk">
+    <meta property="og:image" content="https://jarnielcataluna.github.io/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
 
-    <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://jarnielcataluna.github.io/">
     <meta property="twitter:title" content="Jarniel Cataluna | Senior Software Engineer & AI Enthusiast">
     <meta property="twitter:description" content="Portfolio of Jarniel Cataluna, a Senior Software Engineer specializing in full-stack development, spec-driven development, and scalable APIs.">
-    <meta property="twitter:image" content="https://placehold.co/1200x630/FFDE59/000000.png?text=Jarniel+Cataluna+-+Tech+%26+AI&font=Space+Grotesk">
+    <meta property="twitter:image" content="https://jarnielcataluna.github.io/og-image.png">
 
-    <!-- Google tag (gtag.js) -->
+    <link rel="icon" type="image/png" sizes="32x32" href="https://jarnielcataluna.github.io/favicon.png">
+
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NWVH1KTPZG"></script>
     <script>
     window.dataLayer = window.dataLayer || [];
@@ -38,7 +36,6 @@
 
     <meta name="google-site-verification" content="0lLZgWCEN6DZW7VJg_Ulky5khdOPOtGqAS1yhPQaWJ4" />
 
-    <!-- ==== FONTS & ICONS ==== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700;900&family=IBM+Plex+Mono:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
@@ -507,6 +504,13 @@
             outline: none;
             transition: all 0.2s ease;
         }
+        .brutal-input::placeholder {
+            color: #888888;
+            opacity: 1;
+        }
+        body.dark-mode .brutal-input::placeholder {
+            color: #AAAAAA;
+        }
         .brutal-input:focus {
             background-color: var(--color-card-bg);
             box-shadow: 6px 6px 0 var(--color-blue);
@@ -697,29 +701,30 @@
             .bento-backend, .bento-frontend, .bento-ai, .bento-mobile, .bento-api, .bento-analytics, .bento-devops, .bento-cms { grid-column: span 1; grid-row: auto; }
             .projects-grid { grid-template-columns: 1fr; }
             .footer-title { font-size: 2.5rem; }
-            .back-to-top { bottom: 20px; right: 20px; width: 45px; height: 45px; font-size: 1.5rem; }
+            
+            /* Mobile adjustments to prevent FAB overlap */
+            footer { padding: 60px 0 100px 0; } /* Extra bottom padding so scroll clears form */
+            .contact-form-card { padding: 25px; box-shadow: 6px 6px 0 var(--border-color); }
+            
+            .back-to-top { bottom: 15px; right: 15px; width: 45px; height: 45px; font-size: 1.5rem; }
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <!-- ==== NAVIGATION ==== -->
         <nav>
             <div class="nav-inner brutal-card">
                 <div class="nav-logo">JARNIEL CATALUÑA</div>
                 <div class="nav-controls">
-                    <!-- Desktop Links -->
                     <a href="#experience" class="nav-link desktop-only">Experience</a>
                     <a href="#projects" class="nav-link desktop-only">Work</a>
                     <a href="#contact" class="nav-link desktop-only">Contact</a>
                     
-                    <!-- Mobile Contact Icon -->
                     <a href="#contact" class="nav-link mobile-only" aria-label="Contact">
                         <i class='bx bxs-envelope'></i>
                     </a>
                     
-                    <!-- Theme Toggle -->
                     <button class="theme-toggle" id="themeToggle" aria-label="Toggle Dark Mode">
                         <i class='bx bx-moon'></i>
                     </button>
@@ -727,7 +732,6 @@
             </div>
         </nav>
 
-        <!-- ==== HERO SECTION ==== -->
         <header class="hero-section">
             <div class="hero-content brutal-card interactive reveal-up" style="transition-delay: 0s;">
                 <h1 class="hero-title">INITIATING<br>ARCHITECTURE</h1>
@@ -749,10 +753,7 @@
                 <div class="pill-badge">10+ Years in the Tech Industry</div>
             </div>
         </header>
-    </div> <!-- Close Container for full-width Marquee -->
-
-    <!-- ==== SCROLLING MARQUEE ==== -->
-    <div class="marquee-wrapper reveal-up" style="transition-delay: 0.1s;">
+    </div> <div class="marquee-wrapper reveal-up" style="transition-delay: 0.1s;">
         <div class="marquee-content">
             TECH LEAD // FULL STACK // AI ORCHESTRATION // SYSTEM ARCHITECTURE // GSD // TECH LEAD // FULL STACK // AI ORCHESTRATION // SYSTEM ARCHITECTURE // GSD // TECH LEAD // FULL STACK // AI ORCHESTRATION // SYSTEM ARCHITECTURE // GSD //
         </div>
@@ -762,7 +763,6 @@
     </div>
 
     <div class="container">
-        <!-- ==== EXPERIENCE SECTION ==== -->
         <section id="experience" class="experience">
             <h2 class="section-header reveal-up">EXPERIENCE_LOG</h2>
             
@@ -783,7 +783,6 @@
             </div>
         </section>
 
-        <!-- ==== BENTO GRID SKILLS ==== -->
         <section class="skills">
             <h2 class="section-header reveal-up">SYS_SPECS</h2>
             
@@ -830,7 +829,6 @@
             </div>
         </section>
 
-        <!-- ==== PROJECTS GRID ==== -->
         <section id="projects" class="projects">
             <h2 class="section-header reveal-up">DEPLOYMENTS</h2>
             
@@ -893,10 +891,7 @@
             </div>
         </section>
 
-    </div> <!-- Close Container -->
-
-    <!-- ==== FOOTER / CONTACT SECTION ==== -->
-    <footer id="contact">
+    </div> <footer id="contact">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-text reveal-up" style="transition-delay: 0s;">
@@ -907,7 +902,6 @@
                     </a>
                 </div>
                 
-                <!-- CONTACT FORM -->
                 <div class="contact-form-card brutal-card reveal-up" style="transition-delay: 0.2s;">
                     <h3 style="font-size: 2rem; margin-bottom: 25px;">SECURE_TRANSMISSION</h3>
                     <form id="contactForm" novalidate>
@@ -941,7 +935,6 @@
         </div>
     </footer>
 
-    <!-- ==== SUCCESS MODAL ==== -->
     <div id="successModal" class="modal-overlay">
         <div class="modal-box brutal-card">
             <i class='bx bxs-check-circle modal-icon'></i>
@@ -951,12 +944,10 @@
         </div>
     </div>
 
-    <!-- ==== BACK TO TOP BUTTON ==== -->
     <button id="backToTop" class="back-to-top" aria-label="Back to Top">
         <i class='bx bx-up-arrow-alt'></i>
     </button>
 
-    <!-- ==== FIREBASE & LOGIC SCRIPT ==== -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
@@ -966,10 +957,26 @@
         let db = null;
         let isFirebaseInitialized = false;
 
+        // PASTE YOUR FIREBASE CONFIG HERE:
+        const myFirebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT_ID.appspot.com",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
         try {
+            let configToUse;
             if (typeof __firebase_config !== 'undefined') {
-                const firebaseConfig = JSON.parse(__firebase_config);
-                const app = initializeApp(firebaseConfig);
+                configToUse = JSON.parse(__firebase_config);
+            } else if (myFirebaseConfig.apiKey !== "YOUR_API_KEY") {
+                configToUse = myFirebaseConfig;
+            }
+
+            if (configToUse) {
+                const app = initializeApp(configToUse);
                 const auth = getAuth(app);
                 db = getFirestore(app);
                 
@@ -1095,8 +1102,16 @@
 
             try {
                 if (isFirebaseInitialized && db) {
-                    const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-                    const messagesRef = collection(db, 'artifacts', appId, 'public', 'data', 'messages');
+                    let messagesRef;
+                    if (typeof __app_id !== 'undefined') {
+                        // Environment specific path
+                        const appId = __app_id;
+                        messagesRef = collection(db, 'artifacts', appId, 'public', 'data', 'messages');
+                    } else {
+                        // Standard path for your own Firebase instance
+                        messagesRef = collection(db, 'messages');
+                    }
+                    
                     await addDoc(messagesRef, {
                         ...formData,
                         createdAt: serverTimestamp()
