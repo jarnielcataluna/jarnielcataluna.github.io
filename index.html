@@ -1,797 +1,621 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jarniel Cataluna - Senior Software Engineer</title>
-    
-    <!-- ==== SEO & METADATA ==== -->
-    <meta name="author" content="Jarniel Cataluna">
-    <meta name="description" content="Senior Software Engineer with 9+ years of experience in full-stack development. Specializing in PHP, Python, Java, React, and native mobile apps.">
-    <meta name="keywords" content="Jarniel Cataluna, Senior Software Engineer, Full-Stack Developer, PHP, Python, Java, Symfony, SpringBoot, React, Angular, Mobile Developer, Freelance">
-
-    <!-- TODO: CUSTOMIZE - Update this URL once your site is live! -->
-    <link rel="canonical" href="https://jarnielcataluna.github.io/">
-
-    <!-- ==== OPEN GRAPH (for Social Sharing) ==== -->
-    <!-- TODO: CUSTOMIZE - Update this URL -->
-    <meta property="og:url" content="https://jarnielcataluna.github.io/">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Jarniel Cataluna - Senior Software Engineer">
-    <meta property="og:description" content="Senior Software Engineer with 9+ years of experience in full-stack development. Specializing in PHP, Python, Java, React, and native mobile apps.">
-    
-    <!-- TODO: CUSTOMIZE - Create a 1200x630px image, upload it to your repo, and link it here. -->
-    <meta property="og:image" content="https://jarnielcataluna.github.io/og-image.jpg">
-
-    <!-- ==== TWITTER CARD (for Social Sharing) ==== -->
-    <meta name="twitter:card" content="summary_large_image">
-    <!-- TODO: CUSTOMIZE - Update this URL -->
-    <meta property="twitter:domain" content="jarnielcataluna.github.io">
-    <meta property="twitter:url" content="https://jarnielcataluna.github.io/">
-    <meta name="twitter:title" content="Jarniel Cataluna - Senior Software Engineer">
-    <meta name="twitter:description" content="Senior Software Engineer with 9+ years of experience in full-stack development. Specializing in PHP, Python, Java, React, and native mobile apps.">
-    
-    <!-- TODO: CUSTOMIZE - Use the same 1200x630px image link as above. -->
-    <meta name="twitter:image" content="https://jarnielcataluna.github.io/og-image.jpg">
-    <!-- ==== END SEO & METADATA ==== -->
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
-    <style>
-        /* ==== ROOT & VARIABLES (DARK MODE ONLY) ==== */
-        :root {
-            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            
-            --color-bg: #0f101a; /* A very dark, slightly blue space color */
-            --color-card-bg: rgba(29, 30, 48, 0.7); /* Translucent card background */
-            --color-card-bg-solid: #1d1e30;
-            --color-text-primary: #E0E0E0;
-            --color-text-secondary: #B0B0B0;
-            --color-accent: #5AC8FA; /* Bright blue accent */
-            --color-accent-light-bg: #2A3B4C;
-            --color-border: #333333;
-            --particle-color: rgba(90, 200, 250, 0.3); /* Particle and line color */
-
-            --shadow: 0 4px 25px rgba(0, 0, 0, 0.2);
-            --transition-duration: 0.3s ease;
-        }
-
-        /* ==== BASE & TYPOGRAPHY ==== */
-        body {
-            font-family: var(--font-primary);
-            background-color: var(--color-bg);
-            color: var(--color-text-primary);
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            scroll-behavior: smooth;
-            overflow-x: hidden; /* Prevent horizontal scroll */
-        }
-
-        /* ==== ANIMATED PARTICLE BACKGROUND ==== */
-        #particle-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0; /* Behind all content */
-            pointer-events: none; /* Allows clicking through */
-        }
-
-        .container {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 20px;
-            position: relative; /* All content must be relative to sit above z-index: 0 */
-            z-index: 1;
-        }
-
-        h1, h2, h3, h4 {
-            font-weight: 600;
-            margin-top: 0;
-            margin-bottom: 0.75rem;
-            color: var(--color-text-primary);
-        }
-
-        h1 { font-size: 2.75rem; font-weight: 700; }
-        h2 { font-size: 2rem; }
-        h3 { font-size: 1.25rem; }
-        h4 { font-size: 1rem; color: var(--color-text-secondary); }
-
-        p {
-            margin-top: 0;
-            margin-bottom: 1rem;
-            color: var(--color-text-secondary);
-        }
-
-        a {
-            color: var(--color-accent);
-            text-decoration: none;
-            transition: opacity var(--transition-duration), color var(--transition-duration);
-        }
-        a:hover {
-            opacity: 0.8;
-        }
-
-        .section-title {
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--color-border);
-            margin-bottom: 30px;
-            color: var(--color-text-primary);
-        }
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Jarniel Cataluna - Tech & AI Enthusiast</title>
         
-        /* ==== CARD STYLING with BLUR ==== */
-        .card {
-            background: var(--color-card-bg);
-            border: 1px solid var(--color-border);
-            border-radius: 8px;
-            box-shadow: var(--shadow);
-            transition: transform 0.2s ease, box-shadow 0.2s ease, background-color var(--transition-duration), border-color var(--transition-duration);
-            /* Add backdrop-filter for "glassmorphism" */
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-        }
-        .card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        /* ==== 1. HERO SECTION ==== */
-        .hero {
-            text-align: center;
-            padding: 40px 0;
-            position: relative;
-            z-index: 1;
-        }
-        .hero-name {
-            margin-bottom: 0.5rem;
-        }
-        .hero-title {
-            font-size: 1.5rem;
-            font-weight: 400;
-            color: var(--color-text-secondary);
-            margin-bottom: 20px;
-        }
-        .hero-links {
-            margin-bottom: 25px;
-        }
-        .hero-links a {
-            font-size: 2.25rem;
-            margin: 0 12px;
-            color: var(--color-text-secondary);
-            transition: color var(--transition-duration), transform 0.2s ease;
-        }
-        .hero-links a:hover {
-            color: var(--color-accent);
-            opacity: 1;
-            transform: translateY(-3px);
-        }
-        .hero-summary {
-            font-size: 1.1rem;
-            max-width: 750px;
-            margin-left: auto;
-            margin-right: auto;
-            color: var(--color-text-primary);
-        }
-
-        /* ==== SECTION ANIMATIONS (FADE IN ON SCROLL) ==== */
-        .animated-section {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        .animated-section.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .animated-item {
-            opacity: 0;
-            transform: translateY(10px);
-            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-        }
-        .animated-item.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* ==== 2. EXPERIENCE SECTION ==== */
-        .experience {
-            margin-top: 20px;
-        }
-        .experience-item {
-            padding: 25px;
-        }
-        .experience-role {
-            color: var(--color-accent);
-        }
-        .experience-company {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-        }
-        .experience-date {
-            font-size: 0.9rem;
-            color: var(--color-text-secondary);
-            margin-bottom: 15px;
-        }
-        .experience-desc {
-            margin-bottom: 0;
-        }
-
-        /* ==== 3. FEATURED PROJECTS ==== */
-        .projects {
-            margin-top: 50px;
-        }
-        .projects-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-        }
-        .project-card {
-            padding: 25px;
-            display: flex;
-            flex-direction: column;
-            position: relative; /* Added for the link overlay */
-        }
-        .project-image {
-            width: 100%;
-            height: 180px; 
-            object-fit: cover; 
-            border-radius: 4px;
-            margin-bottom: 15px;
-            background-color: var(--color-accent-light-bg); 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--color-text-secondary);
-            font-style: italic;
-            border: 1px solid var(--color-border);
-            position: relative; /* Ensure it's above the link overlay */
-            z-index: 2;
-        }
-        .project-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 4px;
-        }
-        .project-title {
-            font-size: 1.25rem;
-            color: var(--color-accent);
-            position: relative; /* Ensure it's above the link overlay */
-            z-index: 2;
-        }
-        /* Style for the new external link icon */
-        .project-title i {
-            font-size: 1rem;
-            vertical-align: middle;
-            opacity: 0.6;
-            transition: opacity var(--transition-duration);
-        }
-        .project-role {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-            position: relative; /* Ensure it's above the link overlay */
-            z-index: 2;
-        }
-        .project-desc {
-            flex-grow: 1;
-            margin-bottom: 20px;
-            position: relative; /* Ensure it's above the link overlay */
-            z-index: 2;
-        }
-        .project-tags {
-            list-style: none;
-            padding-left: 0;
-            margin: 0;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            position: relative; /* Ensure it's above the link overlay */
-            z-index: 2;
-        }
-        .project-tags li {
-            background-color: var(--color-accent-light-bg);
-            color: var(--color-accent);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-
-        /* New class for the clickable card overlay link */
-        .project-card-link {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: 1; /* Sits below content, but makes card clickable */
-            border-radius: 8px; /* Match card radius */
-        }
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
         
-        /* New class to visually hide text for screen readers */
-        .visually-hidden {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border: 0;
-        }
-        
-        /* Hover effect: When hovering the card (link), style the title */
-        .project-card:hover .project-title {
-            text-decoration: underline;
-        }
-        .project-card:hover .project-title i {
-            opacity: 1;
-        }
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
+        <style>
+            /* ==== ROOT & NEO-BRUTALIST VARIABLES ==== */
+            :root {
+                /* Using a more geometric/brutalist font for headings, Inter for body */
+                --font-display: 'Space Grotesk', sans-serif;
+                --font-body: 'Inter', sans-serif;
+                
+                /* Light Mode (Stark, high contrast) */
+                --color-bg-light: #F4F4F0;
+                --color-card-bg-light: #FFFFFF;
+                --color-text-primary-light: #000000;
+                --color-text-secondary-light: #1A1A1A;
+                
+                /* Brutalist Accents */
+                --color-accent-yellow: #FFDE59;
+                --color-accent-blue: #38B6FF;
+                --color-accent-pink: #FF91E7;
+                
+                --border-thick: 3px solid #000000;
+                --shadow-hard: 6px 6px 0px #000000;
+                --shadow-hard-hover: 2px 2px 0px #000000;
 
-        /* ==== 4. SKILLS TOOLBOX (NEW GRID) ==== */
-        .skills {
-            margin-top: 50px;
-        }
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-            gap: 20px;
-        }
-        .skill-item {
-            padding: 20px 10px;
-            text-align: center;
-            background-color: var(--color-card-bg-solid); /* Use solid bg for icons */
-        }
-        .skill-item svg {
-            width: 48px;
-            height: 48px;
-            /* REMOVED: color: var(--color-text-primary); */
-            transition: color 0.2s ease, transform 0.2s ease;
-        }
-        .skill-item:hover svg {
-            transform: scale(1.1);
-            /* REMOVED: color: var(--color-accent); */
-            /* ADDED: A subtle brightness on hover */
-            filter: brightness(1.2);
-        }
-        .skill-item span {
-            display: block;
-            margin-top: 10px;
-            font-size: 0.85rem;
-            color: var(--color-text-secondary);
-        }
+                /* Dark Mode (Inverted starkness) */
+                --color-bg-dark: #121212;
+                --color-card-bg-dark: #1E1E1E;
+                --color-text-primary-dark: #FFFFFF;
+                --color-text-secondary-dark: #E0E0E0;
+                --border-thick-dark: 3px solid #FFFFFF;
+                --shadow-hard-dark: 6px 6px 0px #FFFFFF;
+                --shadow-hard-hover-dark: 2px 2px 0px #FFFFFF;
 
-        /* ==== ADDED: Colorful Skill Icons ==== */
-        .icon-git { color: #F05032; }
-        .icon-php { color: #777BB4; }
-        .icon-symfony { color: #FFFFFF; } /* Black logo, so use white */
-        .icon-laravel { color: #FF2D20; }
-        .icon-python { color: #3776AB; }
-        .icon-flask { color: #FFFFFF; } /* Black logo, so use white */
-        .icon-fastapi { color: #009688; }
-        .icon-spring { color: #6DB33F; }
-        .icon-js { color: #F7DF1E; }
-        .icon-ts { color: #3178C6; }
-        .icon-react { color: #61DAFB; }
-        .icon-angular { color: #DD0031; }
-        .icon-node { color: #339933; }
-        .icon-vite { color: #646CFF; }
-        .icon-kotlin { color: #7F52FF; }
-        .icon-swift { color: #F05138; }
-        .icon-wordpress { color: #21759B; }
-        .icon-shopify { color: #7AB55C; }
-        .icon-mysql { color: #4479A1; }
-        .icon-postgres { color: #4169E1; }
-        .icon-docker { color: #2496ED; }
-        .icon-digitalocean { color: #0080FF; }
-        .icon-aws { color: #FF9900; }
-        .icon-firebase { color: #FFCA28; }
-        .icon-ga { color: #E94235; }
+                /* Current active theme (Default to Light) */
+                --color-bg: var(--color-bg-light);
+                --color-card-bg: var(--color-card-bg-light);
+                --color-text-primary: var(--color-text-primary-light);
+                --color-text-secondary: var(--color-text-secondary-light);
+                --border-current: var(--border-thick);
+                --shadow-current: var(--shadow-hard);
+                --shadow-hover-current: var(--shadow-hard-hover);
 
-
-        /* ==== 5. FOOTER (CALL TO ACTION) ==== */
-        .footer {
-            text-align: center;
-            margin-top: 50px;
-            padding: 40px 0;
-            border-top: 2px solid var(--color-border);
-        }
-        .footer-title {
-            font-size: 1.75rem;
-            color: var(--color-text-primary);
-        }
-        .footer p {
-            font-size: 1.1rem;
-            max-width: 500px;
-            margin: 0 auto 25px auto;
-        }
-        .cta-button {
-            background-color: var(--color-accent);
-            color: #121212; /* Dark text on bright button */
-            padding: 12px 28px;
-            border-radius: 5px;
-            font-size: 1rem;
-            font-weight: 600;
-            transition: background-color var(--transition-duration), transform 0.2s ease, box-shadow 0.2s ease;
-        }
-        .cta-button:hover {
-            opacity: 1;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(90, 200, 250, 0.2);
-        }
-
-        /* ==== RESPONSIVE DESIGN ==== */
-        @media (max-width: 768px) {
-            .projects-grid {
-                grid-template-columns: 1fr; /* Stack projects on mobile */
+                --transition-duration: 0.15s ease-out; /* Faster transitions for a "snappy" feel */
             }
-            h1 { font-size: 2.25rem; }
-            h2 { font-size: 1.75rem; }
-            .hero-title { font-size: 1.25rem; }
-            .skills-grid {
-                grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+
+            body.dark-mode {
+                --color-bg: var(--color-bg-dark);
+                --color-card-bg: var(--color-card-bg-dark);
+                --color-text-primary: var(--color-text-primary-dark);
+                --color-text-secondary: var(--color-text-secondary-dark);
+                --border-current: var(--border-thick-dark);
+                --shadow-current: var(--shadow-hard-dark);
+                --shadow-hover-current: var(--shadow-hard-hover-dark);
+                /* Dim the accents slightly for dark mode */
+                --color-accent-yellow: #CCB247; 
+                --color-accent-blue: #2D92CC;
+                --color-accent-pink: #CC74B9;
+            }
+
+            /* ==== BASE & TYPOGRAPHY ==== */
+            body {
+                font-family: var(--font-body);
+                background-color: var(--color-bg);
+                color: var(--color-text-primary);
+                line-height: 1.6;
+                margin: 0;
+                padding: 0;
+                overflow-x: hidden;
+                transition: background-color 0.3s ease;
+            }
+
+            .container {
+                max-width: 960px;
+                margin: 0 auto;
+                padding: 40px 20px;
+            }
+
+            h1, h2, h3, h4 {
+                font-family: var(--font-display);
+                font-weight: 700;
+                margin-top: 0;
+                margin-bottom: 0.75rem;
+                color: var(--color-text-primary);
+                text-transform: uppercase;
+                letter-spacing: -0.05em;
+            }
+
+            h1 { font-size: 3.5rem; line-height: 1; margin-bottom: 1rem; }
+            h2 { font-size: 2.5rem; }
+            h3 { font-size: 1.5rem; text-transform: none; letter-spacing: normal; }
+            h4 { font-size: 1rem; font-family: var(--font-body); font-weight: 600; text-transform: uppercase; }
+
+            p {
+                margin-top: 0;
+                margin-bottom: 1.5rem;
+                color: var(--color-text-secondary);
+                font-size: 1.1rem;
+            }
+
+            a {
+                color: var(--color-text-primary);
+                text-decoration: none;
+                font-weight: 600;
+            }
+
+            .section-title {
+                padding-bottom: 15px;
+                border-bottom: var(--border-current);
+                margin-bottom: 40px;
+                display: inline-block;
+            }
+
+            /* ==== DARK MODE TOGGLE (BRUTALIST) ==== */
+            .theme-switch-wrapper {
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                margin-bottom: 40px;
+            }
+            .theme-switch {
+                display: inline-block;
+                height: 38px;
+                position: relative;
+                width: 70px;
+                border: var(--border-current);
+                border-radius: 0;
+                background-color: var(--color-card-bg);
+                box-shadow: var(--shadow-current);
+                cursor: pointer;
+                transition: transform var(--transition-duration), box-shadow var(--transition-duration);
+            }
+            .theme-switch:active {
+                transform: translate(4px, 4px);
+                box-shadow: var(--shadow-hover-current);
+            }
+            .theme-switch input {
+                display: none;
+            }
+            .slider {
+                position: absolute;
+                top: 0; left: 0; right: 0; bottom: 0;
+                transition: .2s;
+            }
+            .slider:before {
+                content: "";
+                position: absolute;
+                height: 24px;
+                width: 24px;
+                left: 4px;
+                bottom: 4px;
+                background-color: var(--color-text-primary);
+                transition: .2s;
+            }
+            input:checked + .slider {
+                background-color: var(--color-accent-pink);
+            }
+            input:checked + .slider:before {
+                transform: translateX(32px);
+            }
+
+            /* ==== 1. HERO SECTION ==== */
+            .hero {
+                padding: 60px 40px;
+                background-color: var(--color-accent-yellow);
+                border: var(--border-current);
+                box-shadow: var(--shadow-current);
+                margin-bottom: 60px;
+                position: relative;
+            }
+            body.dark-mode .hero {
+                background-color: var(--color-card-bg); /* Mute the massive yellow block in dark mode */
+            }
+            .hero-title {
+                font-size: 1.5rem;
+                font-family: var(--font-body);
+                font-weight: 600;
+                margin-bottom: 20px;
+                text-transform: none;
+            }
+            .hero-links {
+                margin-bottom: 25px;
+                display: flex;
                 gap: 15px;
             }
-        }
-    </style>
+            .hero-links a {
+                font-size: 1.5rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 50px;
+                height: 50px;
+                background-color: var(--color-card-bg);
+                border: var(--border-current);
+                box-shadow: var(--shadow-current);
+                transition: transform var(--transition-duration), box-shadow var(--transition-duration);
+            }
+            .hero-links a:hover {
+                transform: translate(-2px, -2px);
+                box-shadow: 8px 8px 0px var(--color-text-primary);
+            }
+            .hero-links a:active {
+                transform: translate(4px, 4px);
+                box-shadow: var(--shadow-hover-current);
+            }
+            .hero-summary {
+                font-size: 1.25rem;
+                max-width: 800px;
+                font-weight: 600;
+                color: var(--color-text-primary);
+            }
 
-</head>
-<body>
+            /* ==== 2. EXPERIENCE SECTION ==== */
+            .experience {
+                margin-bottom: 60px;
+            }
+            .experience-item {
+                background: var(--color-accent-blue);
+                border: var(--border-current);
+                padding: 30px;
+                box-shadow: var(--shadow-current);
+                margin-bottom: 20px;
+                transition: transform var(--transition-duration);
+            }
+            body.dark-mode .experience-item {
+                background-color: var(--color-card-bg);
+            }
+            .experience-item:hover {
+                transform: translate(-4px, -4px);
+                box-shadow: 10px 10px 0px var(--color-text-primary);
+            }
+            .experience-role {
+                font-family: var(--font-display);
+                font-weight: 700;
+                font-size: 1.8rem;
+                margin-bottom: 5px;
+            }
+            .experience-company {
+                font-weight: 700;
+                border-bottom: 2px solid var(--color-text-primary);
+                display: inline-block;
+                margin-bottom: 10px;
+            }
+            .experience-date {
+                font-family: var(--font-display);
+                font-weight: 600;
+                background: var(--color-text-primary);
+                color: var(--color-bg);
+                padding: 5px 10px;
+                display: inline-block;
+                margin-bottom: 20px;
+            }
+            .experience-desc {
+                color: var(--color-text-primary);
+                font-weight: 500;
+            }
 
-    <!-- Canvas for animated background -->
-    <canvas id="particle-canvas"></canvas>
-
-    <div class="container">
-
-        <!-- ==== 1. HERO SECTION ==== -->
-        <header class="hero animated-section">
-            <h1 class="hero-name">Jarniel Cataluna</h1>
-            <h2 class="hero-title">Senior Software Engineer | Full-Stack Developer</h2>
+            /* ==== 3. FEATURED PROJECTS ==== */
+            .projects {
+                margin-bottom: 60px;
+            }
+            .projects-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+            }
+            .project-card {
+                background: var(--color-card-bg);
+                border: var(--border-current);
+                box-shadow: var(--shadow-current);
+                display: flex;
+                flex-direction: column;
+                transition: transform var(--transition-duration), box-shadow var(--transition-duration);
+            }
+            .project-card:hover {
+                transform: translate(-4px, -4px);
+                box-shadow: 10px 10px 0px var(--color-text-primary);
+            }
+            .project-image {
+                width: 100%;
+                height: 220px;
+                border-bottom: var(--border-current);
+                background-color: #000;
+            }
+            .project-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                filter: grayscale(100%) contrast(120%); /* Brutalist touch: Grayscale images */
+                transition: filter 0.3s ease;
+            }
+            .project-card:hover .project-image img {
+                filter: grayscale(0%) contrast(100%); /* Color on hover */
+            }
+            .project-content {
+                padding: 25px;
+                flex-grow: 1;
+                display: flex;
+                flex-direction: column;
+            }
+            .project-title {
+                font-size: 1.5rem;
+                background-color: var(--color-accent-pink);
+                display: inline-block;
+                padding: 5px 10px;
+                margin-bottom: 15px;
+                align-self: flex-start;
+                border: 2px solid var(--color-text-primary);
+            }
+            body.dark-mode .project-title { color: #000; }
+            .project-role { margin-bottom: 15px; }
+            .project-desc { flex-grow: 1; margin-bottom: 25px; }
             
-            <div class="hero-links">
-                <a href="mailto:jarnielcataluna@gmail.com" title="Email"><i class='bx bxs-envelope'></i></a>
-                <!-- TODO: CUSTOMIZE: Add your GitHub link -->
-                <a href="https://github.com/jarnielcataluna" target="_blank" rel="noopener noreferrer" title="GitHub"><i class='bx bxl-github'></i></a>
-                <!-- TODO: CUSTOMIZE: Add your LinkedIn link -->
-                <a href="https://www.linkedin.com/in/jarniel-catalu%C3%B1a-843096115" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class='bx bxl-linkedin-square'></i></a>
+            .project-tags {
+                list-style: none;
+                padding-left: 0;
+                margin: 0;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            .project-tags li {
+                background-color: transparent;
+                color: var(--color-text-primary);
+                padding: 6px 14px;
+                border: 2px solid var(--color-text-primary);
+                font-size: 0.9rem;
+                font-weight: 700;
+                text-transform: uppercase;
+                box-shadow: 2px 2px 0px var(--color-text-primary);
+            }
+
+            /* ==== 4. SKILLS TOOLBOX ==== */
+            .skills {
+                margin-bottom: 60px;
+            }
+            .skills-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 20px;
+            }
+            .skills-category {
+                background: var(--color-card-bg);
+                border: var(--border-current);
+                padding: 20px;
+                box-shadow: var(--shadow-current);
+            }
+            .skills-category h3 {
+                border-bottom: 3px solid var(--color-accent-blue);
+                padding-bottom: 10px;
+                margin-bottom: 15px;
+            }
+            .skills-category p {
+                font-weight: 600;
+                margin: 0;
+                line-height: 1.8;
+            }
+
+            /* ==== 5. FOOTER (CALL TO ACTION) ==== */
+            .footer {
+                background-color: var(--color-text-primary);
+                color: var(--color-bg);
+                padding: 60px 40px;
+                border: var(--border-current);
+                box-shadow: var(--shadow-current);
+                text-align: left;
+            }
+            .footer-title {
+                color: var(--color-bg);
+                font-size: 3rem;
+                margin-bottom: 20px;
+            }
+            .footer p {
+                color: var(--color-bg);
+                font-size: 1.25rem;
+                max-width: 600px;
+                margin-bottom: 40px;
+            }
+            .cta-button {
+                display: inline-block;
+                background-color: var(--color-accent-pink);
+                color: #000000;
+                padding: 15px 35px;
+                font-family: var(--font-display);
+                font-size: 1.25rem;
+                font-weight: 700;
+                text-transform: uppercase;
+                border: var(--border-current);
+                box-shadow: var(--shadow-current);
+                transition: transform var(--transition-duration), box-shadow var(--transition-duration);
+            }
+            body.dark-mode .cta-button { border-color: #000; box-shadow: 6px 6px 0px #000; }
+            
+            .cta-button:hover {
+                transform: translate(-4px, -4px);
+                box-shadow: 10px 10px 0px var(--color-bg);
+            }
+            .cta-button:active {
+                transform: translate(2px, 2px);
+                box-shadow: 4px 4px 0px var(--color-bg);
+            }
+
+            /* ==== RESPONSIVE ==== */
+            @media (max-width: 768px) {
+                h1 { font-size: 2.5rem; }
+                .projects-grid { grid-template-columns: 1fr; }
+                .hero { padding: 40px 20px; }
+                .footer { padding: 40px 20px; }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            
+            <!-- Dark Mode Toggle -->
+            <div class="theme-switch-wrapper">
+                <label class="theme-switch" for="checkbox">
+                    <input type="checkbox" id="checkbox" />
+                    <div class="slider"></div>
+                </label>
             </div>
 
-            <p class="hero-summary">
-                Hello. I'm a Senior Software Engineer with 9+ years of experience delivering robust, full-stack solutions. I partner with businesses to architect, build, and scale their digital products, from high-performance REST APIs (Python, PHP, Java) to engaging user interfaces (React, Angular) and native mobile applications.
-            </p>
-        </header>
-
-        <main>
-            <!-- ==== 2. EXPERIENCE SECTION ==== -->
-            <section class="experience animated-section">
-                <h2 class="section-title">Professional Experience</h2>
-                <div class="experience-item card animated-item">
-                    <h3 class="experience-role">Senior Software Engineer | Lead Developer</h3>
-                    <p class="experience-company"><em>at a Leading Manila-based Digital Agency</em></p>
-                    <p class="experience-date">(2015 – Present)</p>
-                    <p class="experience-desc">
-                        For over nine years, I have been a key technical leader at a top digital agency, architecting and building robust web applications, mobile apps, and scalable APIs for industry-leading clients. I've led projects from concept to deployment for major brands in finance, real estate, and e-commerce, specializing in custom CMS development, API-driven mobile apps, and system automation.
-                    </p>
-                </div>
-            </section>
-
-            <!-- ==== 3. FEATURED PROJECTS ==== -->
-            <section class="projects animated-section">
-                <h2 class="section-title">Featured Projects</h2>
-                <div class="projects-grid">
-
-                    <article class="project-card card animated-item">
-                        <!-- TODO: CUSTOMIZE - Add the live project URL here -->
-                        <a href="https://palawanpawnshop.com/" target="_blank" rel="noopener noreferrer" class="project-card-link">
-                            <span class="visually-hidden">View project: Palawan Pawnshop (opens in new tab)</span>
-                        </a>
-                        <div class="project-image">
-                            <!-- TODO: Replace this SVG with your <img src="..." loading="lazy"> -->
-                            <svg width="100%" height="100%" viewBox="0 0 160 90" fill="none" xmlns="http://www.w3.org/2000/svg" style="border-radius: 4px;">
-                                <rect width="160" height="90" fill="#2A3B4C"/>
-                                <path d="M130 70H30L50 45L65 65L95 30L130 70Z" stroke="#5AC8FA" stroke-opacity="0.6" stroke-width="2" stroke-linejoin="round"/>
-                                <circle cx="40" cy="30" r="5" stroke="#5AC8FA" stroke-opacity="0.6" stroke-width="2"/>
-                            </svg>
-                        </div>
-                        <h3 class="project-title">
-                            Palawan Pawnshop | Corporate Website CMS
-                            <i class='bx bx-link-external'></i>
-                        </h3>
-                        <h4 class="project-role">Role: Lead Backend Developer</h4>
-                        <p class="project-desc">
-                            As the Lead Backend Developer, I was responsible for architecting and building the core of the custom Content Management System. My work focused on creating a secure, scalable, and high-performance backend using Symfony...
-                        </p>
-                        <ul class="project-tags">
-                            <li>PHP</li><li>Symfony</li><li>MySQL</li><li>Git</li>
-                        </ul>
-                    </article>
-
-                    <article class="project-card card animated-item">
-                        <!-- TODO: CUSTOMIZE - Add the live project URL here -->
-                        <a href="https://www.dmcihomes.com/" target="_blank" rel="noopener noreferrer" class="project-card-link">
-                            <span class="visually-hidden">View project: DMCI Homes (opens in new tab)</span>
-                        </a>
-                        <div class="project-image">
-                            <!-- TODO: Replace this SVG with your <img src="..." loading="lazy"> -->
-                            <svg width="100%" height="100%" viewBox="0 0 160 90" fill="none" xmlns="http://www.w3.org/2000/svg" style="border-radius: 4px;">
-                                <rect width="160" height="90" fill="#2A3B4C"/>
-                                <path d="M130 70H30L50 45L65 65L95 30L130 70Z" stroke="#5AC8FA" stroke-opacity="0.6" stroke-width="2" stroke-linejoin="round"/>
-                                <circle cx="40" cy="30" r="5" stroke="#5AC8FA" stroke-opacity="0.6" stroke-width="2"/>
-                            </svg>
-                        </div>
-                        <h3 class="project-title">
-                            DMCI Homes | Corporate Website CMS
-                            <i class='bx bx-link-external'></i>
-                        </h3>
-                        <h4 class="project-role">Role: Lead Backend Developer</h4>
-                        <p class="project-desc">
-                            I led the backend development for the new corporate CMS, building a robust platform on Symfony. A key contribution was designing and implementing a containerized environment using Docker and Nginx, which standardized...
-                        </p>
-                        <ul class="project-tags">
-                            <li>PHP</li><li>Symfony</li><li>MySQL</li><li>Docker</li><li>Nginx</li>
-                        </ul>
-                    </article>
-
-                    <article class="project-card card animated-item">
-                        <!-- TODO: CUSTOMIZE - Add the live project URL here -->
-                        <a href="https://www.rcbc.com/" target="_blank" rel="noopener noreferrer" class="project-card-link">
-                            <span class="visually-hidden">View project: RCBC (opens in new tab)</span>
-                        </a>
-                        <div class="project-image">
-                            <!-- TODO: Replace this SVG with your <img src="..." loading="lazy"> -->
-                            <svg width="100%" height="100%" viewBox="0 0 160 90" fill="none" xmlns="http://www.w3.org/2000/svg" style="border-radius: 4px;">
-                                <rect width="160" height="90" fill="#2A3B4C"/>
-                                <path d="M130 70H30L50 45L65 65L95 30L130 70Z" stroke="#5AC8FA" stroke-opacity="0.6" stroke-width="2" stroke-linejoin="round"/>
-                                <circle cx="40" cy="30" r="5" stroke="#5AC8FA" stroke-opacity="0.6" stroke-width="2"/>
-                            </svg>
-                        </div>
-                        <h3 class="project-title">
-                            RCBC | Corporate Website CMS
-                            <i class='bx bx-link-external'></i>
-                        </h3>
-                        <h4 class="project-role">Role: Lead Backend Developer</h4>
-                        <p class="project-desc">
-                            As the Lead Backend Developer, I collaborated with my team to engineer a secure and compliant CMS foundation using Symfony. My role focused on developing key modules for content management, ensuring the system met performance standards.
-                        </p>
-                        <ul class="project-tags">
-                            <li>PHP</li><li>Symfony</li><li>MySQL</li><li>Git</li>
-                        </ul>
-                    </article>
-
-                    <article class="project-card card animated-item">
-                        <!-- TODO: CUSTOMIZE - Add the App Store/Play Store or landing page URL here -->
-                        <a href="https://play.google.com/store/apps/details?id=com.dmcihomes.communities" target="_blank" rel="noopener noreferrer" class="project-card-link">
-                            <span class="visually-hidden">View project: DMCI Communities App (opens in new tab)</span>
-                        </a>
-                        <div class="project-image">
-                            <!-- TODO: Replace this SVG with your <img src="..." loading="lazy"> -->
-                            <svg width="100%" height="100%" viewBox="0 0 160 90" fill="none" xmlns="http://www.w3.org/2000/svg" style="border-radius: 4px;">
-                                <rect width="160" height="90" fill="#2A3B4C"/>
-                                <path d="M130 70H30L50 45L65 65L95 30L130 70Z" stroke="#5AC8FA" stroke-opacity="0.6" stroke-width="2" stroke-linejoin="round"/>
-                                <circle cx="40" cy="30" r="5" stroke="#5AC8FA" stroke-opacity="0.6" stroke-width="2"/>
-                            </svg>
-                        </div>
-                        <h3 class="project-title">
-                            DMCI Communities | Resident Mobile App API
-                            <i class='bx bx-link-external'></i>
-                        </h3>
-                        <h4 class="project-role">Role: Senior API Developer</h4>
-                        <p class="project-desc">
-                            As the Senior API Developer, I architected and built the secure, high-throughput REST API that powers the resident mobile app. Using SpringBoot, I designed the endpoints to handle all core functionalities...
-                        </p>
-                        <ul class="project-tags">
-                            <li>Java</li><li>SpringBoot</li><li>MySQL</li><li>Git</li>
-                        </ul>
-                    </article>
-
-                </div>
-            </section>
-
-            <!-- ==== 4. SKILLS TOOLBOX (NEW ICON GRID) ==== -->
-            <section class="skills animated-section">
-                <h2 class="section-title">My Technical Toolbox</h2>
+            <!-- ==== 1. HERO SECTION ==== -->
+            <header class="hero">
+                <h1 class="hero-name">Jarniel Cataluna</h1>
+                <h2 class="hero-title">Technology, Coding & AI Enthusiast</h2>
                 
-                <h3 style="color: var(--color-accent); margin-top: 30px;">Backend</h3>
-                <div class="skills-grid">
-                    <div class="skill-item card animated-item"><svg viewBox="0 0 24 24" fill="currentColor" class="icon-git"><path d="M12 1.5c-6.627 0-12 5.201-12 11.602 0 5.105 3.321 9.429 7.938 10.957.581.106.794-.246.794-.547 0-.27-.01-1.178-.016-2.146-3.223.682-3.901-1.38-3.901-1.38-.528-1.314-1.29-1.664-1.29-1.664-1.054-.707.08-.693.08-.693 1.166.08 1.779 1.173 1.779 1.173 1.036 1.733 2.719 1.233 3.38.943.106-.733.405-1.233.738-1.517-2.576-.288-5.283-1.264-5.283-5.59 0-1.237.449-2.249 1.185-3.041-.12-.29-.513-1.44.111-3.002 0 0 .975-.306 3.193 1.168.927-.251 1.92-.377 2.909-.382 1 .005 1.982.13 2.909.382 2.217-1.474 3.191-1.168 3.191-1.168.625 1.562.233 2.712.113 3.002.738.792 1.185 1.804 1.185 3.041 0 4.338-2.709 5.298-5.294 5.58.417.352.788 1.05.788 2.116 0 1.526-.014 2.755-.014 3.128 0 .304.21.658.8.546C20.682 22.53 24 18.207 24 13.102C24 6.701 18.627 1.5 12 1.5z"/></svg><span>Git</span></div>
-                    <div class="skill-item card animated-item"><svg viewBox="0 0 24 24" fill="currentColor" class="icon-php"><path d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2m-.82 2.102L6.108 6.73c-.63.454-1.01 1.21-1.01 2.033v6.473c0 .823.38 1.58 1.01 2.033l5.071 3.628c.63.453 1.432.453 2.062 0l5.071-3.628c.63-.453 1.01-1.21 1.01-2.033V8.763c0-.823-.38-1.58-1.01-2.033L12.88 4.102c-.63-.454-1.432-.454-2.062 0M12 6.13l4.381 3.125-2.054 1.464-4.38-3.124zM7.05 8.16l4.38 3.124-4.38 3.124zM12.569 13.72l4.38-3.124.001 6.25z"/></svg><span>PHP</span></div>
-                    <div class="skill-item card animated-item"><svg viewBox="0 0 24 24" fill="currentColor" class="icon-symfony"><path d="M17.485 11.233L12.012 5.09l-5.467 6.142 5.467 6.143 5.473-6.143zm-1.85 4.343l-3.63 4.083-3.624-4.083 3.624-4.088 3.63 4.088zM24 11.233L18.528 5.09 13.06 11.23l5.467 6.143L24 11.233zm-7.315 4.343l-3.623 4.083L6.72 15.576l3.623-4.088 3.34 4.088z"/></svg><span>Symfony</span></div>
-                    <div class="skill-item card animated-item"><svg viewBox="0 0 24 24" fill="currentColor" class="icon-laravel"><path d="M22.254 6.942H16.48v-3.79c.002-.505-.4-.913-.896-.913H8.411c-.497 0-.898.408-.898.913v3.79H1.74c-.497 0-.898.408-.898.913v9.208c0 .505.4.913.898.913h5.772v3.79c0 .505.4.913.898.913h7.185c.496 0 .898-.408.898-.913v-3.79h5.774c.496 0 .898-.408.898-.913V7.855c0-.505-.402-.913-.898-.913zm-7.672.003h-3.366v-3.79h3.366v3.79zM7.54 16.208H3.638v-7.35h3.902v7.35zm7.618 3.79h-3.366v-3.79h3.366v3.79zm0-5.645h-3.366v-7.35h3.366v7.35zm5.772 0h-3.902v-7.35h3.902v7.35z"/></svg><span>Laravel</span></div>
-                    <div class="skill-item card animated-item"><svg viewBox="0 0 24 24" fill="currentColor" class="icon-python"><path d="M23.14 11.838c.118-.182.162-.395.162-.614v-6.91c0-.23-.05-.45-.162-.636-.118-.182-.28-.31-.465-.395-.19-.09-.398-.127-.61-.127H1.94c-.21 0-.42.04-.61.127-.18.085-.347.213-.464.395C.748 3.86.699 4.08.699 4.31v6.91c0 .22.049.432.162.614.118.182.28.31.465.395.19.09.398.127.61.127h8.04v-3.19h-3.2v-3.2h11.998v3.2h-3.19v3.19h8.04c.21 0 .42-.04.61-.127.18-.085.347-.213.464-.395m-.163 1.25c-.117.182-.28.31-.464.395-.19.09-.398.127-.61.127h-8.04v3.19h-3.2v3.2H1.94c-.21 0-.42-.04-.61-.127-.18-.085-.347-.213-.464-.395C.748 20.07.699 19.85.699 19.62v-6.91c0-.22.049-.432.162-.614.118-.182.28-.31.465-.395.19.09.398.127.61.127h8.04v3.19h3.2v-3.19h8.04c.21 0 .42-.04.61-.127.18-.085.347-.213.464-.395.118-.182.162-.395.162-.614v6.91c0 .23-.05.45-.162.636z"/></svg><span>Python</span></div>
-                    <div class="skill-item card animated-item"><svg viewBox="0 0 24 24" fill="currentColor" class="icon-flask"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm0 21.6c-5.302 0-9.6-4.298-9.6-9.6s4.298-9.6 9.6-9.6 9.6 4.298 9.6 9.6-4.298 9.6-9.6 9.6zm-1.8-6.059v-3.14l-4.2 2.399v1.51L10.2 18.71v-3.14zm3.6 0v-3.14l-4.2 2.399v1.51L13.8 18.71v-3.14z"/></svg><span>Flask</span></div>
-                    <div class="skill-item card animated-item"><svg viewBox="0 0 24 24" fill="currentColor" class="icon-fastapi"><path d="M17.143 0H6.857C5.357 0 4.286 1.071 4.286 2.571v2.572H1.714C.768 5.143 0 5.91 0 6.857v10.286C0 18.09 1.071 19.16 2.571 19.16H5.32c.504 2.52 2.59 4.542 5.23 5.099l.211.036.211-.036c2.64-.557 4.726-2.58 5.23-5.099h2.572c1.5 0 2.571-1.07 2.571-2.572V6.857C21.429 5.91 20.66 5.143 19.714 5.143H17.143V2.571C17.143 1.071 16.07 0 17.143 0zM12 21.429c-2.64 0-4.786-2.147-4.786-4.786h9.572C16.786 19.282 14.64 21.43 12 21.429zm5.143-4.786H6.857c-1.072 0-2.572-1.072-2.572-2.572H19.714c0 1.5-1.5 2.571-2.571 2.571zm0-4.714H4.286V7.286H19.714v4.643z"/></svg><span>FastAPI</span></div>
-                    <div class="skill-item card animated-item"><svg viewBox="0 0 24 24" fill="currentColor" class="icon-spring"><path d="m18.7 12.4-.9-.8c.2-.3.4-.6.4-1 0-.3-.1-.7-.4-1l.9-.8c.1-.1.1-.3 0-.4l-1-1.7c-.1-.1-.3-.2-.4-.1l-1.1.4c-.3-.2-.6-.4-1-.5l-.2-1.2c0-.2-.2-.3-.4-.3h-2c-.2 0-.3.1-.4.3l-.2 1.2c-.3.1-.6.3-1 .5l-1.1-.4c-.1 0-.3.1-.4.1l-1 1.7c-.1.1-.1.3 0 .4l.9.8c-.2.3-.4.6-.4 1 0 .3.1.7.4 1l-.9.8c-.1.1-.1.3 0 .4l1 1.7c.1.1.3.2.4.1l1.1-.4c.3.2.6.4 1 .5l.2 1.2c0 .2.2.3.4.3h2c.2 0 .3-.1.4-.3l.2-1.2c.3-.1.6-.3 1-.5l1.1.4c.1 0 .3-.1.4-.1l1-1.7c.1-.1.1-.3 0-.4M12 15c-1.7 0-3-1.3-3-3s1.3-3 3-3 3 1.3 3 3-1.3 3-3 3"/></svg><span>Spring</span></div>
+                <div class="hero-links">
+                    <a href="mailto:jarnielcataluna@gmail.com" title="Email"><i class='bx bxs-envelope'></i></a>
+                    <a href="https://github.com/your-username" target="_blank" rel="noopener noreferrer" title="GitHub"><i class='bx bxl-github'></i></a>
+                    <a href="https://linkedin.com/in/your-username" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class='bx bxl-linkedin-square'></i></a>
                 </div>
 
-                <h3 style="color: var(--color-accent); margin-top: 30px;">Frontend</h3>
-                <div class="skills-grid">
-                    <div class="skill-item card animated-item"><svg viewBox="0 0 24 24" fill="currentColor" class="icon-js"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M0 0h24v24H0V0z" fill="none"/><path d="M21.5 4H17l-3.5 7 3.5 7h4.5l-3.5-7zM2.5 4h4.5l3.5 7-3.5 7H2.5l3.5-7z"/></svg><span>JavaScript</span></div>
-                    <div class="skill-item card animated-item"><svg viewBox="0 0 24 24" fill="currentColor" class="icon-ts"><path d="M21.5 4H17l-3.5 7 3.5 7h4.5l-3.5-7zM2.5 4h4.5l3.5 7-3.5 7H2.5l3.5-7z"/></svg><span>TypeScript</span></div>
-                    <div class="skill-item card animated-item"><svg viewBox="0 0 24 24" fill="currentColor" class="icon-react"><path d="M12.001 4.499c-3.54 0-6.42 2.88-6.42 6.42s2.88 6.42 6.42 6.42 6.42-2.88 6.42-6.42-2.88-6.42-6.42-6.42zm0 11.34c-2.71 0-4.92-2.21-4.92-4.92s2.21-4.92 4.92-4.92 4.92 2.21 4.92 4.92-2.21 4.92-4.92 4.92z"/><path d="M12.001 0C10.02 0 4.09 2.07 1.94 6.2c-1.3 2.51-.59 5.84 1.73 7.64l.11.08c1.32.96 2.05 2.1 2.45 3.32.41 1.25.17 2.66-.69 3.65-1.12 1.28-2.6 1.13-3.69-.32l-.12-.17c-1.13-1.63-2.63-2.45-4.22-2.45C-1.87 17.95.82 24 8.02 24c1.98 0 7.91-2.07 10.06-6.2 1.3-2.51.59-5.84-1.73-7.64l-.11-.08c-1.32-.96-2.05-2.1-2.45-3.32-.41-1.25-.17-2.66.69-3.65 1.12-1.28 2.6-1.13 3.69.32l.12.17c1.13 1.63 2.63 2.45 4.22 2.45C25.87 6.05 23.18 0 15.98 0c-1.98 0-3.98.02-3.98.02zM12 1.5c1.6 0 3.03.23 4.24.65-1.12.4-2.18 1.04-3.11 1.9l-.1.08c-2.1 1.96-2.66 4.92-1.42 7.46.1.19.2.39.32.57l-.02.01c-.53.84-1.28 1.5-2.23 1.94-.96.45-2.06.66-3.26.66-1.5 0-2.82-.44-3.8-1.28-1.57-1.35-1.9-3.63-1.01-5.61.88-1.96 2.76-3.1 4.77-3.1 1.17 0 2.24.37 3.09 1.05.27-.67.43-1.4.43-2.17 0-.3-.02-.6-.05-.88C11.95 1.5 11.97 1.5 12 1.5zm.001 19.5c-1.6 0-3.03-.23-4.24-.65 1.12-.4 2.18-1.04 3.11-1.9l.1-.08c2.1-1.96 2.66-4.92 1.42-7.46-.1-.19-.2-.39-.32-.57l.02-.01c.53-.84 1.28-1.5 2.23-1.94.96-.45 2.06-.66 3.26-.66 1.5 0 2.82.44 3.8 1.28 1.57 1.35 1.9 3.63 1.01-5.61-.88-1.96-2.76-3.1-4.77-3.1-1.17 0-2.24.37-3.09-1.05-.27.67-.43 1.4-.43 2.17 0 .3.02.6.05.88l.02.02c.01.03.01.06.01.09s.01.05.01.08c0 .28-.02.55-.05.82h-.02c-.01.03-.01.06-.01.09s-.01.05-.01.08c-.01.28.02.55.05.82l.02.02z"/></svg><span>React</span></div>
-                    <div class="skill-item card animated-item"><svg viewBox="0 0 24 24" fill="currentColor" class="icon-angular"><path d="M12 0L1.604 3.497 3.018 18.15 12 24l8.982-5.85L22.396 3.497 12 0zm5.163 17.514l-5.163 3.638-5.163-3.638L4.204 5.923l7.796-2.56 7.796 2.56-2.433 11.591z"/><path d="M12 4.14L5.656 18.062h2.903l1.15-2.903h4.582l1.15 2.903h2.903L12 4.14zm-.86 8.749h1.72l-.86-2.164-.86 2.164z"/></svg><span>Angular</span></div>
-                    <div class="skill-item card animated-item"><svg viewBox="0 0 24 24" fill="currentColor" class="icon-node"><path d="M22.02 11.2c-.05-1.55-.6-2.97-1.51-4.11-1.02-1.28-2.4-2.13-3.98-2.58-.15-.04-.3-.06-.46-.06-2.3 0-4.04 1.15-4.99 2.84C10.06 5.56 9.04 4.41 6.8 4.41c-1.24 0-2.3.5-3.08 1.37C2.7 6.9 1.95 8.32 1.95 10.1c0 .1.01.2.02.3-.01 0-.01-.01-.02-.01C.9 10.58.01 11.83.01 13.3c0 1.13.56 2.11 1.41 2.76.68.52 1.56.81 2.52.81 2.33 0 4.1-1.18 5.03-2.9.88 1.72 2.62 2.9 5.03 2.9 1.04 0 2.01-.36 2.82-1.01.81-.64 1.31-1.58 1.31-2.66 0-.32-.05-.63-.13-.92.1-.21.18-.43.25-.66.02-.07.03-.13.05-.2.07-.23.13-.47.16-.72.04-.25.06-.51.06-.78-.01-1.38-.72-2.58-1.79-3.28.1-.1.2-.21.28-.33zm-2.46 2.22c-.1.25-.2.49-.33.72-.13.23-.28.45-.45.66.42.13.79.37 1.1.71.32.35.49.78.49 1.25 0 .6-.27 1.12-.72 1.48-.45.36-1.06.56-1.76.56-1.78 0-3.09-1.03-3.66-2.43-.37 1.4-1.68 2.43-3.66 2.43-1.8 0-3.11-1.04-3.69-2.46-.57 1.42-1.87 2.46-3.69 2.46-1.2 0-2.12-.6-2.12-1.78 0-.96.63-1.59 1.54-1.76-.17-.2-.33-.42-.46-.65-.13-.23-.24-.48-.33-.73-.62.29-1.06.9-1.06 1.63 0 .42.14.8.39 1.06.25.26.58.4.95.4.92 0 1.63-.56 1.96-1.33.22.56.55.98.96 1.29.41.3.89.47 1.43.47.92 0 1.63-.56 1.96-1.33.22.56.55.98.96 1.29.41.3.89.47 1.43.47.92 0 1.63-.56 1.96-1.33.22.56.55.98.96 1.29.41.3.89.47 1.43.47.53 0 1.01-.17 1.43-.47.4-.31.73-.73.95-1.29.33.77 1.04 1.33 1.96 1.33.37 0 .7-.14.95-.4.25-.26.39-.64.39-1.06 0-.73-.44-1.34-1.06-1.63z"/></svg><span>Node.js</span></div>
-                    <div class="skill-item card animated-item"><svg viewBox="0 0 24 24" fill="currentColor" class="icon-vite"><path d="M12.001 0C10.02 0 4.09 2.07 1.94 6.2c-1.3 2.51-.59 5.84 1.73 7.64l.11.08c1.32.96 2.05 2.1 2.45 3.32.41 1.25.17 2.66-.69 3.65-1.12 1.28-2.6 1.13-3.69-.32l-.12-.17c-1.13-1.63-2.63-2.45-4.22-2.45C-1.87 17.95.82 24 8.02 24c1.98 0 7.91-2.07 10.06-6.2 1.3-2.51.59-5.84-1.73-7.64l-.11-.08c-1.32-.96-2.05-2.1-2.45-3.32-.41-1.25-.17-2.66.69-3.65 1.12-1.28 2.6-1.13 3.69.32l.12.17c1.13 1.63 2.63 2.45 4.22 2.45C25.87 6.05 23.18 0 15.98 0c-1.98 0-3.98.02-3.98.02zM12 1.5c1.6 0 3.03.23 4.24.65-1.12.4-2.18 1.04-3.11 1.9l-.1.08c-2.1 1.96-2.66 4.92-1.42 7.46.1.19.2.39.32.57l-.02.01c-.53.84-1.28 1.5-2.23 1.94-.96.45-2.06.66-3.26.66-1.5 0-2.82-.44-3.8-1.28-1.57-1.35-1.9-3.63-1.01-5.61.88-1.96 2.76-3.1 4.77-3.1 1.17 0 2.24.37 3.09 1.05.27-.67.43-1.4.43-2.17 0-.3-.02-.6-.05-.88C11.95 1.5 11.97 1.5 12 1.5zm.001 19.5c-1.6 0-3.03-.23-4.24-.65 1.12-.4 2.18-1.04 3.11-1.9l.1-.08c2.1-1.96 2.66-4.92 1.42-7.46-.1-.19-.2-.39-.32-.57l.02-.01c.53-.84 1.28-1.5 2.23-1.94.96-.45 2.06-.66 3.26-.66 1.5 0 2.82.44 3.8 1.28 1.57 1.35 1.9 3.63 1.01-5.61-.88-1.96-2.76-3.1-4.77-3.1-1.17 0-2.24.37-3.09-1.05-.27.67-.43 1.4-.43 2.17 0 .3.02.6.05.88l.02.02c.01.03.01.06.01.09s.01.05.01.08c0 .28-.02.55-.05.82h-.02c-.01.03-.01.06-.01.09s-.01.05-.01.08c-.01.28.02.55.05.82l.02.02z"/></svg><span>Vite</span></div>
-                </div>
+                <p class="hero-summary">
+                    A formal, technically-driven developer focused on establishing clear technical requirements. I specialize in spec-driven development—architecting and creating robust projects with AI via precise specifications, alongside traditional full-stack engineering.
+                </p>
+            </header>
 
-                <h3 style="color: var(--color-accent); margin-top: 30px;">Mobile, CMS & Databases</h3>
-                <div class="skills-grid">
-                    <div class="skill-item card animated-item"><svg viewBox="0 0 24 24" fill="currentColor" class="icon-kotlin"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M16 1.01L8 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM16 19H8V5h8v14z"/></svg><span>Kotlin</span></div>
-                    <div class="skill-item card animated-item"><svg viewBox="0 0 24 24" fill="currentColor" class="icon-swift"><path d="M17.41 1.59l-8.82 8.82-8.82 8.82L8.59 22.41l8.82-8.82 8.82-8.82L17.41 1.59zM17.41 0l4.7 4.7-8.82 8.82-4.7-4.7L17.41 0zM8.59 24l-4.7-4.7 8.82-8.82 4.7 4.7L8.59 24z"/></svg><span>Swift</span></div>
-                    <div class="skill-item card animated-item"><svg viewBox="0 0 24 24" fill="currentColor" class="icon-wordpress"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zM8.65 4.881c.076.064.13.151.157.247.026.096.031.198.017.299-.014.1-.046.195-.094.279a.538.538 0 0 1-.448.23H7.391v1.17h.901c.097 0 .19.019.278.055a.498.498 0 0 1 .31.391c.01.096.002.195-.021.289a.473.473 0 0 1-.223.27l-1.63 1.036c-.075.048-.16.079-.249.091a.52.52 0 0 1-.301-.013c-.09-.024-.173-.067-.246-.127l-.001.002v2.308c.076.064.13.151.157.247.026.096.031.198.017.299-.014.1-.046.195-.094.279a.538.538 0 0 1-.448.23H5.733c-.097 0-.19-.019-.278-.055a.498.498 0 0 1-.31-.391c-.01-.096-.002-.195.021-.289a.473.473 0 0 1 .223-.27l1.63-1.036c.075-.048.16-.079.249-.091a.52.52 0 0 1 .301.013c.09.024.173.067.246.127l.001-.002V5.086c-.076-.064-.13-.151-.157-.247a.51.51 0 0 1-.017-.299c.014-.1.046-.195.094-.279a.538.538 0 0 1 .448-.23h.907c.097 0 .19.019.278.055a.498.498 0 0 1 .31.391c.01.096.002.195-.021.289a.473.473 0 0 1-.223.27l-1.63 1.036c-.075.048-.16.079-.249.091a.52.52 0 0 1-.301-.013c-.09-.024-.173-.067-.246-.127l-.001.002V4.881zm6.983 5.48c.07.084.116.19.135.302.018.113.012.23-.018.34a.602.602 0 0 1-.237.288l-2.736 1.74c-.068.043-.146.07-.226.079a.48.48 0 0 1-.274-.01c-.083-.02-.16-.058-.228-.11l-.001.002v2.308c.076.064.13.151.157.247.026.096.031.198.017.299-.014.1-.046.195-.094.279a.538.538 0 0 1-.448.23h-.893c-.097 0-.19-.019-.278-.055a.498.498 0 0 1-.31-.391c-.01-.096-.002-.195.021-.289a.473.473 0 0 1 .223-.27l2.736-1.74c.068-.043.146-.07.226-.079.088-.01.176.002.259.033.083.031.158.079.222.14l.002-.001V5.086c-.076-.064-.13-.151-.157-.247a.51.51 0 0 1-.017-.299c.014-.1.046-.195.094-.279a.538.538 0 0 1 .448-.23h.893c.097 0 .19.019.278.055a.498.498 0 0 1 .31.391c.01.096.002.195-.021.289a.473.473 0 0 1-.223-.27L12.9 6.826c-.068.043-.146.07-.226.079a.48.48 0 0 1-.274-.01c-.083-.02-.16-.058-.228-.11l-.001.002v4.618c.07.084.116.19.135.302.018.113.012.23-.018.34a.602.602 0 0 1-.237.288l-2.736 1.74c-.068.043-.146.07-.226.079a.48.48 0 0 1-.274-.01c-.083-.02-.16-.058-.228-.11l-.001.002V9.663c.076.064.13.151.157.247.026.096.031.198.017.299-.014.1-.046.195-.094.279a.538.538 0 0 1-.448.23h-.893c-.097 0-.19-.019-.278-.055a.498.498 0 0 1-.31-.391c-.01-.096-.002-.195.021-.289a.473.473 0 0 1 .223-.27l2.736-1.74c.068-.043.146-.07.226-.079.088-.01.176.002.259.033.083.031.158.079.222.14l.002-.001V5.086c-.076-.064-.13-.151-.157-.247a.51.51 0 0 1-.017-.299c.014-.1.046-.195.094-.279a.538.538 0 0 1 .448-.23h.893c.097 0 .19.019.278.055a.498.498 0 0 1 .31.391c.01.096.002.195-.021.289a.473.473 0 0 1-.223-.27l-2.736-1.74c-.068.043-.146.07-.226.079a.48.48 0 0 1-.274-.01c-.083-.02-.16-.058-.228-.11l-.001.002v4.618c.07.084.116.19.135.302.018.113.012.23-.018.34a.602.602 0 0 1-.237.288l-2.736 1.74c-.068.043-.146.07-.226.079a.48.48 0 0 1-.274-.01c-.083-.02-.16-.058-.228-.11l-.001.002v-5.22c.076.064.13.151.157.247.026.096.031.198.017.299-.014.1-.046.195-.094.279a.538.538 0 0 1-.448.23H5.733c-.097 0-.19-.019-.278-.055a.498.498 0 0 1-.31-.391c-.01-.096-.002-.195.021-.289a.473.473 0 0 1 .223-.27l2.736-1.74c.068-.043.146-.07.226-.079.088-.01.176.002.259.033.083.031.158.079.222.14l.002-.001V5.086c-.076-.064-.13-.151-.157-.247a.51.51 0 0 1-.017-.299c.014-.1.046-.195.094-.279a.538.538 0 0 1 .448-.23h.893c.097 0 .19.019.278.055a.498.498 0 0 1 .31.391c.01.096.002.195-.021.289a.473.473 0 0 1-.223-.27l-2.736-1.74c-.068.043-.146.07-.226.079a.48.48 0 0 1-.274-.01c-.083-.02-.16-.058-.228-.11l-.001.002v-1.72c.076.064.13.151.157.247.026.096.031.198.017.299-.014.1-.046.195-.094.279a.538.538 0 0 1-.448.23H5.733c-.097 0-.19-.019-.278-.055a.498.498 0 0 1-.31-.391c-.01-.096-.002-.195.021-.289a.473.473 0 0 1 .223-.27l2.736-1.74c.068-.043.146-.07.226-.079.088-.01.176.002.259.033.083.031.158.079.222.14l.002-.001V.783c-.076-.064-.13-.151-.157-.247A.51.51 0 0 1 8.35.237c.014-.1.046-.195.094-.279a.538.538 0 0 1 .448-.23h.893c.097 0 .19.019.278.055a.498.498 0 0 1 .31.391c.01.096.002.195-.021.289a.473.473 0 0 1-.223.27l-2.736 1.74c-.068.043-.146.07-.226.079a.48.48 0 0 1-.274-.01c-.083-.02-.16-.058-.228-.11l-.001.002v4.618c.07.084.116.19.135.302.018.113.012.23-.018.34a.602.602 0 0 1-.237.288l-2.736 1.74c-.068.043-.146.07-.226.079a.48.48 0 0 1-.274-.01c-.083-.02-.16-.058-.228-.11l-.001.002V5.086c-.076-.064-.13-.151-.157-.247a.51.51 0 0 1-.017-.299c.014-.1.046-.195.094-.279a.538.538 0 0 1 .448-.23h.893c.097 0 .19.019.278.055a.498.498 0 0 1 .31.391c.01.096.002.195-.021.289a.473.473 0 0 1-.223-.27l-2.736-1.74c-.068.043-.146.07-.226.079a.48.48 0 0 1-.274-.01c-.083-.02-.16-.058-.228-.11l-.001.002v4.618c.07.084.116.19.135.302.018.113.012.23-.018.34a.602.602 0 0 1-.237.288l-2.736 1.74c-.068.043-.146.07-.226.079a.48.48 0 0 1-.274-.01c-.083-.02-.16-.058-.228-.11l-.001.002V9.663c.076.064.13.151.157.247.026.096.031.198.017.299-.014.1-.046.195-.094.279a.538.538 0 0 1-.448.23h-.893c-.097 0-.19-.019-.278-.055a.498.498 0 0 1-.31-.391c-.01-.096-.002-.195.021-.289a.473.473 0 0 1 .223-.27l2.736-1.74c.068-.043.146-.07.226-.079.088-.01.176.002.259.033.083.031.158.079.222.14l.002-.001V5.086c-.076-.064-.13-.151-.157-.247a.51.51 0 0 1-.017-.299c.014-.1.046-.195.094-.279a.538.538 0 0 1 .448-.23h.893c.097 0 .19.019.278.055a.498.498 0 0 1 .31.391c.01.096.002.195-.021.289a.473.473 0 0 1-.223-.27l-2.736-1.74c-.068.043-.146.07-.226.079a.48.48 0 0 1-.274-.01c-.083-.02-.16-.058-.228-.11l-.001.002V.783c-.076-.064-.13-.151-.157-.247A.51.51 0 0 1 11.583.237c.014-.1.046-.195.094-.279a.538.538 0 0 1 .448-.23h.893c.097 0 .19.019.278.055a.498.498 0 0 1 .31.391c.01.096.002.195-.021.289a.473.473 0 0 1-.223.27l-2.736 1.74c-.068.043-.146.07-.226.079a.48.48 0 0 1-.274-.01c-.083-.02-.16-.058-.228-.11l-.001.002zm9.18 10.479c.07.084.116.19.135.302.018.113.012.23-.018.34a.602.602 0 0 1-.237.288l-2.736 1.74c-.068.043-.146.07-.226.079a.48.48 0 0 1-.274-.01c-.083-.02-.16-.058-.228-.11l-.001.002v2.308c.076.064.13.151.157.247.026.096.031.198.017.299-.014.1-.046.195-.094.279a.538.538 0 0 1-.448.23h-.893c-.097 0-.19-.019-.278-.055a.498.498 0 0 1-.31-.391c-.01-.096-.002-.195.021-.289a.473.473 0 0 1 .223-.27l2.736-1.74c.068-.043.146-.07.226-.079.088-.01.176.002.259.033.083.031.158.079.222.14l.002-.001V5.086c-.076-.064-.13-.151-.157-.247a.51.51 0 0 1-.017-.299c.014-.1.046-.195.094-.279a.538.538 0 0 1 .448-.23h.893c.097 0 .19.019.278.055a.498.498 0 0 1 .31.391c.01.096.002.195-.021.289a.473.473 0 0 1-.223-.27l-2.736-1.74c-.068.043-.146.07-.226.079a.48.48 0 0 1-.274-.01c-.083-.02-.16-.058-.228-.11l-.001.002v4.618c.07.084.116.19.135.302.018.113.012.23-.018.34a.602.602 0 0 1-.237.288l-2.736 1.74c-.068.043-.146.07-.226.079a.48.48 0 0 1-.274-.01c-.083-.02-.16-.058-.228-.11l-.001.002V9.663c.076.064.13.151.157.247.026.096.031.198.017.299-.014.1-.046.195-.094.279a.538.538 0 0 1-.448.23h-.893c-.097 0-.19-.019-.278-.055a.498.498 0 0 1-.31-.391c-.01-.096-.002-.195.021-.289a.473.473 0 0 1 .223-.27l2.736-1.74c.068-.043.146-.07.226-.079.088-.01.176.002.259.033.083.031.158.079.222.14l.002-.001V5.086c-.076-.064-.13-.151-.157-.247a.51.51 0 0 1-.017-.299c.014-.1.046-.195.094-.279a.538.538 0 0 1 .448-.23h.893c.097 0 .19.019.278.055a.498.498 0 0 1 .31.391c.01.096.002.195-.021.289a.473.473 0 0 1-.223-.27l-2.736-1.74c-.068.043-.146.07-.226.079a.48.48 0 0 1-.274-.01c-.083-.02-.16-.058-.228-.11l-.001.002v4.618c.07.084.116.19.135.302.018.113.012.23-.018.34a.602.602 0 0 1-.237.288l-2.736 1.74c-.068.043-.146.07-.226.079a.48.48 0 0 1-.274-.01c-.083-.02-.16-.058-.228-.11l-.001.002v-5.22c.076.064.13.151.157.247.026.096.031.198.017.299-.014.1-.046.195-.094.279a.538.538 0 0 1-.448.23h-.893c-.097 0-.19-.019-.278-.055a.498.498 0 0 1-.31-.391c-.01-.096-.002-.195.021-.289a.473.473 0 0 1 .223-.27l2.736-1.74c.068-.043.146-.07.226-.079.088-.01.176.002.259.033.083.031.158.079.222.14l.002-.001V5.086c-.076-.064-.13-.151-.157-.247a.51.51 0 0 1-.017-.299c.014-.1.046-.195.094-.279a.538.538 0 0 1 .448-.23h.893c.097 0 .19.019.278.055a.498.498 0 0 1 .31.391c.01.096.002.195-.021.289a.473.473 0 0 1-.223-.27l-2.736-1.74c-.068.043-.146.07-.226.079a.48.48 0 0 1-.274-.01c-.083-.02-.16-.058-.228-.11l-.001.002v-1.72c.076.064.13.151.157.247.026.096.031.198.017.299-.014.1-.046.195-.094.279a.538.538 0 0 1-.448.23h-.893c-.097 0-.19-.019-.278-.055a.498.498 0 0 1-.31-.391c-.01-.096-.002-.195.021-.289a.473.473 0 0 1 .223-.27l2.736-1.74c.068-.043.146-.07.226-.079.088-.01.176.002.259.033.083.031.158.079.222.14l.002-.001V.783c-.076-.064-.13-.151-.157-.247A.51.51 0 0 1 14.817.237c.014-.1.046-.195.094-.279a.538.538 0 0 1 .448-.23h.893c.097 0 .19.019.278.055a.498.498 0 0 1 .31.391c.01.096.002.195-.021.289a.473.473 0 0 1-.223-.27l-2.736 1.74c-.068.043-.146.07-.226.079a.48.48 0 0 1-.274-.01c-.083-.02-.16-.058-.228-.11l-.001.002v4.618c.07.084.116.19.135.302.018.113.012.23-.018.34a.602.602 0 0 1-.237.288l-2.736 1.74c-.068.043-.146.07-.226.079a.48.48 0 0 1-.274-.01c-.083-.02-.16-.058-.228-.11l-.001.002V5.086c-.076-.064-.13-.151-.157-.247a.51.51 0 0 1-.017-.299c.014-.1.046-.195.094-.279a.538.538 0 0 1 .448-.23h.893c.097 0 .19.019.278.055a.498.498 0 0 1 .31.391c.01.096.002.195-.021.289a.473.473 0 0 1-.223-.27l-2.736-1.74c-.068.043-.146.07-.226.079a.48.48 0 0 1-.274-.01c-.083-.02-.16-.058-.228-.11l-.001.002v4.618c.07.084.116.19.135.302.018.113.012.23-.018.34a.602.602 0 0 1-.237.288l-2.736 1.74c-.068.043-.146.07-.226.079a.48.48 0 0 1-.274-.01c-.083-.02-.16-.058-.228-.11l-.001.002V9.663c.076.064.13.151.157.247.026.096.031.198.017.299-.014.1-.046.195-.094.279a.538.538 0 0 1-.448.23h-.893c-.097 0-.19-.019-.278-.055a.498.498 0 0 1-.31-.391c-.01-.096-.002-.195.021-.289a.473.473 0 0 1 .223-.27l2.736-1.74c.068-.043.146-.07.226-.079.088-.01.176.002.259.033.083.031.158.079.222.14l.002-.001V5.086c-.076-.064-.13-.151-.157-.247a.51.51 0 0 1-.017-.299c.014-.1.046-.195.094-.279a.538.538 0 0 1 .448-.23h.893c.097 0 .19.019.278.055a.498.498 0 0 1 .31.391c.01.096.002.195-.021.289a.473.473 0 0 1-.223-.27l-2.736-1.74c-.068.043-.146.07-.226.079a.48.48 0 0 1-.274-.01c-.083-.02-.16-.058-.228-.11l-.001.002V.783c-.076-.064-.13-.151-.157-.247A.51.51 0 0 1 18.05.237c.014-.1.046-.195.094-.279a.538.538 0 0 1 .448-.23h.893c.097 0 .19.019.278.055a.498.498 0 0 1 .31.391c.01.096.002.195-.021.289a.473.473 0 0 1-.223-.27l-2.736 1.74c-.068.043-.146.07-.226.079a.48.48 0 0 1-.274-.01c-.083-.02-.16-.058-.228-.11l-.001.002z"/></svg><span>WordPress</span></div>
-                    <div class="skill-item card animated-item"><svg viewBox="0 0 24 24" fill="currentColor" class="icon-shopify"><path d="M20.44 3.56c-.07-.15-.22-.25-.39-.25H3.95c-.17 0-.32.1-.39.25L.06 12l3.5 8.44c.07.15.22.25.39.25h16.1c.17 0 .32-.1.39-.25L23.94 12l-3.5-8.44zM8.82 17.5l-2.2-5.5 2.2-5.5h2.76l2.2 5.5-2.2 5.5H8.82zm9.14-5.72c-.1-.23-.26-.43-.46-.58-.2-.15-.43-.23-.69-.23-.26 0-.5.08-.7.23-.2.15-.36.35-.46.58l-1.38 3.44h-2.3l3.07-7.66h2.2l3.07 7.66h-2.3l-1.37-3.44z"/></svg><span>Shopify</span></div>
-                    <div class="skill-item card animated-item"><svg viewBox="0 0 24 24" fill="currentColor" class="icon-mysql"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm3.32 15.115c-.17.186-.36.348-.567.488-.207.139-.43.254-.666.345-.236.09-.485.158-.745.201-.26.044-.528.065-.802.065-.63 0-1.22-.09-1.764-.268-.544-.179-.99-.434-1.331-.762-.34-.329-.584-.726-.724-1.187-.14-.462-.21-1.004-.21-1.622 0-1.025.268-1.884.802-2.569.534-.685 1.25-1.191 2.13-1.506.88-.315 1.86-.47 2.91-.47.24 0 .48.01.71.03.23.02.45.05.65.09.2.04.39.09.56.15.17.06.32.13.45.2l.1.06v-3.11h2.28v8.63c0 .3-.06.56-.17.78-.11.22-.27.4-.47.54zm-1.04-3.08c0-.3-.04-.57-.11-.8-.07-.23-.17-.43-.3-.6-.13-.17-.28-.3-.45-.4-.17-.1-.36-.15-.56-.15-.17 0-.33.02-.48.05-.15.03-.3.07-.44.13-.14.06-.27.13-.39.21-.12.09-.23.19-.32.31s-.16.25-.21.4c-.05.15-.08.3-.08.47 0 .3.04.57.11.8.07.23.17.43.3.6.13.17.28.3.45.4.17.1.36.15.56.15.17 0 .33-.02.48-.05.15-.03.3-.07.44-.13.14-.06.27-.13.39-.21.12-.09.23-.19.32-.31s.16-.25.21-.4c.05-.15.08-.3.08-.47zM8.28 6.89c.17-.186.36-.348.567-.488.207-.139.43-.254.666-.345.236-.09.485-.158.745-.201.26-.044.528.065-.802-.065.63 0 1.22.09 1.764.268.544.179.99.434 1.331.762.34.329.584.726.724-1.187.14-.462.21-1.004-.21-1.622 0-1.025-.268-1.884-.802-2.569-.534-.685-1.25-1.191-2.13-1.506-.88-.315-1.86-.47-2.91-.47-.24 0-.48.01-.71.03-.23.02-.45.05-.65.09-.2.04-.39.09-.56.15-.17.06-.32.13-.45.2l-.1.06v3.11h-2.28v-8.63c0-.3.06-.56.17-.78.11-.22.27-.4.47-.54z"/></svg><span>MySQL</span></div>
-                    <div class="skill-item card animated-item"><svg viewBox="0 0 24 24" fill="currentColor" class="icon-postgres"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm-1.11 15.24v-1.15c.6.07 1.2.1 1.8.1.63 0 1.17-.1 1.6-.28.45-.18.8-.45.8-.93 0-.3-.1-.53-.3-.7-.2-.17-.5-.28-.9-.33l-1.3-.17c-1.1-.15-1.9-.43-2.4-.83-.5-.4-.7-1-.7-1.7 0-.7.27-1.3.8-1.8.53-.5 1.23-.7 2.1-.7.6 0 1.2.07 1.8.18v1.1c-.5-.1-1.1-.14-1.7-.14-.5 0-.9.08-1.2.22-.3.14-.4.36-.4.65 0 .23.1.4.3.5.2.1.5.2.9.26l1.3.17c1.2.17 2 .47 2.5.9.5.4.7 1 .7 1.8 0 .8-.3 1.4-.9 1.9-.6.5-1.4.7-2.4.7-.6 0-1.2-.07-1.8-.18zm-2.07-.4v-1.1c.5-.07 1-.1 1.4-.1.4 0 .8 0 1.1.08v1.1c-.3.03-.7.04-1.1.04-.5 0-1-.02-1.4-.08z"/></svg><span>PostgreSQL</span></div>
-                </div>
+            <main>
+                <!-- ==== 2. EXPERIENCE SECTION ==== -->
+                <section class="experience">
+                    <h2 class="section-title">Professional Experience</h2>
+                    <div class="experience-item">
+                        <h3 class="experience-role">Senior Software Engineer</h3>
+                        <div class="experience-company">Manila-based Digital Agency</div><br>
+                        <div class="experience-date">2015 – Present</div>
+                        <p class="experience-desc">
+                            Key technical leader at a top digital agency, architecting and building robust web applications, mobile apps, and scalable APIs. Directed projects from technical specification to deployment for major brands in finance, real estate, and e-commerce, specializing in custom CMS development, API-driven architecture, and system automation.
+                        </p>
+                    </div>
+                </section>
 
-                <h3 style="color: var(--color-accent); margin-top: 30px;">DevOps & Tools</h3>
-                <div class="skills-grid">
-                    <div class="skill-item card animated-item"><svg viewBox="0 0 24 24" fill="currentColor" class="icon-docker"><path d="M22.122 12.332c.188-.13.308-.344.308-.578v-1.508c0-.234-.12-.448-.308-.578l-2.618-1.823c-.172-.12-.384-.132-.564-.03L15.42 10.3c-.07.04-.15.06-.23.06h-1.99c-.08 0-.16-.02-.23-.06l-3.52-2.48C9.28 7.7 9.1 7.68 8.92 7.8l-2.62 1.82c-.19.13-.31.34-.31.58v1.51c0 .23.12.45.31.58l2.62 1.82c.18.1.39.13.56.03l3.52-2.48c.07-.05.15-.07.23-.07h1.99c.08 0 .16.02.23.07l3.52 2.48c.18.1.39.07.56-.03l2.62-1.82zM21.5 2.001H2.5c-1.38 0-2.5 1.12-2.5 2.5v15c0 1.38 1.12 2.5 2.5 2.5h19c1.38 0 2.5-1.12 2.5-2.5v-15c0-1.38-1.12-2.5-2.5-2.5zm-3.6 15.5h-1.8v-3.6c0-.49-.39-.88-.87-.88h-5.04c-.48 0-.87.39-.87.88v3.6H7.3v-3.6c0-1.46 1.18-2.65 2.62-2.65h5.04c1.45 0 2.62 1.19 2.62 2.65v3.6z"/></svg><span>Docker</span></div>
-                    <div class="skill-item card animated-item"><svg viewBox="0 0 24 24" fill="currentColor" class="icon-git"><path d="M11.984 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12 12 12 0 0 0-12-12A12 12 0 0 0 11.984 0zM12 21.6c-5.302 0-9.6-4.298-9.6-9.6s4.298-9.6 9.6-9.6 9.6 4.298 9.6 9.6-4.298 9.6-9.6 9.6zM9.01 9.423l-1.41 1.41 4.238 4.239 6.364-6.364-1.41-1.41-4.954 4.953z"/></svg><span>Git</span></div>
-                    <div class="skill-item card animated-item"><svg viewBox="0 0 24 24" fill="currentColor" class="icon-digitalocean"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm10.94 9.35c.02.21.03.43.03.65 0 5.16-3.66 9.4-8.29 10.63C14.24 20.36 12 16.35 12 12s-2.24-8.36-2.68-10.63c4.63 1.23 8.29 5.47 8.29 10.63 0 .22.01.44.03.65zM11.32 1.37C6.69 2.6 3.03 6.84 3.03 12c0 .22.01.44.03.65C3.02 12.44 3 12.22 3 12c0-5.16 3.66-9.4 8.29-10.63C11.73 3.64 12 7.65 12 12c0 .21-.01.43-.03.64.04-2.3.31-4.46.77-6.36-.25-.04-.5-.08-.75-.11h-.01c-.22-.03-.44-.06-.66-.09z"/></svg><span>Digital Ocean</span></div>
-                    <div class="skill-item card animated-item"><svg viewBox="0 0 24 24" fill="currentColor" class="icon-aws"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm10.94 9.35c.02.21.03.43.03.65 0 5.16-3.66 9.4-8.29 10.63C14.24 20.36 12 16.35 12 12s-2.24-8.36-2.68-10.63c4.63 1.23 8.29 5.47 8.29 10.63 0 .22.01.44.03.65zM11.32 1.37C6.69 2.6 3.03 6.84 3.03 12c0 .22.01.44.03.65C3.02 12.44 3 12.22 3 12c0-5.16 3.66-9.4 8.29-10.63C11.73 3.64 12 7.65 12 12c0 .21-.01.43-.03.64.04-2.3.31-4.46.77-6.36-.25-.04-.5-.08-.75-.11h-.01c-.22-.03-.44-.06-.66-.09z"/></svg><span>AWS</span></div>
-                    <div class="skill-item card animated-item"><svg viewBox="0 0 24 24" fill="currentColor" class="icon-firebase"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm10.94 9.35c.02.21.03.43.03.65 0 5.16-3.66 9.4-8.29 10.63C14.24 20.36 12 16.35 12 12s-2.24-8.36-2.68-10.63c4.63 1.23 8.29 5.47 8.29 10.63 0 .22.01.44.03.65zM11.32 1.37C6.69 2.6 3.03 6.84 3.03 12c0 .22.01.44.03.65C3.02 12.44 3 12.22 3 12c0-5.16 3.66-9.4 8.29-10.63C11.73 3.64 12 7.65 12 12c0 .21-.01.43-.03.64.04-2.3.31-4.46.77-6.36-.25-.04-.5-.08-.75-.11h-.01c-.22-.03-.44-.06-.66-.09z"/></svg><span>Firebase</span></div>
-                    <div class="skill-item card animated-item"><svg viewBox="0 0 24 24" fill="currentColor" class="icon-ga"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm10.94 9.35c.02.21.03.43.03.65 0 5.16-3.66 9.4-8.29 10.63C14.24 20.36 12 16.35 12 12s-2.24-8.36-2.68-10.63c4.63 1.23 8.29 5.47 8.29 10.63 0 .22.01.44.03.65zM11.32 1.37C6.69 2.6 3.03 6.84 3.03 12c0 .22.01.44.03.65C3.02 12.44 3 12.22 3 12c0-5.16 3.66-9.4 8.29-10.63C11.73 3.64 12 7.65 12 12c0 .21-.01.43-.03.64.04-2.3.31-4.46.77-6.36-.25-.04-.5-.08-.75-.11h-.01c-.22-.03-.44-.06-.66-.09z"/></svg><span>Google Analytics</span></div>
-                </div>
+                <!-- ==== 3. FEATURED PROJECTS ==== -->
+                <section class="projects">
+                    <h2 class="section-title">Featured Projects</h2>
+                    <div class="projects-grid">
 
-            </section>
-        </main>
+                        <article class="project-card">
+                            <div class="project-image">
+                                <img src="https://placehold.co/600x400/000000/FFFFFF?text=PROJECT+01&font=Space+Grotesk" alt="Palawan Pawnshop CMS Placeholder">
+                            </div>
+                            <div class="project-content">
+                                <h3 class="project-title">Palawan Pawnshop</h3>
+                                <h4 class="project-role">Role: Lead Backend Developer</h4>
+                                <p class="project-desc">
+                                    Architected and built the core of a custom Content Management System. Focused on creating a secure, scalable, and high-performance backend using Symfony, enabling dynamic content delivery.
+                                </p>
+                                <ul class="project-tags">
+                                    <li>PHP</li><li>Symfony</li><li>MySQL</li><li>Git</li>
+                                </ul>
+                            </div>
+                        </article>
 
-        <!-- ==== 5. FOOTER (CALL TO ACTION) ==== -->
-        <footer class="footer animated-section">
-            <h2 class="footer-title">Let's build your next project.</h2>
-            <p>I am currently available for select freelance opportunities. If you have a project in mind, I'd love to hear from you.</p>
-            <a href="mailto:jarnielcataluna@gmail.com" class="cta-button">
-                Get in Touch
-            </a>
-        </footer>
+                        <article class="project-card">
+                            <div class="project-image">
+                                <img src="https://placehold.co/600x400/000000/FFFFFF?text=PROJECT+02&font=Space+Grotesk" alt="DMCI Homes Website Placeholder">
+                            </div>
+                            <div class="project-content">
+                                <h3 class="project-title">DMCI Homes</h3>
+                                <h4 class="project-role">Role: Lead Backend Developer</h4>
+                                <p class="project-desc">
+                                    Engineered the backend for a new corporate CMS on Symfony. Designed and implemented a containerized environment (Docker/Nginx) to standardize the development-to-production pipeline.
+                                </p>
+                                <ul class="project-tags">
+                                    <li>Symfony</li><li>Docker</li><li>Nginx</li>
+                                </ul>
+                            </div>
+                        </article>
 
-    </div> <!-- /container -->
-<script>
-    // Scroll animations (Intersection Observer)
-    const animateOnScroll = () => {
-        const observerOptions = {
-            root: null, // viewport
-            rootMargin: '0px',
-            threshold: 0.1 // 10% of element visible
-        };
+                        <article class="project-card">
+                            <div class="project-image">
+                                <img src="https://placehold.co/600x400/000000/FFFFFF?text=PROJECT+03&font=Space+Grotesk" alt="RCBC Website Placeholder">
+                            </div>
+                            <div class="project-content">
+                                <h3 class="project-title">RCBC CMS</h3>
+                                <h4 class="project-role">Role: Lead Backend Developer</h4>
+                                <p class="project-desc">
+                                    Developed a secure and compliant CMS foundation for a major financial institution. Engineered primary modules for data handling meeting strict security and performance standards.
+                                </p>
+                                <ul class="project-tags">
+                                    <li>PHP</li><li>Symfony</li><li>MySQL</li>
+                                </ul>
+                            </div>
+                        </article>
 
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target); // Stop observing once visible
-                }
-            });
-        }, observerOptions);
+                        <article class="project-card">
+                            <div class="project-image">
+                                <img src="https://placehold.co/600x400/000000/FFFFFF?text=PROJECT+04&font=Space+Grotesk" alt="DMCI Communities App Placeholder">
+                            </div>
+                            <div class="project-content">
+                                <h3 class="project-title">DMCI Communities</h3>
+                                <h4 class="project-role">Role: Senior API Developer</h4>
+                                <p class="project-desc">
+                                    Architected a secure, high-throughput REST API for a resident mobile app. Built endpoints via SpringBoot to handle payments, maintenance, and backend system integrations.
+                                </p>
+                                <ul class="project-tags">
+                                    <li>Java</li><li>SpringBoot</li><li>MySQL</li>
+                                </ul>
+                            </div>
+                        </article>
 
-        document.querySelectorAll('.animated-section').forEach(section => {
-            observer.observe(section);
-        });
+                    </div>
+                </section>
 
-        // Stagger items
-        const itemObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach((entry, index) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        entry.target.classList.add('is-visible');
-                    }, index * 100); // Stagger by 100ms
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1 });
+                <!-- ==== 4. SKILLS TOOLBOX ==== -->
+                <section class="skills">
+                    <h2 class="section-title">Technical Specs & Stack</h2>
+                    
+                    <div class="skills-grid">
+                        <div class="skills-category">
+                            <h3>Backend</h3>
+                            <p>PHP (Symfony, Laravel) <br> Python (Flask, FastAPI) <br> Java (SpringBoot) <br> Golang</p>
+                        </div>
+                        
+                        <div class="skills-category">
+                            <h3>Frontend</h3>
+                            <p>JavaScript / TypeScript <br> React / Angular <br> Node.js / Vite</p>
+                        </div>
+                        
+                        <div class="skills-category">
+                            <h3>Mobile</h3>
+                            <p>Kotlin (Android) <br> Swift & Objective-C (iOS) <br> Flutter</p>
+                        </div>
 
-        document.querySelectorAll('.animated-item').forEach(item => {
-            itemObserver.observe(item);
-        });
-    };
+                        <div class="skills-category">
+                            <h3>AI & Orchestration</h3>
+                            <p>Agentic Orchestration <br> Antigravity <br> GSD (Get S*** Done)</p>
+                        </div>
 
-    // Run animations after page load
-    document.addEventListener('DOMContentLoaded', animateOnScroll);
+                        <div class="skills-category">
+                            <h3>Integrations & APIs</h3>
+                            <p>3rd Party API Integration <br> Meta API / Graph API <br> Google Ads Reporting API</p>
+                        </div>
 
+                        <div class="skills-category">
+                            <h3>Analytics & Tracking</h3>
+                            <p>Google Tag Manager (GTM) <br> Event Trackers & Custom Metrics <br> GA4 / Server-Side Tracking</p>
+                        </div>
 
-    // Animated Particle Background
-    const canvas = document.getElementById('particle-canvas');
-    const ctx = canvas.getContext('2d');
+                        <div class="skills-category">
+                            <h3>CMS & E-commerce</h3>
+                            <p>WordPress <br> Shopify <br> Magento</p>
+                        </div>
+                        
+                        <div class="skills-category">
+                            <h3>Databases</h3>
+                            <p>MySQL / PostgreSQL <br> SQLite</p>
+                        </div>
 
-    let particlesArray;
+                        <div class="skills-category">
+                            <h3>DevOps & Cloud</h3>
+                            <p>Docker / Git <br> AWS / Digital Ocean <br> Github Actions</p>
+                        </div>
+                    </div>
+                </section>
+            </main>
 
-    // Set canvas size
-    function setCanvasSize() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    }
-    setCanvasSize();
+            <!-- ==== 5. FOOTER (CALL TO ACTION) ==== -->
+            <footer class="footer">
+                <h2 class="footer-title">INITIATE_PROJECT</h2>
+                <p>Ready to deploy clear technical requirements into robust solutions. Reach out to discuss spec-driven development and architecture.</p>
+                <a href="mailto:jarnielcataluna@gmail.com" class="cta-button">
+                    Compile & Send Message
+                </a>
+            </footer>
 
-    // Get color from CSS variable
-    const particleColor = getComputedStyle(document.documentElement).getPropertyValue('--particle-color').trim();
+        </div> 
 
-    // Particle class
-    class Particle {
-        constructor() {
-            this.x = Math.random() * canvas.width;
-            this.y = Math.random() * canvas.height;
-            this.size = Math.random() * 2 + 1;
-            this.speedX = (Math.random() * 2 - 1) * 0.5;
-            this.speedY = (Math.random() * 2 - 1) * 0.5;
-        }
-        update() {
-            if (this.x > canvas.width || this.x < 0) this.speedX = -this.speedX;
-            if (this.y > canvas.height || this.y < 0) this.speedY = -this.speedY;
-            this.x += this.speedX;
-            this.y += this.speedY;
-        }
-        draw() {
-            ctx.fillStyle = particleColor;
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fill();
-        }
-    }
+        <script>
+            // Dark Mode Toggle (Simplified for Brutalism)
+            const checkbox = document.getElementById('checkbox');
+            const body = document.body;
 
-    // Create particle array
-    function init() {
-        particlesArray = [];
-        /* MODIFIED: Increased denominator from 9000 to 20000 to reduce particle count */
-        let numberOfParticles = (canvas.height * canvas.width) / 20000;
-        for (let i = 0; i < numberOfParticles; i++) {
-            particlesArray.push(new Particle());
-        }
-    }
-
-    // Connect particles with lines
-    function connect() {
-        let opacityValue = 1;
-        for (let a = 0; a < particlesArray.length; a++) {
-            for (let b = a + 1; b < particlesArray.length; b++) {
-                let distance = Math.sqrt(
-                    (particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x)
-                    + (particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y)
-                );
-
-                if (distance < 150) { // Connection distance
-                    opacityValue = 1 - (distance / 150);
-                    ctx.strokeStyle = particleColor.replace('0.3', opacityValue.toString()); // Hack to change alpha
-                    ctx.lineWidth = 1;
-                    ctx.beginPath();
-                    ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
-                    ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
-                    ctx.stroke();
-                }
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                body.classList.add('dark-mode');
+                checkbox.checked = true;
             }
-        }
-    }
 
-    // Animation loop
-    function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        for (let i = 0; i < particlesArray.length; i++) {
-            particlesArray[i].update();
-            particlesArray[i].draw();
-        }
-        connect();
-        requestAnimationFrame(animate);
-    }
-
-    // Resize event
-    window.addEventListener('resize', () => {
-        setCanvasSize();
-        init();
-    });
-
-    // Start
-    init();
-    animate();
-
-</script>
-</body>
-</html>
+            checkbox.addEventListener('change', () => {
+                if (checkbox.checked) {
+                    body.classList.add('dark-mode');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    body.classList.remove('dark-mode');
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+        </script>
+    </body>
+    </html>
