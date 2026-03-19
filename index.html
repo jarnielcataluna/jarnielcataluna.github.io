@@ -9,23 +9,25 @@
     <meta name="description" content="Portfolio of Jarniel Cataluna, a Senior Software Engineer and AI Enthusiast specializing in full-stack development, spec-driven development, and scalable APIs.">
     <meta name="keywords" content="Jarniel Cataluna, Senior Software Engineer, Full-Stack Developer, AI Enthusiast, PHP, Python, Java, Golang, React, Tech Lead, Spec-Driven Development">
     <meta name="author" content="Jarniel Cataluna">
-    <link rel="canonical" href="https://your-github-username.github.io/"> 
+    <link rel="canonical" href="https://jarnielcataluna.github.io/"> 
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://your-github-username.github.io/">
+    <meta property="og:url" content="https://jarnielcataluna.github.io/">
     <meta property="og:title" content="Jarniel Cataluna | Senior Software Engineer & AI Enthusiast">
     <meta property="og:description" content="Portfolio of Jarniel Cataluna, a Senior Software Engineer specializing in full-stack development, spec-driven development, and scalable APIs.">
-    <meta property="og:image" content="https://placehold.co/1200x630/FFDE59/000000?text=Jarniel+Cataluna+-+Tech+%26+AI&font=Space+Grotesk">
+    <!-- Added .png to the placehold.co URL to satisfy Facebook's scraper -->
+    <meta property="og:image" content="https://placehold.co/1200x630/FFDE59/000000.png?text=Jarniel+Cataluna+-+Tech+%26+AI&font=Space+Grotesk">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://your-github-username.github.io/">
+    <meta property="twitter:url" content="https://jarnielcataluna.github.io/">
     <meta property="twitter:title" content="Jarniel Cataluna | Senior Software Engineer & AI Enthusiast">
     <meta property="twitter:description" content="Portfolio of Jarniel Cataluna, a Senior Software Engineer specializing in full-stack development, spec-driven development, and scalable APIs.">
-    <meta property="twitter:image" content="https://placehold.co/1200x630/FFDE59/000000?text=Jarniel+Cataluna+-+Tech+%26+AI&font=Space+Grotesk">
+    <!-- Added .png here as well -->
+    <meta property="twitter:image" content="https://placehold.co/1200x630/FFDE59/000000.png?text=Jarniel+Cataluna+-+Tech+%26+AI&font=Space+Grotesk">
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NWVH1KTPZG"></script>
@@ -334,6 +336,7 @@
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             grid-auto-rows: minmax(150px, auto);
+            grid-auto-flow: dense;
             gap: 20px;
             margin-bottom: 80px;
         }
@@ -341,7 +344,7 @@
             padding: 30px;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
         }
         .bento-item h3 { font-size: 1.5rem; border-bottom: 2px solid var(--border-color); padding-bottom: 10px; margin-bottom: 15px;}
         .bento-item p { font-size: 1rem; font-weight: 600; margin: 0; line-height: 1.5; }
@@ -349,7 +352,7 @@
         /* Grid spans & Colors */
         .bento-backend { grid-column: span 2; grid-row: span 2; background-color: var(--color-blue); }
         .bento-frontend { grid-column: span 2; background-color: var(--color-yellow); }
-        .bento-ai { grid-column: span 1; grid-row: span 2; background-color: var(--color-pink); }
+        .bento-ai { grid-column: span 1; background-color: var(--color-pink); }
         .bento-mobile { grid-column: span 1; background-color: var(--color-green); }
         .bento-api { grid-column: span 2; background-color: var(--color-orange); }
         .bento-analytics { grid-column: span 2; background-color: var(--color-purple); }
@@ -519,7 +522,7 @@
             .hero-title { font-size: 3.5rem; }
             .bento-grid { grid-template-columns: repeat(2, 1fr); }
             /* Adjust spans for medium screens */
-            .bento-backend, .bento-frontend, .bento-ai, .bento-mobile, .bento-api, .bento-analytics, .bento-devops, .bento-cms { grid-column: span 2; }
+            .bento-backend, .bento-frontend, .bento-ai, .bento-mobile, .bento-api, .bento-analytics, .bento-devops, .bento-cms { grid-column: span 2; grid-row: auto; }
         }
         @media (max-width: 768px) {
             .nav-inner { padding: 12px 15px; }
@@ -532,7 +535,7 @@
             .exp-role { font-size: 1.8rem; }
             .exp-meta { text-align: left; }
             .bento-grid { grid-template-columns: 1fr; }
-            .bento-backend, .bento-frontend, .bento-ai, .bento-mobile, .bento-api, .bento-analytics, .bento-devops, .bento-cms { grid-column: span 1; }
+            .bento-backend, .bento-frontend, .bento-ai, .bento-mobile, .bento-api, .bento-analytics, .bento-devops, .bento-cms { grid-column: span 1; grid-row: auto; }
             .projects-grid { grid-template-columns: 1fr; }
             .footer-title { font-size: 2.5rem; }
 
