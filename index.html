@@ -17,6 +17,8 @@
     <meta property="og:title" content="Jarniel Cataluna | Senior Software Engineer & AI Enthusiast">
     <meta property="og:description" content="Portfolio of Jarniel Cataluna, a Senior Software Engineer specializing in full-stack development, spec-driven development, and scalable APIs.">
     <meta property="og:image" content="https://placehold.co/1200x630/FFDE59/000000?text=Jarniel+Cataluna+-+Tech+%26+AI&font=Space+Grotesk">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
@@ -470,6 +472,47 @@
             box-shadow: 0px 0px 0 #000;
         }
 
+        /* ==== BACK TO TOP BUTTON ==== */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 55px;
+            height: 55px;
+            background-color: var(--color-yellow);
+            color: #000;
+            border: var(--border-width) solid #000;
+            border-radius: 50%;
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 4px 4px 0px #000;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease, box-shadow var(--transition-bounce), background-color 0.3s ease;
+            z-index: 999;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .back-to-top.visible:hover {
+            background-color: var(--color-pink);
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px #000;
+        }
+
+        .back-to-top.visible:active {
+            transform: translate(6px, 6px);
+            box-shadow: 0px 0px 0px #000;
+        }
+
         /* ==== RESPONSIVE DESIGN ==== */
         @media (max-width: 992px) {
             .hero-section { grid-template-columns: 1fr; }
@@ -492,6 +535,14 @@
             .bento-backend, .bento-frontend, .bento-ai, .bento-mobile, .bento-api, .bento-analytics, .bento-devops, .bento-cms { grid-column: span 1; }
             .projects-grid { grid-template-columns: 1fr; }
             .footer-title { font-size: 2.5rem; }
+
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -695,6 +746,11 @@
         </a>
     </footer>
 
+    <!-- ==== BACK TO TOP BUTTON ==== -->
+    <button id="backToTop" class="back-to-top" aria-label="Back to Top">
+        <i class='bx bx-up-arrow-alt'></i>
+    </button>
+
     <script>
         // Premium Theme Toggle Logic
         const themeToggle = document.getElementById('themeToggle');
@@ -717,6 +773,24 @@
                 localStorage.setItem('theme', 'light');
                 icon.classList.replace('bx-sun', 'bx-moon');
             }
+        });
+
+        // Back to Top Logic
+        const backToTopBtn = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
     </script>
 </body>
