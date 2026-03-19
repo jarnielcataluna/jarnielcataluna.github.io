@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
+    <!-- ==== SEO & META TAGS ==== -->
     <title>Jarniel Cataluna | Senior Software Engineer & AI Enthusiast</title>
     <meta name="description" content="Portfolio of Jarniel Cataluna, a Senior Software Engineer and AI Enthusiast specializing in full-stack development, spec-driven development, and scalable APIs.">
     <meta name="keywords" content="Jarniel Cataluna, Senior Software Engineer, Full-Stack Developer, AI Enthusiast, PHP, Python, Java, Golang, React, Tech Lead, Spec-Driven Development">
     <meta name="author" content="Jarniel Cataluna">
     <link rel="canonical" href="https://jarnielcataluna.github.io/"> 
 
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://jarnielcataluna.github.io/">
     <meta property="og:title" content="Jarniel Cataluna | Senior Software Engineer & AI Enthusiast">
@@ -18,14 +20,17 @@
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
 
+    <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://jarnielcataluna.github.io/">
     <meta property="twitter:title" content="Jarniel Cataluna | Senior Software Engineer & AI Enthusiast">
     <meta property="twitter:description" content="Portfolio of Jarniel Cataluna, a Senior Software Engineer specializing in full-stack development, spec-driven development, and scalable APIs.">
     <meta property="twitter:image" content="https://jarnielcataluna.github.io/og-image.png">
 
-    <link rel="icon" type="image/png" sizes="32x32" href="https://jarnielcataluna.github.io/favicon.png">
+    <!-- ==== FAVICON ==== -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⬛</text></svg>">
 
+    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NWVH1KTPZG"></script>
     <script>
     window.dataLayer = window.dataLayer || [];
@@ -36,6 +41,7 @@
 
     <meta name="google-site-verification" content="0lLZgWCEN6DZW7VJg_Ulky5khdOPOtGqAS1yhPQaWJ4" />
 
+    <!-- ==== FONTS & ICONS ==== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700;900&family=IBM+Plex+Mono:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
@@ -97,11 +103,6 @@
         /* ==== BASE STYLES ==== */
         * { box-sizing: border-box; }
         
-        html {
-            overflow-x: hidden;
-            width: 100%;
-        }
-
         body {
             font-family: var(--font-body);
             background-color: var(--color-bg);
@@ -110,7 +111,6 @@
             margin: 0;
             padding: 0;
             overflow-x: hidden;
-            max-width: 100%;
             transition: background-color 0.3s ease;
         }
 
@@ -145,8 +145,6 @@
             text-transform: uppercase;
             letter-spacing: -0.03em;
             color: var(--color-text-primary);
-            overflow-wrap: break-word;
-            word-wrap: break-word;
         }
         p { margin: 0 0 1.5rem 0; font-size: 1.05rem; }
         a { color: var(--color-text-primary); text-decoration: none; font-weight: 600; }
@@ -237,7 +235,6 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            position: relative;
         }
         body.dark-mode .hero-content { background-color: var(--color-card-bg); border-color: var(--color-pink); }
 
@@ -372,6 +369,35 @@
         .bento-item h3 { font-size: 1.5rem; border-bottom: 2px solid var(--border-color); padding-bottom: 10px; margin-bottom: 15px;}
         .bento-item p { font-size: 1rem; font-weight: 600; margin: 0; line-height: 1.5; }
         
+        /* Backend SVG Graphic Animations */
+        .backend-graphic {
+            margin-top: auto;
+            padding-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .backend-graphic svg {
+            width: 100%;
+            max-width: 220px;
+            filter: drop-shadow(4px 4px 0px var(--border-color));
+            margin-bottom: 15px;
+        }
+        .terminal-text {
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--color-text-primary);
+        }
+        @keyframes blink-step {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        .blink-fast { animation: blink-step 0.6s step-end infinite; }
+        .blink-med { animation: blink-step 1.2s step-end infinite; }
+        .blink-slow { animation: blink-step 2s step-end infinite; }
+
         .bento-backend { grid-column: span 2; grid-row: span 2; background-color: var(--color-blue); }
         .bento-frontend { grid-column: span 2; background-color: var(--color-yellow); }
         .bento-ai { grid-column: span 1; background-color: var(--color-pink); }
@@ -501,8 +527,7 @@
             text-transform: uppercase;
         }
         .brutal-input {
-            width: 100%; 
-            max-width: calc(100% - 6px); /* Prevents the shadow from overflowing */
+            width: 100%;
             padding: 15px;
             font-family: var(--font-body);
             font-size: 1rem;
@@ -572,9 +597,7 @@
             box-shadow: 6px 6px 0 #000;
             cursor: pointer;
             transition: all var(--transition-bounce);
-            width: 100%; 
-            max-width: calc(100% - 8px); /* Prevents the shadow from overflowing */
-            margin-bottom: 8px;
+            width: 100%;
         }
         body.dark-mode .btn-primary { border-color: #000; box-shadow: 6px 6px 0 #000; }
         .btn-primary:hover:not(:disabled) {
@@ -604,6 +627,51 @@
         }
         .btn-primary.loading .spinner { display: block; }
         .btn-primary.loading .btn-text { display: none; }
+
+        /* ==== SUB FOOTER ==== */
+        .sub-footer {
+            background-color: var(--color-bg);
+            border-top: var(--border-width) solid var(--border-color);
+            padding: 20px 0;
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            color: var(--color-text-primary);
+        }
+        .sub-footer .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .sub-footer-text {
+            text-align: center;
+        }
+        .sub-footer-socials {
+            position: absolute;
+            right: 20px;
+            display: flex;
+            gap: 12px;
+        }
+        .sub-footer-socials a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            background-color: var(--color-card-bg);
+            border: 2px solid var(--border-color); 
+            box-shadow: 3px 3px 0px var(--border-color);
+            color: var(--color-text-primary);
+            font-size: 1.4rem;
+            transition: all var(--transition-bounce);
+        }
+        .sub-footer-socials a:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0px var(--border-color);
+            background-color: var(--color-yellow);
+        }
 
         /* ==== SUCCESS MODAL ==== */
         .modal-overlay {
@@ -688,7 +756,7 @@
             .bento-grid { grid-template-columns: repeat(2, 1fr); }
             .bento-backend, .bento-frontend, .bento-ai, .bento-mobile, .bento-api, .bento-analytics, .bento-devops, .bento-cms { grid-column: span 2; grid-row: auto; }
             .footer-grid { grid-template-columns: 1fr; }
-            .footer-text { text-align: left; padding-right: 0; }
+            .footer-text { text-align: center; padding-right: 0; }
         }
         @media (max-width: 768px) {
             .nav-inner { padding: 12px 15px; }
@@ -704,36 +772,27 @@
                 color: var(--color-text-primary); 
             }
             
-            /* Give text more room to breathe by reducing heavy desktop paddings */
-            .hero-content { padding: 35px 20px; position: relative; }
-            .hero-title { font-size: 2.2rem; word-wrap: break-word; line-height: 1; }
-            .hero-subtitle { font-size: 1.1rem; }
-            .hero-desc { font-size: 1.05rem; }
-            .hero-visual { padding: 30px 20px; position: relative; }
-
-            .section-header { font-size: 1.75rem; transform: rotate(0deg); }
-            
-            .experience-card { padding: 30px 20px; }
+            .hero-title { font-size: 2.5rem; }
+            .section-header { font-size: 2rem; transform: rotate(0deg); }
             .exp-header { flex-direction: column; align-items: flex-start; gap: 10px; }
             .exp-role { font-size: 1.8rem; }
             .exp-meta { text-align: left; }
-            
             .bento-grid { grid-template-columns: 1fr; }
             .bento-backend, .bento-frontend, .bento-ai, .bento-mobile, .bento-api, .bento-analytics, .bento-devops, .bento-cms { grid-column: span 1; grid-row: auto; }
-            .bento-item { padding: 25px 20px; }
             
+            /* Hide the decorative backend graphic on mobile to save vertical space */
+            .desktop-only-graphic { display: none; }
+
             .projects-grid { grid-template-columns: 1fr; }
-            .project-info { padding: 25px 20px; }
+            .footer-title { font-size: 2.5rem; }
             
-            /* Mobile adjustments to prevent FAB overlap and fix form overflow */
-            footer { padding: 50px 0 100px 0; } 
-            .footer-grid { gap: 20px; }
-            .footer-title { font-size: 2.2rem; word-wrap: break-word; }
-            .footer-desc { font-size: 1.15rem; }
-            
-            .contact-form-card { padding: 30px 20px; box-shadow: 6px 6px 0 var(--border-color); }
-            .contact-form-card h3 { font-size: 1.5rem; word-break: break-all; }
-            
+            /* Mobile adjustments to prevent FAB overlap */
+            footer { padding: 60px 0 40px 0; } 
+            .contact-form-card { padding: 25px; box-shadow: 6px 6px 0 var(--border-color); }
+            .sub-footer { padding: 20px 0 100px 0; } /* Move extra padding to sub-footer so scroll clears FAB */
+            .sub-footer .container { flex-direction: column; gap: 15px; }
+            .sub-footer-socials { position: static; }
+
             .back-to-top { bottom: 15px; right: 15px; width: 45px; height: 45px; font-size: 1.5rem; }
         }
     </style>
@@ -741,18 +800,22 @@
 <body>
 
     <div class="container">
+        <!-- ==== NAVIGATION ==== -->
         <nav>
             <div class="nav-inner brutal-card">
                 <div class="nav-logo">JARNIEL CATALUÑA</div>
                 <div class="nav-controls">
+                    <!-- Desktop Links -->
                     <a href="#experience" class="nav-link desktop-only">Experience</a>
                     <a href="#projects" class="nav-link desktop-only">Work</a>
                     <a href="#contact" class="nav-link desktop-only">Contact</a>
                     
+                    <!-- Mobile Contact Icon -->
                     <a href="#contact" class="nav-link mobile-only" aria-label="Contact">
                         <i class='bx bxs-envelope'></i>
                     </a>
                     
+                    <!-- Theme Toggle -->
                     <button class="theme-toggle" id="themeToggle" aria-label="Toggle Dark Mode">
                         <i class='bx bx-moon'></i>
                     </button>
@@ -760,6 +823,7 @@
             </div>
         </nav>
 
+        <!-- ==== HERO SECTION ==== -->
         <header class="hero-section">
             <div class="hero-content brutal-card interactive reveal-up" style="transition-delay: 0s;">
                 <h1 class="hero-title">INITIATING<br>ARCHITECTURE</h1>
@@ -781,16 +845,21 @@
                 <div class="pill-badge">10+ Years in the Tech Industry</div>
             </div>
         </header>
-    </div> <div class="marquee-wrapper reveal-up" style="transition-delay: 0.1s;">
+    </div> <!-- Close Container for full-width Marquee -->
+
+    <!-- ==== SCROLLING MARQUEE ==== -->
+    <div class="marquee-wrapper reveal-up" style="transition-delay: 0.1s;">
         <div class="marquee-content">
             TECH LEAD // FULL STACK // AI ORCHESTRATION // SYSTEM ARCHITECTURE // GSD // TECH LEAD // FULL STACK // AI ORCHESTRATION // SYSTEM ARCHITECTURE // GSD // TECH LEAD // FULL STACK // AI ORCHESTRATION // SYSTEM ARCHITECTURE // GSD //
         </div>
+        <!-- Duplicate for seamless loop -->
         <div class="marquee-content" aria-hidden="true">
             TECH LEAD // FULL STACK // AI ORCHESTRATION // SYSTEM ARCHITECTURE // GSD // TECH LEAD // FULL STACK // AI ORCHESTRATION // SYSTEM ARCHITECTURE // GSD // TECH LEAD // FULL STACK // AI ORCHESTRATION // SYSTEM ARCHITECTURE // GSD //
         </div>
     </div>
 
     <div class="container">
+        <!-- ==== EXPERIENCE SECTION ==== -->
         <section id="experience" class="experience">
             <h2 class="section-header reveal-up">EXPERIENCE_LOG</h2>
             
@@ -811,30 +880,58 @@
             </div>
         </section>
 
+        <!-- ==== BENTO GRID SKILLS ==== -->
         <section class="skills">
             <h2 class="section-header reveal-up">SYS_SPECS</h2>
             
             <div class="bento-grid">
+                <!-- Large Backend Block -->
                 <div class="bento-item brutal-card interactive bento-backend reveal-up" style="transition-delay: 0s;">
                     <h3>Backend Architecture</h3>
                     <p>PHP (Symfony, Laravel)<br>Python (Flask, FastAPI)<br>Java (SpringBoot)<br>Golang</p>
+                    
+                    <div class="backend-graphic desktop-only-graphic">
+                        <svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none">
+                            <rect x="10" y="10" width="180" height="20" rx="2" fill="var(--color-bg)" />
+                            <circle cx="25" cy="20" r="4" fill="var(--color-pink)" stroke="none" class="blink-fast"/>
+                            <line x1="45" y1="20" x2="65" y2="20"/>
+                            <line x1="150" y1="20" x2="180" y2="20"/>
+                            
+                            <rect x="10" y="40" width="180" height="20" rx="2" fill="var(--color-bg)" />
+                            <circle cx="25" cy="50" r="4" fill="var(--color-green)" stroke="none" class="blink-slow"/>
+                            <line x1="45" y1="50" x2="85" y2="50"/>
+                            <line x1="150" y1="50" x2="180" y2="50"/>
+                            
+                            <rect x="10" y="70" width="180" height="20" rx="2" fill="var(--color-bg)" />
+                            <circle cx="25" cy="80" r="4" fill="var(--color-yellow)" stroke="none" class="blink-med"/>
+                            <line x1="45" y1="80" x2="105" y2="80"/>
+                            <line x1="150" y1="80" x2="180" y2="80"/>
+
+                            <line x1="135" y1="10" x2="135" y2="90"/>
+                        </svg>
+                        <div class="terminal-text">> SYS_NODE_ACTIVE<span class="blink-fast">_</span></div>
+                    </div>
                 </div>
                 
+                <!-- Medium Blocks -->
                 <div class="bento-item brutal-card interactive bento-frontend reveal-up" style="transition-delay: 0.1s;">
                     <h3>Frontend Interfaces</h3>
                     <p>JavaScript / TypeScript<br>React / Angular<br>Node.js / Vite</p>
                 </div>
 
+                <!-- Tall Block -->
                 <div class="bento-item brutal-card interactive bento-ai reveal-up" style="transition-delay: 0.2s;">
                     <h3>AI & Orchestration</h3>
                     <p>Agentic Orchestration<br>Antigravity<br>GSD Method</p>
                 </div>
 
+                <!-- Small Block -->
                 <div class="bento-item brutal-card interactive bento-mobile reveal-up" style="transition-delay: 0.3s;">
                     <h3>Mobile Dev</h3>
                     <p>Kotlin (Android)<br>Swift (iOS)<br>Flutter</p>
                 </div>
 
+                <!-- Wide Blocks -->
                 <div class="bento-item brutal-card interactive bento-api reveal-up" style="transition-delay: 0s;">
                     <h3>APIs & Integrations</h3>
                     <p>Meta API / Graph API<br>Google Ads Reporting API<br>3rd Party System Hooks</p>
@@ -857,6 +954,7 @@
             </div>
         </section>
 
+        <!-- ==== PROJECTS GRID ==== -->
         <section id="projects" class="projects">
             <h2 class="section-header reveal-up">DEPLOYMENTS</h2>
             
@@ -919,7 +1017,10 @@
             </div>
         </section>
 
-    </div> <footer id="contact">
+    </div> <!-- Close Container -->
+
+    <!-- ==== FOOTER / CONTACT SECTION ==== -->
+    <footer id="contact">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-text reveal-up" style="transition-delay: 0s;">
@@ -930,6 +1031,7 @@
                     </a>
                 </div>
                 
+                <!-- CONTACT FORM -->
                 <div class="contact-form-card brutal-card reveal-up" style="transition-delay: 0.2s;">
                     <h3 style="font-size: 2rem; margin-bottom: 25px;">SECURE_TRANSMISSION</h3>
                     <form id="contactForm" novalidate>
@@ -963,6 +1065,21 @@
         </div>
     </footer>
 
+    <!-- ==== SUB FOOTER ==== -->
+    <div class="sub-footer">
+        <div class="container">
+            <div class="sub-footer-text">
+                &copy; 2026 JARNIEL CATALUÑA &mdash; ALL RIGHTS RESERVED
+            </div>
+            <div class="sub-footer-socials">
+                <a href="https://github.com/your-username" target="_blank" aria-label="GitHub"><i class='bx bxl-github'></i></a>
+                <a href="mailto:jarnielcataluna@gmail.com" aria-label="Email"><i class='bx bxs-envelope'></i></a>
+                <a href="https://linkedin.com/in/your-username" target="_blank" aria-label="LinkedIn"><i class='bx bxl-linkedin'></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==== SUCCESS MODAL ==== -->
     <div id="successModal" class="modal-overlay">
         <div class="modal-box brutal-card">
             <i class='bx bxs-check-circle modal-icon'></i>
@@ -972,10 +1089,12 @@
         </div>
     </div>
 
+    <!-- ==== BACK TO TOP BUTTON ==== -->
     <button id="backToTop" class="back-to-top" aria-label="Back to Top">
         <i class='bx bx-up-arrow-alt'></i>
     </button>
 
+    <!-- ==== FIREBASE & LOGIC SCRIPT ==== -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
