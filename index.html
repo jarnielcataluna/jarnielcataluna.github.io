@@ -68,6 +68,7 @@
             --color-green: #B9FBC0;
             --color-purple: #C8A2C8;
             --color-orange: #FFB347;
+            --color-cyan: #66E8FF; /* Added vibrant cyan for DevOps block */
 
             /* Brutalist Structural Elements */
             --border-width: 3px;
@@ -95,6 +96,7 @@
             --color-green: #00FF66;
             --color-purple: #B084CC;
             --color-orange: #FF9900;
+            --color-cyan: #00E5FF;
         }
 
         /* ==== BASE STYLES ==== */
@@ -356,7 +358,7 @@
         .bento-mobile { grid-column: span 1; background-color: var(--color-green); }
         .bento-api { grid-column: span 2; background-color: var(--color-orange); }
         .bento-analytics { grid-column: span 2; background-color: var(--color-purple); }
-        .bento-devops { grid-column: span 2; background-color: var(--color-card-bg); }
+        .bento-devops { grid-column: span 2; background-color: var(--color-cyan); }
         .bento-cms { grid-column: span 2; background-color: var(--color-card-bg); }
 
         body.dark-mode .bento-item {
@@ -369,6 +371,7 @@
         body.dark-mode .bento-mobile { border-color: var(--color-green); }
         body.dark-mode .bento-api { border-color: var(--color-orange); }
         body.dark-mode .bento-analytics { border-color: var(--color-purple); }
+        body.dark-mode .bento-devops { border-color: var(--color-cyan); }
 
         /* ==== EXPERIENCE & PROJECTS (HORIZONTAL/MASONRY STYLE) ==== */
         .experience-card {
