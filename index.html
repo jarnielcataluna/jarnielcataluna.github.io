@@ -97,6 +97,11 @@
         /* ==== BASE STYLES ==== */
         * { box-sizing: border-box; }
         
+        html {
+            overflow-x: hidden;
+            width: 100%;
+        }
+
         body {
             font-family: var(--font-body);
             background-color: var(--color-bg);
@@ -105,6 +110,7 @@
             margin: 0;
             padding: 0;
             overflow-x: hidden;
+            max-width: 100%;
             transition: background-color 0.3s ease;
         }
 
@@ -139,6 +145,8 @@
             text-transform: uppercase;
             letter-spacing: -0.03em;
             color: var(--color-text-primary);
+            overflow-wrap: break-word;
+            word-wrap: break-word;
         }
         p { margin: 0 0 1.5rem 0; font-size: 1.05rem; }
         a { color: var(--color-text-primary); text-decoration: none; font-weight: 600; }
@@ -229,6 +237,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            position: relative;
         }
         body.dark-mode .hero-content { background-color: var(--color-card-bg); border-color: var(--color-pink); }
 
@@ -492,7 +501,8 @@
             text-transform: uppercase;
         }
         .brutal-input {
-            width: 100%;
+            width: 100%; 
+            max-width: calc(100% - 6px); /* Prevents the shadow from overflowing */
             padding: 15px;
             font-family: var(--font-body);
             font-size: 1rem;
@@ -562,7 +572,9 @@
             box-shadow: 6px 6px 0 #000;
             cursor: pointer;
             transition: all var(--transition-bounce);
-            width: 100%;
+            width: 100%; 
+            max-width: calc(100% - 8px); /* Prevents the shadow from overflowing */
+            margin-bottom: 8px;
         }
         body.dark-mode .btn-primary { border-color: #000; box-shadow: 6px 6px 0 #000; }
         .btn-primary:hover:not(:disabled) {
@@ -676,7 +688,7 @@
             .bento-grid { grid-template-columns: repeat(2, 1fr); }
             .bento-backend, .bento-frontend, .bento-ai, .bento-mobile, .bento-api, .bento-analytics, .bento-devops, .bento-cms { grid-column: span 2; grid-row: auto; }
             .footer-grid { grid-template-columns: 1fr; }
-            .footer-text { text-align: center; padding-right: 0; }
+            .footer-text { text-align: left; padding-right: 0; }
         }
         @media (max-width: 768px) {
             .nav-inner { padding: 12px 15px; }
@@ -692,19 +704,35 @@
                 color: var(--color-text-primary); 
             }
             
-            .hero-title { font-size: 2.5rem; }
-            .section-header { font-size: 2rem; transform: rotate(0deg); }
+            /* Give text more room to breathe by reducing heavy desktop paddings */
+            .hero-content { padding: 35px 20px; position: relative; }
+            .hero-title { font-size: 2.2rem; word-wrap: break-word; line-height: 1; }
+            .hero-subtitle { font-size: 1.1rem; }
+            .hero-desc { font-size: 1.05rem; }
+            .hero-visual { padding: 30px 20px; position: relative; }
+
+            .section-header { font-size: 1.75rem; transform: rotate(0deg); }
+            
+            .experience-card { padding: 30px 20px; }
             .exp-header { flex-direction: column; align-items: flex-start; gap: 10px; }
             .exp-role { font-size: 1.8rem; }
             .exp-meta { text-align: left; }
+            
             .bento-grid { grid-template-columns: 1fr; }
             .bento-backend, .bento-frontend, .bento-ai, .bento-mobile, .bento-api, .bento-analytics, .bento-devops, .bento-cms { grid-column: span 1; grid-row: auto; }
-            .projects-grid { grid-template-columns: 1fr; }
-            .footer-title { font-size: 2.5rem; }
+            .bento-item { padding: 25px 20px; }
             
-            /* Mobile adjustments to prevent FAB overlap */
-            footer { padding: 60px 0 100px 0; } /* Extra bottom padding so scroll clears form */
-            .contact-form-card { padding: 25px; box-shadow: 6px 6px 0 var(--border-color); }
+            .projects-grid { grid-template-columns: 1fr; }
+            .project-info { padding: 25px 20px; }
+            
+            /* Mobile adjustments to prevent FAB overlap and fix form overflow */
+            footer { padding: 50px 0 100px 0; } 
+            .footer-grid { gap: 20px; }
+            .footer-title { font-size: 2.2rem; word-wrap: break-word; }
+            .footer-desc { font-size: 1.15rem; }
+            
+            .contact-form-card { padding: 30px 20px; box-shadow: 6px 6px 0 var(--border-color); }
+            .contact-form-card h3 { font-size: 1.5rem; word-break: break-all; }
             
             .back-to-top { bottom: 15px; right: 15px; width: 45px; height: 45px; font-size: 1.5rem; }
         }
