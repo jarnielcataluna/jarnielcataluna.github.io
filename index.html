@@ -16,7 +16,6 @@
     <meta property="og:url" content="https://jarnielcataluna.github.io/">
     <meta property="og:title" content="Jarniel Cataluna | Senior Software Engineer & AI Enthusiast">
     <meta property="og:description" content="Portfolio of Jarniel Cataluna, a Senior Software Engineer specializing in full-stack development, spec-driven development, and scalable APIs.">
-    <!-- Added .png to the placehold.co URL to satisfy Facebook's scraper -->
     <meta property="og:image" content="https://placehold.co/1200x630/FFDE59/000000.png?text=Jarniel+Cataluna+-+Tech+%26+AI&font=Space+Grotesk">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -26,7 +25,6 @@
     <meta property="twitter:url" content="https://jarnielcataluna.github.io/">
     <meta property="twitter:title" content="Jarniel Cataluna | Senior Software Engineer & AI Enthusiast">
     <meta property="twitter:description" content="Portfolio of Jarniel Cataluna, a Senior Software Engineer specializing in full-stack development, spec-driven development, and scalable APIs.">
-    <!-- Added .png here as well -->
     <meta property="twitter:image" content="https://placehold.co/1200x630/FFDE59/000000.png?text=Jarniel+Cataluna+-+Tech+%26+AI&font=Space+Grotesk">
 
     <!-- Google tag (gtag.js) -->
@@ -35,7 +33,6 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-NWVH1KTPZG');
     </script>
 
@@ -51,29 +48,30 @@
         /* ==== ROOT VARIABLES (Premium Neo-Brutalist Palette) ==== */
         :root {
             --font-display: 'Space Grotesk', sans-serif;
-            --font-body: 'IBM Plex Mono', monospace; /* Swapped Inter for a more tech/brutalist mono font */
+            --font-body: 'IBM Plex Mono', monospace;
             
             /* Light Mode Backgrounds */
-            --color-bg: #FFF5E1; /* Warm cream background */
+            --color-bg: #FFF5E1; 
             --color-card-bg: #FFFFFF;
             
             /* Text Colors */
             --color-text-primary: #000000;
             --color-text-secondary: #333333;
+            --color-error: #FF3B30;
             
-            /* Vibrant Pastel Accents (Gumroad/Figma Style) */
+            /* Vibrant Pastel Accents */
             --color-yellow: #FFD700;
             --color-pink: #FF90E8;
             --color-blue: #90C0FF;
             --color-green: #B9FBC0;
             --color-purple: #C8A2C8;
             --color-orange: #FFB347;
-            --color-cyan: #66E8FF; /* Added vibrant cyan for DevOps block */
+            --color-cyan: #66E8FF; 
 
             /* Brutalist Structural Elements */
             --border-width: 3px;
             --border-color: #000000;
-            --border-radius: 12px; /* Slightly rounded for the modern bento look */
+            --border-radius: 12px;
             --shadow-hard: 8px 8px 0px var(--border-color);
             --shadow-hover: 4px 4px 0px var(--border-color);
             --shadow-active: 0px 0px 0px var(--border-color);
@@ -88,8 +86,8 @@
             --color-text-primary: #FFFFFF;
             --color-text-secondary: #CCCCCC;
             --border-color: #FFFFFF;
+            --color-error: #FF453A;
             
-            /* Slightly intensify neons for dark mode */
             --color-yellow: #FFEA00;
             --color-pink: #FF66CC;
             --color-blue: #3399FF;
@@ -113,6 +111,10 @@
             transition: background-color 0.3s ease;
         }
 
+        body.modal-open {
+            overflow: hidden; /* Prevent scrolling when modal is open */
+        }
+
         /* Brutalist Card Base Class */
         .brutal-card {
             background-color: var(--color-card-bg);
@@ -122,14 +124,14 @@
             transition: transform var(--transition-bounce), box-shadow var(--transition-bounce);
         }
         
-        /* Interactive element hover states */
+        /* Interactive element hover states with !important to override reveal animations */
         .interactive:hover {
-            transform: translate(4px, 4px);
-            box-shadow: var(--shadow-hover);
+            transform: translate(4px, 4px) !important;
+            box-shadow: var(--shadow-hover) !important;
         }
         .interactive:active {
-            transform: translate(8px, 8px);
-            box-shadow: var(--shadow-active);
+            transform: translate(8px, 8px) !important;
+            box-shadow: var(--shadow-active) !important;
         }
 
         /* Typography */
@@ -145,7 +147,7 @@
         a { color: var(--color-text-primary); text-decoration: none; font-weight: 600; }
 
         .container {
-            max-width: 1200px; /* Wider container for bento grid */
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
@@ -160,6 +162,20 @@
             border: var(--border-width) solid var(--border-color);
             transform: rotate(-2deg);
             box-shadow: 4px 4px 0 var(--border-color);
+        }
+
+        /* ==== SCROLL REVEAL ANIMATIONS ==== */
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .reveal-up.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .reveal-up { transition: none; opacity: 1; transform: none; }
         }
 
         /* ==== NAVIGATION ==== */
@@ -190,8 +206,6 @@
             align-items: center;
             gap: 20px;
         }
-
-        /* Theme Toggle */
         .theme-toggle {
             cursor: pointer;
             font-size: 1.5rem;
@@ -203,6 +217,7 @@
             justify-content: center;
             padding: 5px;
         }
+        .mobile-only { display: none; }
 
         /* ==== HERO SPLIT SECTION ==== */
         .hero-section {
@@ -266,7 +281,7 @@
             background: var(--color-card-bg);
             border: var(--border-width) solid var(--border-color);
             font-size: 1.8rem;
-            border-radius: 50%; /* Circle buttons */
+            border-radius: 50%;
             box-shadow: 4px 4px 0px var(--border-color);
             transition: all var(--transition-bounce);
         }
@@ -351,7 +366,6 @@
         .bento-item h3 { font-size: 1.5rem; border-bottom: 2px solid var(--border-color); padding-bottom: 10px; margin-bottom: 15px;}
         .bento-item p { font-size: 1rem; font-weight: 600; margin: 0; line-height: 1.5; }
         
-        /* Grid spans & Colors */
         .bento-backend { grid-column: span 2; grid-row: span 2; background-color: var(--color-blue); }
         .bento-frontend { grid-column: span 2; background-color: var(--color-yellow); }
         .bento-ai { grid-column: span 1; background-color: var(--color-pink); }
@@ -361,10 +375,7 @@
         .bento-devops { grid-column: span 2; background-color: var(--color-cyan); }
         .bento-cms { grid-column: span 2; background-color: var(--color-card-bg); }
 
-        body.dark-mode .bento-item {
-            background-color: var(--color-card-bg);
-        }
-        /* Keep colored borders in dark mode for bento boxes to maintain flavor */
+        body.dark-mode .bento-item { background-color: var(--color-card-bg); }
         body.dark-mode .bento-backend { border-color: var(--color-blue); }
         body.dark-mode .bento-frontend { border-color: var(--color-yellow); }
         body.dark-mode .bento-ai { border-color: var(--color-pink); }
@@ -373,7 +384,7 @@
         body.dark-mode .bento-analytics { border-color: var(--color-purple); }
         body.dark-mode .bento-devops { border-color: var(--color-cyan); }
 
-        /* ==== EXPERIENCE & PROJECTS (HORIZONTAL/MASONRY STYLE) ==== */
+        /* ==== EXPERIENCE & PROJECTS ==== */
         .experience-card {
             background: var(--color-green);
             padding: 40px;
@@ -443,39 +454,188 @@
             box-shadow: 2px 2px 0 var(--border-color);
         }
 
-        /* ==== FOOTER CTA ==== */
+        /* ==== FOOTER / CONTACT SECTION ==== */
         footer {
-            background: var(--color-text-primary);
-            color: var(--color-bg);
-            padding: 80px 40px;
-            text-align: center;
+            background: var(--color-purple);
+            padding: 80px 0;
             border-top: var(--border-width) solid var(--border-color);
         }
-        .footer-title { color: var(--color-bg); font-size: 4rem; line-height: 1; margin-bottom: 20px;}
-        .footer-desc { font-size: 1.5rem; max-width: 600px; margin: 0 auto 40px auto; color: var(--color-bg); }
+        body.dark-mode footer { background-color: var(--color-card-bg); border-top-color: var(--color-purple); }
         
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        .footer-text { padding-right: 20px; }
+        .footer-title { color: var(--color-text-primary); font-size: 4rem; line-height: 1; margin-bottom: 20px;}
+        .footer-desc { font-size: 1.3rem; margin-bottom: 40px; color: var(--color-text-primary); font-weight: 600;}
+        
+        /* Contact Form Styles */
+        .contact-form-card {
+            background-color: var(--color-card-bg);
+            padding: 40px;
+            border: var(--border-width) solid var(--border-color);
+            border-radius: var(--border-radius);
+            box-shadow: 10px 10px 0 var(--border-color);
+        }
+        body.dark-mode .contact-form-card { border-color: var(--color-text-primary); }
+
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+        .form-label {
+            display: block;
+            font-family: var(--font-display);
+            font-weight: 900;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+        .brutal-input {
+            width: 100%;
+            padding: 15px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            background-color: var(--color-bg);
+            color: var(--color-text-primary);
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            box-shadow: 3px 3px 0 var(--border-color);
+            outline: none;
+            transition: all 0.2s ease;
+        }
+        .brutal-input:focus {
+            background-color: var(--color-card-bg);
+            box-shadow: 6px 6px 0 var(--color-blue);
+            transform: translate(-2px, -2px);
+        }
+        textarea.brutal-input {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        /* Form Validation Styles */
+        .brutal-input.invalid {
+            border-color: var(--color-error);
+            box-shadow: 3px 3px 0 var(--color-error);
+        }
+        .error-message {
+            color: var(--color-error);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 5px;
+            display: none;
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+        }
+        .brutal-input.invalid + .error-message { display: block; }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-5px); }
+            40%, 80% { transform: translateX(5px); }
+        }
+        .shake { animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both; }
+
         .btn-primary {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
             background: var(--color-yellow);
             color: #000;
             font-family: var(--font-display);
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             font-weight: 900;
-            padding: 20px 40px;
+            padding: 15px 30px;
             text-transform: uppercase;
             border: var(--border-width) solid #000;
             border-radius: var(--border-radius);
             box-shadow: 6px 6px 0 #000;
+            cursor: pointer;
             transition: all var(--transition-bounce);
+            width: 100%;
         }
-        .btn-primary:hover {
-            transform: translate(2px, 2px);
-            box-shadow: 4px 4px 0 #000;
+        body.dark-mode .btn-primary { border-color: #000; box-shadow: 6px 6px 0 #000; }
+        .btn-primary:hover:not(:disabled) {
+            transform: translate(2px, 2px) !important;
+            box-shadow: 4px 4px 0 #000 !important;
             background: var(--color-pink);
         }
-        .btn-primary:active {
-            transform: translate(6px, 6px);
-            box-shadow: 0px 0px 0 #000;
+        .btn-primary:active:not(:disabled) {
+            transform: translate(6px, 6px) !important;
+            box-shadow: 0px 0px 0 #000 !important;
+        }
+        .btn-primary:disabled {
+            background: #CCCCCC;
+            cursor: not-allowed;
+            transform: translate(4px, 4px);
+            box-shadow: 2px 2px 0 #000;
+        }
+        
+        .spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(0,0,0,0.3);
+            border-radius: 50%;
+            border-top-color: #000;
+            animation: spin 1s ease-in-out infinite;
+        }
+        .btn-primary.loading .spinner { display: block; }
+        .btn-primary.loading .btn-text { display: none; }
+
+        /* ==== SUCCESS MODAL ==== */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(0, 0, 0, 0.85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            backdrop-filter: blur(4px);
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-box {
+            background-color: var(--color-green);
+            padding: 50px 40px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            transform: scale(0.9) translateY(20px);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        body.dark-mode .modal-box { background-color: var(--color-card-bg); border-color: var(--color-green); box-shadow: 12px 12px 0 var(--color-green);}
+        
+        .modal-overlay.active .modal-box {
+            transform: scale(1) translateY(0);
+        }
+        .modal-icon {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            color: #000;
+            animation: bounceIn 0.8s ease both;
+        }
+        body.dark-mode .modal-icon { color: var(--color-text-primary); }
+        
+        .modal-box h3 { font-size: 2.5rem; line-height: 1.1; margin-bottom: 15px; }
+        .modal-box p { font-size: 1.2rem; margin-bottom: 30px; font-weight: 600; }
+        
+        @keyframes bounceIn {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
         }
 
         /* ==== BACK TO TOP BUTTON ==== */
@@ -501,36 +661,32 @@
             transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease, box-shadow var(--transition-bounce), background-color 0.3s ease;
             z-index: 999;
         }
-
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .back-to-top.visible:hover {
-            background-color: var(--color-pink);
-            transform: translate(2px, 2px);
-            box-shadow: 2px 2px 0px #000;
-        }
-
-        .back-to-top.visible:active {
-            transform: translate(6px, 6px);
-            box-shadow: 0px 0px 0px #000;
-        }
+        .back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+        .back-to-top.visible:hover { background-color: var(--color-pink); transform: translate(2px, 2px); box-shadow: 2px 2px 0px #000; }
+        .back-to-top.visible:active { transform: translate(6px, 6px); box-shadow: 0px 0px 0px #000; }
 
         /* ==== RESPONSIVE DESIGN ==== */
         @media (max-width: 992px) {
             .hero-section { grid-template-columns: 1fr; }
             .hero-title { font-size: 3.5rem; }
             .bento-grid { grid-template-columns: repeat(2, 1fr); }
-            /* Adjust spans for medium screens */
             .bento-backend, .bento-frontend, .bento-ai, .bento-mobile, .bento-api, .bento-analytics, .bento-devops, .bento-cms { grid-column: span 2; grid-row: auto; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-text { text-align: center; padding-right: 0; }
         }
         @media (max-width: 768px) {
             .nav-inner { padding: 12px 15px; }
             .nav-logo { font-size: 1.25rem; }
-            .nav-link { display: none; } /* Hide text links on mobile */
+            
+            /* Toggle Desktop/Mobile Nav Links */
+            .desktop-only { display: none; }
+            .mobile-only { 
+                display: inline-flex; 
+                align-items: center; 
+                justify-content: center; 
+                font-size: 1.5rem; 
+                color: var(--color-text-primary); 
+            }
             
             .hero-title { font-size: 2.5rem; }
             .section-header { font-size: 2rem; transform: rotate(0deg); }
@@ -541,14 +697,7 @@
             .bento-backend, .bento-frontend, .bento-ai, .bento-mobile, .bento-api, .bento-analytics, .bento-devops, .bento-cms { grid-column: span 1; grid-row: auto; }
             .projects-grid { grid-template-columns: 1fr; }
             .footer-title { font-size: 2.5rem; }
-
-            .back-to-top {
-                bottom: 20px;
-                right: 20px;
-                width: 45px;
-                height: 45px;
-                font-size: 1.5rem;
-            }
+            .back-to-top { bottom: 20px; right: 20px; width: 45px; height: 45px; font-size: 1.5rem; }
         }
     </style>
 </head>
@@ -560,8 +709,17 @@
             <div class="nav-inner brutal-card">
                 <div class="nav-logo">JARNIEL CATALUÑA</div>
                 <div class="nav-controls">
-                    <a href="#projects" class="nav-link">Work</a>
-                    <a href="mailto:jarnielcataluna@gmail.com" class="nav-link">Contact</a>
+                    <!-- Desktop Links -->
+                    <a href="#experience" class="nav-link desktop-only">Experience</a>
+                    <a href="#projects" class="nav-link desktop-only">Work</a>
+                    <a href="#contact" class="nav-link desktop-only">Contact</a>
+                    
+                    <!-- Mobile Contact Icon -->
+                    <a href="#contact" class="nav-link mobile-only" aria-label="Contact">
+                        <i class='bx bxs-envelope'></i>
+                    </a>
+                    
+                    <!-- Theme Toggle -->
                     <button class="theme-toggle" id="themeToggle" aria-label="Toggle Dark Mode">
                         <i class='bx bx-moon'></i>
                     </button>
@@ -571,20 +729,20 @@
 
         <!-- ==== HERO SECTION ==== -->
         <header class="hero-section">
-            <div class="hero-content brutal-card interactive">
+            <div class="hero-content brutal-card interactive reveal-up" style="transition-delay: 0s;">
                 <h1 class="hero-title">INITIATING<br>ARCHITECTURE</h1>
                 <div class="hero-subtitle">Senior Software Engineer & AI Enthusiast</div>
                 <p class="hero-desc">
                     Formal, technically-driven developer focused on establishing clear technical requirements. I specialize in spec-driven development—architecting robust projects with AI via precise specifications, alongside traditional full-stack engineering.
                 </p>
                 <div class="hero-socials">
-                    <a href="mailto:jarnielcataluna@gmail.com" title="Email"><i class='bx bxs-envelope'></i></a>
+                    <a href="#contact" title="Email"><i class='bx bxs-envelope'></i></a>
                     <a href="https://github.com/your-username" target="_blank" title="GitHub"><i class='bx bxl-github'></i></a>
                     <a href="https://linkedin.com/in/your-username" target="_blank" title="LinkedIn"><i class='bx bxl-linkedin-square'></i></a>
                 </div>
             </div>
             
-            <div class="hero-visual brutal-card interactive">
+            <div class="hero-visual brutal-card interactive reveal-up" style="transition-delay: 0.2s;">
                 <div class="hero-badge">
                     SPEC-DRIVEN<br>DEVELOPMENT
                 </div>
@@ -594,11 +752,10 @@
     </div> <!-- Close Container for full-width Marquee -->
 
     <!-- ==== SCROLLING MARQUEE ==== -->
-    <div class="marquee-wrapper">
+    <div class="marquee-wrapper reveal-up" style="transition-delay: 0.1s;">
         <div class="marquee-content">
             TECH LEAD // FULL STACK // AI ORCHESTRATION // SYSTEM ARCHITECTURE // GSD // TECH LEAD // FULL STACK // AI ORCHESTRATION // SYSTEM ARCHITECTURE // GSD // TECH LEAD // FULL STACK // AI ORCHESTRATION // SYSTEM ARCHITECTURE // GSD //
         </div>
-        <!-- Duplicate for seamless loop -->
         <div class="marquee-content" aria-hidden="true">
             TECH LEAD // FULL STACK // AI ORCHESTRATION // SYSTEM ARCHITECTURE // GSD // TECH LEAD // FULL STACK // AI ORCHESTRATION // SYSTEM ARCHITECTURE // GSD // TECH LEAD // FULL STACK // AI ORCHESTRATION // SYSTEM ARCHITECTURE // GSD //
         </div>
@@ -606,10 +763,10 @@
 
     <div class="container">
         <!-- ==== EXPERIENCE SECTION ==== -->
-        <section class="experience">
-            <h2 class="section-header">EXPERIENCE_LOG</h2>
+        <section id="experience" class="experience">
+            <h2 class="section-header reveal-up">EXPERIENCE_LOG</h2>
             
-            <div class="experience-card brutal-card interactive">
+            <div class="experience-card brutal-card interactive reveal-up" style="transition-delay: 0.1s;">
                 <div class="exp-header">
                     <div>
                         <h3 class="exp-role">Senior Software Engineer</h3>
@@ -628,50 +785,45 @@
 
         <!-- ==== BENTO GRID SKILLS ==== -->
         <section class="skills">
-            <h2 class="section-header">SYS_SPECS</h2>
+            <h2 class="section-header reveal-up">SYS_SPECS</h2>
             
             <div class="bento-grid">
-                <!-- Large Backend Block -->
-                <div class="bento-item brutal-card interactive bento-backend">
+                <div class="bento-item brutal-card interactive bento-backend reveal-up" style="transition-delay: 0s;">
                     <h3>Backend Architecture</h3>
                     <p>PHP (Symfony, Laravel)<br>Python (Flask, FastAPI)<br>Java (SpringBoot)<br>Golang</p>
                 </div>
                 
-                <!-- Medium Blocks -->
-                <div class="bento-item brutal-card interactive bento-frontend">
+                <div class="bento-item brutal-card interactive bento-frontend reveal-up" style="transition-delay: 0.1s;">
                     <h3>Frontend Interfaces</h3>
                     <p>JavaScript / TypeScript<br>React / Angular<br>Node.js / Vite</p>
                 </div>
 
-                <!-- Tall Block -->
-                <div class="bento-item brutal-card interactive bento-ai">
+                <div class="bento-item brutal-card interactive bento-ai reveal-up" style="transition-delay: 0.2s;">
                     <h3>AI & Orchestration</h3>
                     <p>Agentic Orchestration<br>Antigravity<br>GSD Method</p>
                 </div>
 
-                <!-- Small Block -->
-                <div class="bento-item brutal-card interactive bento-mobile">
+                <div class="bento-item brutal-card interactive bento-mobile reveal-up" style="transition-delay: 0.3s;">
                     <h3>Mobile Dev</h3>
                     <p>Kotlin (Android)<br>Swift (iOS)<br>Flutter</p>
                 </div>
 
-                <!-- Wide Blocks -->
-                <div class="bento-item brutal-card interactive bento-api">
+                <div class="bento-item brutal-card interactive bento-api reveal-up" style="transition-delay: 0s;">
                     <h3>APIs & Integrations</h3>
                     <p>Meta API / Graph API<br>Google Ads Reporting API<br>3rd Party System Hooks</p>
                 </div>
 
-                <div class="bento-item brutal-card interactive bento-analytics">
+                <div class="bento-item brutal-card interactive bento-analytics reveal-up" style="transition-delay: 0.1s;">
                     <h3>Analytics & Tracking</h3>
                     <p>Google Tag Manager (GTM)<br>GA4 & Server-Side Tracking<br>Custom Event Architectures</p>
                 </div>
 
-                <div class="bento-item brutal-card interactive bento-devops">
+                <div class="bento-item brutal-card interactive bento-devops reveal-up" style="transition-delay: 0.2s;">
                     <h3>DevOps & Cloud</h3>
                     <p>Docker • Git • AWS • Digital Ocean • Github Actions</p>
                 </div>
 
-                <div class="bento-item brutal-card interactive bento-cms">
+                <div class="bento-item brutal-card interactive bento-cms reveal-up" style="transition-delay: 0.3s;">
                     <h3>CMS & Databases</h3>
                     <p>WordPress • Shopify • Magento // MySQL • PostgreSQL</p>
                 </div>
@@ -680,12 +832,12 @@
 
         <!-- ==== PROJECTS GRID ==== -->
         <section id="projects" class="projects">
-            <h2 class="section-header">DEPLOYMENTS</h2>
+            <h2 class="section-header reveal-up">DEPLOYMENTS</h2>
             
             <div class="projects-grid">
-                <article class="project-card brutal-card interactive">
+                <article class="project-card brutal-card interactive reveal-up" style="transition-delay: 0s;">
                     <div class="project-img-wrapper">
-                        <img src="https://placehold.co/800x500/000000/FFFFFF?text=CMS_PALAWAN&font=Space+Grotesk" alt="Palawan Pawnshop">
+                        <img src="https://placehold.co/800x500/000000/FFFFFF.png?text=CMS_PALAWAN&font=Space+Grotesk" alt="Palawan Pawnshop">
                     </div>
                     <div class="project-info">
                         <h3>Palawan Pawnshop</h3>
@@ -697,9 +849,9 @@
                     </div>
                 </article>
 
-                <article class="project-card brutal-card interactive">
+                <article class="project-card brutal-card interactive reveal-up" style="transition-delay: 0.1s;">
                     <div class="project-img-wrapper">
-                        <img src="https://placehold.co/800x500/000000/FFFFFF?text=CMS_DMCI&font=Space+Grotesk" alt="DMCI Homes">
+                        <img src="https://placehold.co/800x500/000000/FFFFFF.png?text=CMS_DMCI&font=Space+Grotesk" alt="DMCI Homes">
                     </div>
                     <div class="project-info">
                         <h3>DMCI Homes</h3>
@@ -711,9 +863,9 @@
                     </div>
                 </article>
 
-                <article class="project-card brutal-card interactive">
+                <article class="project-card brutal-card interactive reveal-up" style="transition-delay: 0s;">
                     <div class="project-img-wrapper">
-                        <img src="https://placehold.co/800x500/000000/FFFFFF?text=SYS_RCBC&font=Space+Grotesk" alt="RCBC Website">
+                        <img src="https://placehold.co/800x500/000000/FFFFFF.png?text=SYS_RCBC&font=Space+Grotesk" alt="RCBC Website">
                     </div>
                     <div class="project-info">
                         <h3>RCBC CMS Core</h3>
@@ -725,9 +877,9 @@
                     </div>
                 </article>
 
-                <article class="project-card brutal-card interactive">
+                <article class="project-card brutal-card interactive reveal-up" style="transition-delay: 0.1s;">
                     <div class="project-img-wrapper">
-                        <img src="https://placehold.co/800x500/000000/FFFFFF?text=API_COMMUNITIES&font=Space+Grotesk" alt="DMCI Communities">
+                        <img src="https://placehold.co/800x500/000000/FFFFFF.png?text=API_COMMUNITIES&font=Space+Grotesk" alt="DMCI Communities">
                     </div>
                     <div class="project-info">
                         <h3>DMCI Communities App</h3>
@@ -743,28 +895,100 @@
 
     </div> <!-- Close Container -->
 
-    <!-- ==== FOOTER ==== -->
-    <footer>
-        <h2 class="footer-title">READY TO DEPLOY.</h2>
-        <p class="footer-desc">Initiate a conversation to discuss spec-driven development, AI orchestration, and system architecture.</p>
-        <a href="mailto:jarnielcataluna@gmail.com" class="btn-primary">
-            EXECUTE: MESSAGE
-        </a>
+    <!-- ==== FOOTER / CONTACT SECTION ==== -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-text reveal-up" style="transition-delay: 0s;">
+                    <h2 class="footer-title">READY TO DEPLOY.</h2>
+                    <p class="footer-desc">Initiate a conversation to discuss spec-driven development, AI orchestration, and system architecture. Fill out the secure form or reach out directly.</p>
+                    <a href="mailto:jarnielcataluna@gmail.com" class="btn-primary" style="background: var(--color-cyan); width: auto; display: inline-flex; margin-bottom: 20px;">
+                        <i class='bx bxs-envelope'></i> DIRECT EMAIL
+                    </a>
+                </div>
+                
+                <!-- CONTACT FORM -->
+                <div class="contact-form-card brutal-card reveal-up" style="transition-delay: 0.2s;">
+                    <h3 style="font-size: 2rem; margin-bottom: 25px;">SECURE_TRANSMISSION</h3>
+                    <form id="contactForm" novalidate>
+                        
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" id="email" name="email" class="brutal-input" placeholder="sysadmin@domain.com" required>
+                            <span class="error-message">Valid email required for handshake.</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone" class="form-label">Contact Number</label>
+                            <input type="tel" id="phone" name="phone" class="brutal-input" placeholder="+63 900 000 0000" required>
+                            <span class="error-message">Contact number is required.</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message" class="form-label">Payload / Message</label>
+                            <textarea id="message" name="message" class="brutal-input" placeholder="Define technical specs here..." required></textarea>
+                            <span class="error-message">Message payload cannot be empty.</span>
+                        </div>
+                        
+                        <button type="submit" id="submitBtn" class="btn-primary">
+                            <span class="spinner"></span>
+                            <span class="btn-text">TRANSMIT_DATA</span>
+                        </button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
     </footer>
+
+    <!-- ==== SUCCESS MODAL ==== -->
+    <div id="successModal" class="modal-overlay">
+        <div class="modal-box brutal-card">
+            <i class='bx bxs-check-circle modal-icon'></i>
+            <h3>TRANSMISSION SUCCESSFUL</h3>
+            <p>Your payload has been received securely. I will initialize contact parameters shortly.</p>
+            <button id="closeModalBtn" class="btn-primary" style="width: auto;">ACKNOWLEDGE</button>
+        </div>
+    </div>
 
     <!-- ==== BACK TO TOP BUTTON ==== -->
     <button id="backToTop" class="back-to-top" aria-label="Back to Top">
         <i class='bx bx-up-arrow-alt'></i>
     </button>
 
-    <script>
-        // Premium Theme Toggle Logic
+    <!-- ==== FIREBASE & LOGIC SCRIPT ==== -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Global initialization
+        let db = null;
+        let isFirebaseInitialized = false;
+
+        try {
+            if (typeof __firebase_config !== 'undefined') {
+                const firebaseConfig = JSON.parse(__firebase_config);
+                const app = initializeApp(firebaseConfig);
+                const auth = getAuth(app);
+                db = getFirestore(app);
+                
+                await signInAnonymously(auth);
+                isFirebaseInitialized = true;
+                console.log("Firebase Systems Online.");
+            } else {
+                console.log("Firebase config not found. Form will run in simulation mode.");
+            }
+        } catch (e) {
+            console.error("Firebase init failed:", e);
+        }
+
+        // --- Theme Logic ---
         const themeToggle = document.getElementById('themeToggle');
         const icon = themeToggle.querySelector('i');
         const body = document.body;
-
         const savedTheme = localStorage.getItem('theme');
-        // Default to light mode, only use dark mode if explicitly saved by the user
+
         if (savedTheme === 'dark') {
             body.classList.add('dark-mode');
             icon.classList.replace('bx-moon', 'bx-sun');
@@ -781,9 +1005,28 @@
             }
         });
 
-        // Back to Top Logic
+        // --- Scroll Reveal Animations (Intersection Observer) ---
+        const revealElements = document.querySelectorAll('.reveal-up');
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px 0px -50px 0px', // Trigger slightly before it hits the very bottom
+            threshold: 0.1
+        };
+
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    // Unobserve after animating once
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // --- Back to Top Logic ---
         const backToTopBtn = document.getElementById('backToTop');
-        
         window.addEventListener('scroll', () => {
             if (window.scrollY > 400) {
                 backToTopBtn.classList.add('visible');
@@ -791,13 +1034,101 @@
                 backToTopBtn.classList.remove('visible');
             }
         });
-
         backToTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // --- Form Validation & Submission Logic ---
+        const form = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const inputs = form.querySelectorAll('.brutal-input');
+        
+        const modal = document.getElementById('successModal');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+
+        const validateEmail = (email) => {
+            return String(email).toLowerCase().match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
+        };
+
+        const triggerError = (input) => {
+            input.classList.add('invalid');
+            input.classList.remove('shake');
+            void input.offsetWidth; // trigger reflow
+            input.classList.add('shake');
+        };
+
+        const validateForm = () => {
+            let isValid = true;
+            inputs.forEach(input => {
+                if (input.value.trim() === '') {
+                    triggerError(input);
+                    isValid = false;
+                } else if (input.type === 'email' && !validateEmail(input.value)) {
+                    triggerError(input);
+                    isValid = false;
+                } else {
+                    input.classList.remove('invalid', 'shake');
+                }
+            });
+            return isValid;
+        };
+
+        inputs.forEach(input => {
+            input.addEventListener('input', () => {
+                input.classList.remove('invalid', 'shake');
             });
         });
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            if (!validateForm()) return;
+
+            submitBtn.disabled = true;
+            submitBtn.classList.add('loading');
+
+            const formData = {
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                message: document.getElementById('message').value,
+            };
+
+            try {
+                if (isFirebaseInitialized && db) {
+                    const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+                    const messagesRef = collection(db, 'artifacts', appId, 'public', 'data', 'messages');
+                    await addDoc(messagesRef, {
+                        ...formData,
+                        createdAt: serverTimestamp()
+                    });
+                } else {
+                    await new Promise(resolve => setTimeout(resolve, 1500));
+                    console.log("Simulated Data Transmission:", formData);
+                }
+
+                form.reset();
+                modal.classList.add('active');
+                body.classList.add('modal-open');
+
+            } catch (error) {
+                console.error("Transmission Error:", error);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('loading');
+            }
+        });
+
+        // --- Modal Control ---
+        const closeModal = () => {
+            modal.classList.remove('active');
+            body.classList.remove('modal-open');
+        };
+
+        closeModalBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
     </script>
 </body>
 </html>
