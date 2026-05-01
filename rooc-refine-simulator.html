@@ -369,7 +369,7 @@
         .chance-info b { color: var(--primary-blue); font-size: 1.1em; }
         
         .lucky-bonus { 
-            display: none; /* Hidden when no value */
+            display: none; /* Hidden when no value or in Blessed mode */
             color: var(--gold); 
             font-size: 9px; 
             font-weight: bold; 
@@ -465,8 +465,8 @@
                 <div id="countBlessed">0</div>
             </div>
             <div class="stat-header-item">
-                <span>Zeny</span>
-                <div id="countZeny">0</div>
+                <span>Eden Coin</span>
+                <div id="countEdenCoin">0</div>
             </div>
             <button class="reset-all-btn" onclick="resetCosts()">Reset Costs</button>
         </div>
@@ -513,7 +513,7 @@
                     </div>
                     <div class="cost-item">
                         <div class="cost-box">🪙</div>
-                        <div class="cost-amount" id="costZeny">0</div>
+                        <div class="cost-amount" id="costEdenCoin">0</div>
                         <div class="cost-name">Eden Coin</div>
                     </div>
                 </div>
@@ -540,23 +540,26 @@
     const ctx = canvas.getContext('2d');
     
     const refineSheet = [
-        { rate: 100, ore: 2, enriched: 0, blessed: 0, zeny: 400 },
-        { rate: 100, ore: 3, enriched: 0, blessed: 0, zeny: 600 },
-        { rate: 100, ore: 4, enriched: 0, blessed: 0, zeny: 8000 },
-        { rate: 55,  ore: 4, enriched: 0, blessed: 0, zeny: 8000 },
-        { rate: 50,  ore: 4, enriched: 0, blessed: 1, zeny: 8000 },
-        { rate: 45,  ore: 6, enriched: 0, blessed: 2, zeny: 12000 },
-        { rate: 40,  ore: 12, enriched: 0, blessed: 0, zeny: 24000 },
-        { rate: 30,  ore: 20, enriched: 0, blessed: 3, zeny: 40000 },
-        { rate: 25,  ore: 30, enriched: 0, blessed: 3, zeny: 60000 },
-        { rate: 10,  ore: 40, enriched: 0, blessed: 0, zeny: 80000 },
-        { rate: 20,  ore: 0, enriched: 12, blessed: 5, zeny: 120000 },
-        { rate: 18,  ore: 0, enriched: 16, blessed: 5, zeny: 160000 },
-        { rate: 16,  ore: 0, enriched: 20, blessed: 0, zeny: 200000 },
-        { rate: 14,  ore: 0, enriched: 24, blessed: 10, zeny: 240000 },
-        { rate: 12,  ore: 0, enriched: 28, blessed: 15, zeny: 280000 },
-        { rate: 11,  ore: 0, enriched: 36, blessed: 0, zeny: 360000 },
-        { rate: 10,  ore: 0, enriched: 42, blessed: 15, zeny: 420000 }
+        { rate: 100, ore: 2, enriched: 0, blessed: 0, edenCoin: 400 },
+        { rate: 100, ore: 3, enriched: 0, blessed: 0, edenCoin: 600 },
+        { rate: 100, ore: 4, enriched: 0, blessed: 0, edenCoin: 8000 },
+        { rate: 55,  ore: 4, enriched: 0, blessed: 0, edenCoin: 8000 },
+        { rate: 50,  ore: 4, enriched: 0, blessed: 1, edenCoin: 8000 },
+        { rate: 45,  ore: 6, enriched: 0, blessed: 2, edenCoin: 12000 },
+        { rate: 40,  ore: 12, enriched: 0, blessed: 0, edenCoin: 24000 },
+        { rate: 30,  ore: 20, enriched: 0, blessed: 3, edenCoin: 40000 },
+        { rate: 25,  ore: 30, enriched: 0, blessed: 3, edenCoin: 60000 },
+        { rate: 10,  ore: 40, enriched: 0, blessed: 0, edenCoin: 80000 },
+        { rate: 20,  ore: 0, enriched: 12, blessed: 5, edenCoin: 120000 },
+        { rate: 18,  ore: 0, enriched: 16, blessed: 5, edenCoin: 160000 },
+        { rate: 16,  ore: 0, enriched: 20, blessed: 0, edenCoin: 200000 },
+        { rate: 14,  ore: 0, enriched: 24, blessed: 10, edenCoin: 240000 },
+        { rate: 12,  ore: 0, enriched: 28, blessed: 15, edenCoin: 280000 },
+        { rate: 11,  ore: 0, enriched: 36, blessed: 0, edenCoin: 360000 },
+        { rate: 10,  ore: 0, enriched: 42, blessed: 15, edenCoin: 420000 },
+        { rate: 10,  ore: 0, enriched: 48, blessed: 20, edenCoin: 480000 },
+        { rate: 10,  ore: 0, enriched: 54, blessed: 25, edenCoin: 540000 },
+         { rate: 10,  ore: 0, enriched: 60, blessed: 30, edenCoin: 600000 }
     ];
 
     const safeLevels = [3, 6, 9, 12, 15];
@@ -570,7 +573,7 @@
         { id: 7, name: "Accessory", type: "Accessory", icon: "📿", level: 0, lucky: 0 }
     ];
 
-    let session = { ori: 0, enriched: 0, blessed: 0, zeny: 0 };
+    let session = { ori: 0, enriched: 0, blessed: 0, edenCoin: 0 };
     let selectedItem = items[0];
     let mode = 'Normal'; 
     let animating = false;
@@ -644,7 +647,7 @@
         session.ori = 0;
         session.enriched = 0;
         session.blessed = 0;
-        session.zeny = 0;
+        session.edenCoin = 0;
         updateUI();
     }
 
@@ -685,7 +688,7 @@
         document.getElementById('oreIcon').innerText = useEnriched ? "🔷" : (isWep ? "💎" : "💠");
         document.getElementById('oreName').innerText = useEnriched ? "Enriched" : (isWep ? "Ori" : "Elu");
         document.getElementById('costOre').innerText = useEnriched ? data.enriched : data.ore;
-        document.getElementById('costZeny').innerText = data.zeny.toLocaleString();
+        document.getElementById('costEdenCoin').innerText = data.edenCoin.toLocaleString();
         
         const bItem = document.getElementById('blessedItem');
         if (mode === 'Blessed' && data.blessed > 0) {
@@ -696,11 +699,13 @@
             document.getElementById('costBlessed').innerText = data.blessed || 0;
         }
 
-        document.getElementById('successRate').innerText = data.rate + "%";
+        // Use 0 bonus if in Blessed mode
+        const effectiveLucky = (mode === 'Normal') ? selectedItem.lucky : 0;
+        document.getElementById('successRate').innerText = (data.rate + effectiveLucky) + "%";
         
-        // Hide Lucky Value if it is 0
+        // Hide Lucky Value if it is 0 or if mode is Blessed
         const luckyEl = document.getElementById('luckyLabel');
-        if (selectedItem.lucky > 0) {
+        if (mode === 'Normal' && selectedItem.lucky > 0) {
             luckyEl.innerText = `+${selectedItem.lucky}% Lucky`;
             luckyEl.style.display = 'inline-block';
         } else {
@@ -710,7 +715,7 @@
         document.getElementById('countOri').innerText = session.ori.toLocaleString();
         document.getElementById('countEnriched').innerText = session.enriched.toLocaleString();
         document.getElementById('countBlessed').innerText = session.blessed.toLocaleString();
-        document.getElementById('countZeny').innerText = session.zeny.toLocaleString();
+        document.getElementById('countEdenCoin').innerText = session.edenCoin.toLocaleString();
     }
 
     function handleRefine() {
@@ -725,11 +730,13 @@
         if (data.enriched > 0) session.enriched += data.enriched;
         else session.ori += data.ore;
         if (mode === 'Blessed' && data.blessed > 0) session.blessed += data.blessed;
-        session.zeny += data.zeny;
+        session.edenCoin += data.edenCoin;
         updateUI();
 
         setTimeout(() => {
-            const chance = data.rate + selectedItem.lucky;
+            // Use 0 bonus if in Blessed mode
+            const effectiveLucky = (mode === 'Normal') ? selectedItem.lucky : 0;
+            const chance = data.rate + effectiveLucky;
             const roll = Math.random() * 100;
             const success = roll <= chance;
 
@@ -751,25 +758,19 @@
                 if (mode === 'Normal') {
                     const isSafe = safeLevels.includes(selectedItem.level);
                     if (isSafe) {
-                        // Milestone safety: No drop, no Lucky Value increase (per previous rule)
+                        // Milestone safety: No drop, no Lucky Value increase
                     } else if (selectedItem.level > 0) {
-                        // 50% chance to degrade, 50% to retain. Lucky Value increases in both cases.
                         if (Math.random() < 0.5) {
-                            // Degrade
                             selectedItem.level--;
-                            
-                            // RULE: If decreased to safety milestone, reset Lucky Value to 0
                             if (safeLevels.includes(selectedItem.level)) {
                                 selectedItem.lucky = 0;
                             } else {
                                 selectedItem.lucky += 5;
                             }
                         } else {
-                            // Retain
                             selectedItem.lucky += 1;
                         }
                     } else {
-                        // Level 0 failure increases lucky value by 1
                         selectedItem.lucky += 1;
                     }
                 }
