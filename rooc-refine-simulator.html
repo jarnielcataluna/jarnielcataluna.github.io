@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ROOC Refine Simulator - Pseudo</title>
+    <title>ROO Refine Simulator - Pseudo</title>
     <style>
         :root {
             --bg-color: #0b0c10;
@@ -45,18 +45,27 @@
             border: 1px solid var(--border);
             flex-direction: column;
             overflow: hidden;
+            position: relative;
         }
 
         /* Top Header: Session Stats */
         .top-header {
             background: rgba(0,0,0,0.7);
-            padding: 12px 30px;
+            padding: 12px 20px;
             border-bottom: 1px solid var(--border);
             display: flex;
             justify-content: space-between;
             align-items: center;
             backdrop-filter: blur(10px);
-            z-index: 10;
+            z-index: 110;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--accent-blue);
+            margin-right: 15px;
         }
 
         .session-title {
@@ -69,30 +78,30 @@
 
         .session-stats-header {
             display: flex;
-            gap: 15px;
+            gap: 10px;
             align-items: center;
         }
 
         .stat-header-item {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 5px;
             background: rgba(255,255,255,0.03);
-            padding: 5px 12px;
+            padding: 5px 10px;
             border-radius: 20px;
             border: 1px solid rgba(255,255,255,0.05);
         }
 
-        .stat-header-item span { font-size: 8px; color: #888; text-transform: uppercase; }
-        .stat-header-item div { font-weight: bold; color: var(--gold); font-size: 15px; font-family: 'Consolas', monospace; }
+        .stat-header-item span { font-size: 7px; color: #888; text-transform: uppercase; }
+        .stat-header-item div { font-weight: bold; color: var(--gold); font-size: 13px; font-family: 'Consolas', monospace; }
 
         .reset-all-btn {
             background: rgba(255, 77, 77, 0.1);
             color: var(--fail-red);
             border: 1px solid rgba(255, 77, 77, 0.3);
-            padding: 6px 12px;
+            padding: 6px 10px;
             border-radius: 15px;
-            font-size: 10px;
+            font-size: 9px;
             font-weight: bold;
             cursor: pointer;
             text-transform: uppercase;
@@ -102,13 +111,13 @@
 
         .reset-all-btn:hover {
             background: rgba(255, 77, 77, 0.2);
-            box-shadow: 0 0 10px rgba(255, 77, 77, 0.2);
         }
 
         .main-body {
             display: flex;
             flex: 1;
             overflow: hidden;
+            position: relative;
         }
 
         /* Sidebar Styling */
@@ -118,6 +127,8 @@
             display: flex;
             flex-direction: column;
             background: rgba(0,0,0,0.2);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 100;
         }
 
         .sidebar-header {
@@ -128,6 +139,16 @@
             letter-spacing: 1px;
             color: #aaa;
             border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .close-sidebar {
+            display: none;
+            cursor: pointer;
+            font-size: 20px;
+            color: var(--fail-red);
         }
 
         .item-list {
@@ -230,7 +251,7 @@
             flex: 0 0 40%;
             background: var(--card-bg);
             border-top: 1px solid var(--border);
-            padding: 15px 0 20px;
+            padding: 15px 10px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -244,7 +265,8 @@
             background: var(--tab-bg);
             border-radius: 30px;
             padding: 4px;
-            width: 420px;
+            width: 100%;
+            max-width: 420px;
             border: 1px solid var(--border);
         }
 
@@ -274,34 +296,36 @@
 
         .cost-row {
             display: flex;
-            gap: 40px;
+            gap: 20px;
             justify-content: center;
+            width: 100%;
         }
 
         .cost-item {
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-width: 90px;
+            flex: 1;
+            max-width: 100px;
         }
 
         .cost-box {
-            width: 58px;
-            height: 58px;
+            width: 50px;
+            height: 50px;
             background: radial-gradient(circle at center, #1b1e26 0%, #000 100%);
             border-radius: 12px;
             margin-bottom: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 28px;
+            font-size: 24px;
             border: 1px solid #444;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
             position: relative;
         }
 
-        .cost-amount { font-size: 14px; color: #fff; font-weight: bold; }
-        .cost-name { font-size: 9px; color: #777; text-transform: uppercase; margin-top: 5px; letter-spacing: 1px; }
+        .cost-amount { font-size: 13px; color: #fff; font-weight: bold; }
+        .cost-name { font-size: 8px; color: #777; text-transform: uppercase; margin-top: 5px; letter-spacing: 1px; text-align: center; }
 
         .action-container {
             text-align: center;
@@ -312,45 +336,45 @@
             background: var(--accent-blue);
             color: white;
             border: none;
-            padding: 18px 0;
-            width: 420px;
+            padding: 16px 0;
+            width: 100%;
+            max-width: 420px;
             border-radius: 40px;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 800;
             cursor: pointer;
             transition: all 0.2s ease;
             box-shadow: 0 8px 25px rgba(0,0,0,0.5);
             text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
         }
 
         .refine-btn:hover:not(:disabled) { 
             background: #5ba4ff;
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(74, 144, 226, 0.3);
         }
         .refine-btn:active { transform: translateY(0); }
         .refine-btn:disabled { background: #2a313d; color: #555; cursor: not-allowed; box-shadow: none; }
 
         .chance-info {
             margin-bottom: 12px;
-            font-size: 13px;
+            font-size: 12px;
             color: #888;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 15px;
+            gap: 10px;
         }
 
-        .chance-info b { color: var(--primary-blue); font-size: 1.2em; }
+        .chance-info b { color: var(--primary-blue); font-size: 1.1em; }
         
         .lucky-bonus { 
             display: none; /* Hidden when no value */
             color: var(--gold); 
-            font-size: 10px; 
+            font-size: 9px; 
             font-weight: bold; 
             background: rgba(243, 198, 35, 0.1);
-            padding: 3px 10px;
+            padding: 2px 8px;
             border-radius: 10px;
             border: 1px solid rgba(243, 198, 35, 0.2);
             margin-left: 10px;
@@ -366,8 +390,8 @@
         }
 
         .trademark-footer {
-            margin-top: 15px;
-            font-size: 10px;
+            margin-top: 10px;
+            font-size: 9px;
             letter-spacing: 2px;
             text-transform: uppercase;
             color: rgba(255, 255, 255, 0.15);
@@ -375,6 +399,47 @@
             pointer-events: none;
             user-select: none;
         }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .container { height: 95vh; width: 98vw; border-radius: 0; }
+            .menu-toggle { display: block; }
+            .sidebar {
+                position: absolute;
+                left: 0;
+                top: 0;
+                height: 100%;
+                background: #0d1117;
+                transform: translateX(-100%);
+                box-shadow: 10px 0 30px rgba(0,0,0,0.8);
+                width: 280px;
+            }
+            .sidebar.active { transform: translateX(0); }
+            .close-sidebar { display: block; }
+            .session-stats-header { gap: 8px; }
+            .stat-header-item { padding: 4px 8px; }
+            .stat-header-item div { font-size: 12px; }
+            .stat-header-item span { font-size: 6px; }
+            .session-title { display: none; }
+            .reset-all-btn { padding: 4px 8px; font-size: 8px; }
+            
+            canvas { flex: 0 0 55%; }
+            .refine-card { flex: 0 0 45%; }
+            
+            .cost-box { width: 45px; height: 45px; font-size: 20px; }
+            .refine-btn { width: 90%; }
+            .mode-tabs { width: 90%; }
+        }
+
+        .overlay-mask {
+            display: none;
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 95;
+            backdrop-filter: blur(2px);
+        }
+        .overlay-mask.active { display: block; }
     </style>
 </head>
 <body>
@@ -382,7 +447,10 @@
 <div class="container">
     <!-- Header -->
     <div class="top-header">
-        <div class="session-title">Total Accumulated Cost</div>
+        <div style="display: flex; align-items: center;">
+            <div class="menu-toggle" onclick="toggleSidebar()">☰</div>
+            <div class="session-title">Total Accumulated Cost</div>
+        </div>
         <div class="session-stats-header">
             <div class="stat-header-item">
                 <span>Ore</span>
@@ -405,9 +473,13 @@
     </div>
 
     <div class="main-body">
+        <div class="overlay-mask" id="sidebarMask" onclick="toggleSidebar()"></div>
         <!-- Sidebar -->
-        <div class="sidebar">
-            <div class="sidebar-header">EQUIPMENT SLOTS</div>
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                EQUIPMENT SLOTS
+                <div class="close-sidebar" onclick="toggleSidebar()">✕</div>
+            </div>
             <div class="item-list" id="itemList"></div>
         </div>
 
@@ -513,6 +585,14 @@
         canvas.width = container.clientWidth;
         canvas.height = container.clientHeight * 0.6;
     }
+
+    function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        const mask = document.getElementById('sidebarMask');
+        sidebar.classList.toggle('active');
+        mask.classList.toggle('active');
+    }
+
     window.addEventListener('resize', resize);
     setTimeout(resize, 100);
 
@@ -530,6 +610,11 @@
         popup.active = false;
         const data = refineSheet[selectedItem.level];
         if (mode === 'Blessed' && (!data || data.blessed === 0)) mode = 'Normal';
+        
+        if (window.innerWidth <= 768) {
+            toggleSidebar();
+        }
+
         renderList();
         updateUI();
     }
@@ -598,7 +683,7 @@
         const isWep = selectedItem.type === 'Weapon';
         const useEnriched = data.enriched > 0;
         document.getElementById('oreIcon').innerText = useEnriched ? "🔷" : (isWep ? "💎" : "💠");
-        document.getElementById('oreName').innerText = useEnriched ? "Enriched Ore" : (isWep ? "Oridecon" : "Elunium");
+        document.getElementById('oreName').innerText = useEnriched ? "Enriched" : (isWep ? "Ori" : "Elu");
         document.getElementById('costOre').innerText = useEnriched ? data.enriched : data.ore;
         document.getElementById('costZeny').innerText = data.zeny.toLocaleString();
         
@@ -616,7 +701,7 @@
         // Hide Lucky Value if it is 0
         const luckyEl = document.getElementById('luckyLabel');
         if (selectedItem.lucky > 0) {
-            luckyEl.innerText = `+${selectedItem.lucky}% Lucky Value`;
+            luckyEl.innerText = `+${selectedItem.lucky}% Lucky`;
             luckyEl.style.display = 'inline-block';
         } else {
             luckyEl.style.display = 'none';
@@ -655,7 +740,7 @@
                 popup = { active: true, text: "SUCCESS!", color: "#f3c623", o: 1.5 };
                 for(let i=0; i<50; i++) particles.push({
                     x: canvas.width/2, y: canvas.height/2-40,
-                    vx: (Math.random()-0.5)*20, vy: (Math.random()-0.5)*20,
+                    vx: (Math.random()-0.5)*18, vy: (Math.random()-0.5)*18,
                     l: 1, c: "#f3c623"
                 });
                 const next = refineSheet[selectedItem.level];
@@ -664,10 +749,27 @@
                 shake = 30;
                 popup = { active: true, text: "FAILED", color: "#e74c3c", o: 1.5 };
                 if (mode === 'Normal') {
-                    if (!safeLevels.includes(selectedItem.level) && selectedItem.level > 0) {
-                        selectedItem.level--;
-                        selectedItem.lucky += 5;
+                    const isSafe = safeLevels.includes(selectedItem.level);
+                    if (isSafe) {
+                        // Milestone safety: No drop, no Lucky Value increase (per previous rule)
+                    } else if (selectedItem.level > 0) {
+                        // 50% chance to degrade, 50% to retain. Lucky Value increases in both cases.
+                        if (Math.random() < 0.5) {
+                            // Degrade
+                            selectedItem.level--;
+                            
+                            // RULE: If decreased to safety milestone, reset Lucky Value to 0
+                            if (safeLevels.includes(selectedItem.level)) {
+                                selectedItem.lucky = 0;
+                            } else {
+                                selectedItem.lucky += 5;
+                            }
+                        } else {
+                            // Retain
+                            selectedItem.lucky += 1;
+                        }
                     } else {
+                        // Level 0 failure increases lucky value by 1
                         selectedItem.lucky += 1;
                     }
                 }
@@ -703,34 +805,35 @@
         ctx.shadowColor = animating ? "#4a90e2" : "#000";
         ctx.fillStyle = "#000";
         ctx.beginPath();
-        ctx.roundRect(cx - 90, cy - 90, 180, 180, 24);
+        const size = Math.min(canvas.height * 0.7, 180);
+        ctx.roundRect(cx - size/2, cy - size/2, size, size, 24);
         ctx.fill();
         ctx.strokeStyle = animating ? "#66fcf1" : "#2a313d";
         ctx.lineWidth = 4;
         ctx.stroke();
 
-        ctx.font = "100px Arial";
+        ctx.font = (size * 0.55) + "px Arial";
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
         ctx.fillText(selectedItem.icon, cx, cy);
         ctx.shadowBlur = 0;
 
-        ctx.font = "bold 52px Segoe UI";
+        ctx.font = "bold " + (size * 0.28) + "px Segoe UI";
         ctx.fillStyle = "#fff";
-        ctx.fillText("+" + selectedItem.level, cx, cy + 130);
+        ctx.fillText("+" + selectedItem.level, cx, cy + (size * 0.72));
 
         if (animating) {
-            ctx.font = "bold 16px Segoe UI";
+            ctx.font = "bold 13px Segoe UI";
             ctx.fillStyle = "#66fcf1";
             const dots = ".".repeat(Math.floor(Date.now() / 200) % 4);
-            ctx.fillText("UPGRADING EQUIPMENT" + dots, cx, cy + 180);
+            ctx.fillText("UPGRADING" + dots, cx, cy + (size * 1.0));
         }
 
         if (popup.active && popup.o > 0) {
-            ctx.font = "900 80px Segoe UI";
+            ctx.font = "900 " + (size * 0.44) + "px Segoe UI";
             ctx.fillStyle = popup.color;
             ctx.globalAlpha = Math.min(1, popup.o);
-            ctx.fillText(popup.text, cx, cy - 180);
+            ctx.fillText(popup.text, cx, cy - (size * 1.0));
             popup.o -= 0.025;
             ctx.globalAlpha = 1;
         }
@@ -740,7 +843,7 @@
             p.x += p.vx; p.y += p.vy; p.l -= 0.02;
             ctx.fillStyle = p.c;
             ctx.globalAlpha = p.l;
-            ctx.beginPath(); ctx.arc(p.x, p.y, 5, 0, Math.PI*2); ctx.fill();
+            ctx.beginPath(); ctx.arc(p.x, p.y, 4, 0, Math.PI*2); ctx.fill();
         });
         ctx.globalAlpha = 1;
 
